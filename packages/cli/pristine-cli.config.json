@@ -1,0 +1,6 @@
+{
+  "packages": {
+    "react": "@pristine/react"
+  },
+  "sourceConfigFileName": "pristine-source.config.json"
+}

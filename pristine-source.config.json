@@ -1,0 +1,7 @@
+{
+  "react": {
+    "paths": {
+      "components": "./packages/react/src/components"
+    }
+  }
+}
