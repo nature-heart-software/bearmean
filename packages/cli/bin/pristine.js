@@ -6,6 +6,7 @@ const path = require('path')
 const {walk} = require("@root/walk")
 const {createMatchPath, register, loadConfig} = require('tsconfig-paths')
 const {resolve} = require('path')
+const copy = require('copy')
 const crawl = require('../modules/crawl')
 const {
     _,
@@ -31,12 +32,41 @@ const {
         return originalRequireResolve(request, options);
     };
 
+function resolvePath(path, paths = {}) {
+    // Sort the keys by length in descending order, so we match the most specific paths first
+    const sortedKeys = Object.keys(paths).sort((a, b) => b.length - a.length);
+
+    for (const key of sortedKeys) {
+        // Create a regular expression from the key, replacing '*' with a capture group '(.*?)'
+        const regex = new RegExp('^' + key.replace(/\*/g, '(.*?)') + '$');
+
+        const match = path.match(regex);
+        if (match) {
+            // Get the replacement path from the paths object
+            let replacementPath = paths[key][0];
+
+            // If the replacement path contains a wildcard, replace it with the captured group from the original path
+            if (replacementPath.includes('*')) {
+                replacementPath = replacementPath.replace('*', match[1]);
+            }
+
+            // Replace the matched part of the original path with the replacement path
+            return path.replace(regex, replacementPath).trim();
+        }
+    }
+
+    // If no matching key was found, return the original path
+    return path;
+}
+
 function loadSourceConfig(packageName, cliConfig) {
     return new Promise((resolve) => {
         let config;
+        let configPath;
         return crawl(__dirname, (err, dir, files) => {
             if (files.includes(cliConfig.sourceConfigFileName)) {
-                config = (require(path.resolve(dir, cliConfig.sourceConfigFileName)));
+                configPath = path.resolve(dir, cliConfig.sourceConfigFileName);
+                config = require(configPath);
                 return Promise.resolve(true);
             }
             return Promise.resolve();
@@ -44,19 +74,42 @@ function loadSourceConfig(packageName, cliConfig) {
             if (!config) {
                 const modulePath = require.resolve(cliConfig.packages[packageName])
                 if (fs.existsSync(modulePath)) {
-                    resolve(require(path.resolve(modulePath, cliConfig.sourceConfigFileName)));
+                    configPath = path.resolve(modulePath, cliConfig.sourceConfigFileName);
+                    config = require(configPath);
                 }
-            } else {
-                resolve(config);
             }
+            resolve({
+                configPath,
+                config,
+            });
         });
     })
 }
 
-function getComponentPath({componentName, packageName, sourceConfig}) {
+function loadTargetConfig({cliConfig}) {
+    return new Promise((resolve) => {
+        let config;
+        let configPath;
+        return crawl(process.cwd(), (err, dir, files) => {
+            if (files.includes(cliConfig.targetConfigFileName)) {
+                configPath = path.resolve(dir, cliConfig.targetConfigFileName);
+                config = require(configPath);
+                return Promise.resolve(true);
+            }
+            return Promise.resolve();
+        }).then(() => {
+            resolve({
+                configPath,
+                config,
+            });
+        });
+    })
+}
+
+function getComponentPath({componentName, packageName, sourceConfig, sourceConfigPath}) {
     return new Promise((resolve) => {
         const exclude = ['node_modules', '.git', '.idea', '.vscode', 'dist', 'build', 'coverage', 'public', 'static', 'tmp', 'temp', 'logs', 'logs', 'log']
-        return walk(sourceConfig[packageName].paths.components, (err, pathname, dirent) => {
+        return walk(path.resolve(sourceConfigPath, '..', sourceConfig[packageName].paths.components), (err, pathname, dirent) => {
             if (err) {
                 console.warn("fs stat error for %s: %s", pathname, err.message);
                 return Promise.resolve();
@@ -79,7 +132,7 @@ async function pristine() {
         console.log(`Usage: ${cliConfig.commandName} <action> <component_name>`);
         return;
     }
-    const sourceConfig = await loadSourceConfig(packageName, cliConfig);
+    const {config: sourceConfig, configPath: sourceConfigPath} = await loadSourceConfig(packageName, cliConfig);
     if (!sourceConfig) {
         console.log(`${cliConfig.sourceConfigFileName} not found`);
         return;
@@ -87,7 +140,9 @@ async function pristine() {
     const context = {
         componentName,
         sourceConfig,
+        sourceConfigPath,
         packageName,
+        cliConfig,
     }
     const componentPath = await getComponentPath(context);
     if (!componentPath) {
@@ -144,8 +199,25 @@ async function pristine() {
     const dependencies = new Set();
     dependencies.add(componentPath);
     findDependencies(componentPath, dependencies);
-    console.log('File dependencies:');
-    dependencies.forEach(dep => console.log(dep));
+    console.log('Components:')
+    const componentsPath = path.resolve(sourceConfigPath, '..', sourceConfig[packageName].paths.components);
+    const {config: targetConfig, configPath: targetConfigPath} = await loadTargetConfig({cliConfig});
+    const {paths: targetPaths, absoluteBaseUrl: targetAbsoluteBaseUrl} = loadConfig(process.cwd());
+    const componentFolders =  Array.from(dependencies)
+        .filter(dep => dep.startsWith(componentsPath))
+        .filter(dep => dep.includes('index'))
+        .map(dep => dep.replace(componentsPath, '').split(path.sep).filter((name) => !name.includes('index')).join(path.sep))
+
+    componentFolders
+        .forEach(folder => {
+            const targetFolder = path.join(targetAbsoluteBaseUrl, resolvePath(targetConfig.aliases.components, targetPaths), folder)
+            console.log('--', folder, '>', targetFolder)
+            copy(path.join(componentsPath, folder, '/*'), targetFolder, {overwrite: false},(err, files) => {
+                if (err) {
+                    console.error('error')
+                }
+            })
+        })
 }
 
 pristine();
