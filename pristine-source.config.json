@@ -1,7 +1,9 @@
 {
   "react": {
     "paths": {
-      "components": "./packages/react/src/components"
+      "components": "./packages/react/src/components",
+      "tokens": "./packages/react/src/tokens",
+      "utils": "./packages/react/src/utils"
     }
   }
 }
