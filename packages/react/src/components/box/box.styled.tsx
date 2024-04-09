@@ -4,7 +4,7 @@ import { rem } from 'polished'
 import { spacing } from '@/tokens/spacing'
 import { elevation } from '@/tokens/elevation'
 import { SoftRequired } from '@/utils/object'
-import { borderRadius } from '@/tokens/border-radius'
+import { borderRadius, borderStyle } from '@/tokens/border.ts'
 import { colors } from '@/tokens/colors.ts'
 import get from 'lodash/get'
 
@@ -48,9 +48,9 @@ type StBoxProps = {
     >
 }
 
-const getSpacingValue = <S extends string | number>(value: S) => {
+const getValue = <V extends string | number, R extends Record<string, unknown>>(value: V, from?: R) => {
     if (typeof value === 'number') return rem(value)
-    if (value in spacing) return rem(spacing[value as keyof typeof spacing])
+    if (from && value in from) return rem(from[value as unknown as keyof R] as string)
     return value
 }
 
@@ -113,89 +113,95 @@ export const StBox = styled('div', {
             background: get(colors, bg) || bg,
         },
         w && {
-            width: w === 'full' ? '100%' : typeof w === 'number' ? rem(w) : w,
+            width: w === 'full' ? '100%' : getValue(w),
         },
-        ['string', 'number'].includes(typeof h) && {
-            height: h === 'auto' ? h : h === 'full' ? '100%' : rem(h as number),
+        h && {
+            height: h === 'full' ? '100%' : getValue(h),
         },
-        ['string', 'number'].includes(typeof minW) && {
-            minWidth: minW === 'auto' ? minW : minW === 'full' ? '100%' : rem(minW as number),
+        minW && {
+            minWidth: minW === 'full' ? '100%' : getValue(minW),
         },
-        ['string', 'number'].includes(typeof minH) && {
-            minHeight: minH === 'auto' ? minH : minH === 'full' ? '100%' : rem(minH as number),
+        minH && {
+            minHeight: minH === 'full' ? '100%' : getValue(minH),
         },
-        ['string', 'number'].includes(typeof maxW) && {
-            maxWidth: maxW === 'auto' ? maxW : maxW === 'full' ? '100%' : rem(maxW as number),
+        maxW && {
+            maxWidth: maxW === 'full' ? '100%' : getValue(maxW),
         },
-        ['string', 'number'].includes(typeof maxH) && {
-            maxHeight: maxH === 'auto' ? maxH : maxH === 'full' ? '100%' : rem(maxH as number),
+        maxH && {
+            maxHeight: maxH === 'full' ? '100%' : getValue(maxH),
         },
         p && {
-            paddingTop: getSpacingValue(p),
-            paddingLeft: getSpacingValue(p),
-            paddingRight: getSpacingValue(p),
-            paddingBottom: getSpacingValue(p),
+            paddingTop: getValue(p, spacing),
+            paddingLeft: getValue(p, spacing),
+            paddingRight: getValue(p, spacing),
+            paddingBottom: getValue(p, spacing),
         },
         px && {
-            paddingLeft: getSpacingValue(px),
-            paddingRight: getSpacingValue(px),
+            paddingLeft: getValue(px, spacing),
+            paddingRight: getValue(px, spacing),
         },
         py && {
-            paddingTop: getSpacingValue(py),
-            paddingBottom: getSpacingValue(py),
+            paddingTop: getValue(py, spacing),
+            paddingBottom: getValue(py, spacing),
         },
         pt && {
-            paddingTop: getSpacingValue(pt),
+            paddingTop: getValue(pt, spacing),
         },
         pl && {
-            paddingLeft: getSpacingValue(pl),
+            paddingLeft: getValue(pl, spacing),
         },
         pr && {
-            paddingRight: getSpacingValue(pr),
+            paddingRight: getValue(pr, spacing),
         },
         pb && {
-            paddingBottom: getSpacingValue(pb),
+            paddingBottom: getValue(pb, spacing),
         },
         m && {
-            marginTop: getSpacingValue(m),
-            marginLeft: getSpacingValue(m),
-            marginRight: getSpacingValue(m),
-            marginBottom: getSpacingValue(m),
+            marginTop: getValue(m, spacing),
+            marginLeft: getValue(m, spacing),
+            marginRight: getValue(m, spacing),
+            marginBottom: getValue(m, spacing),
         },
         mx && {
-            marginLeft: getSpacingValue(mx),
-            marginRight: getSpacingValue(mx),
+            marginLeft: getValue(mx, spacing),
+            marginRight: getValue(mx, spacing),
         },
         my && {
-            marginTop: getSpacingValue(my),
-            marginBottom: getSpacingValue(my),
+            marginTop: getValue(my, spacing),
+            marginBottom: getValue(my, spacing),
         },
         mt && {
-            marginTop: getSpacingValue(mt),
+            marginTop: getValue(mt, spacing),
         },
         ml && {
-            marginLeft: getSpacingValue(ml),
+            marginLeft: getValue(ml, spacing),
         },
         mr && {
-            marginRight: getSpacingValue(mr),
+            marginRight: getValue(mr, spacing),
         },
         mb && {
-            marginBottom: getSpacingValue(mb),
+            marginBottom: getValue(mb, spacing),
         },
         br && {
-            borderRadius: rem(borderRadius[br]),
+            borderRadius: getValue(br, borderRadius),
         },
-        borderTopLeftRadius && {
-            borderTopLeftRadius: rem(borderRadius[borderTopLeftRadius]),
+        brtl && {
+            borderTopLeftRadius: getValue(brtl, borderRadius),
         },
-        borderTopRightRadius && {
-            borderTopRightRadius: rem(borderRadius[borderTopRightRadius]),
+        brtr && {
+            borderTopRightRadius: getValue(brtr, borderRadius),
         },
-        borderBottomLeftRadius && {
-            borderBottomLeftRadius: rem(borderRadius[borderBottomLeftRadius]),
+        brbl && {
+            borderBottomLeftRadius: getValue(brbl, borderRadius),
         },
-        borderBottomRightRadius && {
-            borderBottomRightRadius: rem(borderRadius[borderBottomRightRadius]),
+        brbr && {
+            borderBottomRightRadius: getValue(brbr, borderRadius),
+        },
+        bs && {
+            borderStyle: getValue(bs, borderStyle),
+        },
+        bw && {
+            borderWidth: bw,
         },
     ]
 )

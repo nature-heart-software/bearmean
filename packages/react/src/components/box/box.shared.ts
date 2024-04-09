@@ -2,7 +2,7 @@ import { ObjectDotNotation, RequireField, setNullIfUndefined, SoftRequired } fro
 import { CSSProperties, HTMLAttributes } from 'react'
 import { PositiveSpacing, Spacing } from '@/tokens/spacing'
 import { Elevation } from '@/tokens/elevation'
-import { BorderRadius } from '@/tokens/border-radius'
+import { BorderRadius, BorderStyle, BorderWidth } from '@/tokens/border.ts'
 import { Colors } from '@/tokens/colors.ts'
 
 export type MarginSpacing = Spacing | (CSSProperties['margin'] & {})
@@ -39,8 +39,8 @@ export type ExclusiveBoxProps = {
     brtr?: BorderRadius | (CSSProperties['borderTopRightRadius'] & {})
     brbl?: BorderRadius | (CSSProperties['borderBottomLeftRadius'] & {})
     brbr?: BorderRadius | (CSSProperties['borderBottomRightRadius'] & {})
-    bs?: CSSProperties['borderStyle'] & {}
-    bw?: CSSProperties['borderWidth'] & {}
+    bs?: BorderStyle | (CSSProperties['borderStyle'] & {})
+    bw?: BorderWidth | (CSSProperties['borderWidth'] & {})
 }
 
 export const useExtractBoxProps = <P>(allProps: ExclusiveBoxProps & P) => {
