@@ -147,30 +147,30 @@ export const StBox = styled('div', {
             paddingBottom: typeof pb === 'number' ? rem(pb) : rem(spacing[pb]),
         },
         m && {
-            marginTop: typeof m === 'number' ? rem(m) : m in spacing ? rem(spacing[m]) : m,
-            marginLeft: typeof m === 'number' ? rem(m) : m in spacing ? rem(spacing[m]) : m,
-            marginRight: typeof m === 'number' ? rem(m) : m in spacing ? rem(spacing[m]) : m,
-            marginBottom: typeof m === 'number' ? rem(m) : m in spacing ? rem(spacing[m]) : m,
+            marginTop: typeof m === 'number' ? rem(m) : m in spacing ? rem(spacing[m as keyof typeof spacing]) : m,
+            marginLeft: typeof m === 'number' ? rem(m) : m in spacing ? rem(spacing[m as keyof typeof spacing]) : m,
+            marginRight: typeof m === 'number' ? rem(m) : m in spacing ? rem(spacing[m as keyof typeof spacing]) : m,
+            marginBottom: typeof m === 'number' ? rem(m) : m in spacing ? rem(spacing[m as keyof typeof spacing]) : m,
         },
         mx && {
-            marginLeft: typeof mx === 'number' ? rem(mx) : mx in spacing ? rem(spacing[mx]) : mx,
-            marginRight: typeof mx === 'number' ? rem(mx) : mx in spacing ? rem(spacing[mx]) : mx,
+            marginLeft: typeof mx === 'number' ? rem(mx) : mx in spacing ? rem(spacing[mx as keyof typeof spacing]) : mx,
+            marginRight: typeof mx === 'number' ? rem(mx) : mx in spacing ? rem(spacing[mx as keyof typeof spacing]) : mx,
         },
         my && {
-            marginTop: typeof my === 'number' ? rem(my) : my in spacing ? rem(spacing[my]) : my,
-            marginBottom: typeof my === 'number' ? rem(my) : my in spacing ? rem(spacing[my]) : my,
+            marginTop: typeof my === 'number' ? rem(my) : my in spacing ? rem(spacing[my as keyof typeof spacing]) : my,
+            marginBottom: typeof my === 'number' ? rem(my) : my in spacing ? rem(spacing[my as keyof typeof spacing]) : my,
         },
         mt && {
-            marginTop: typeof mt === 'number' ? rem(mt) : mt in spacing ? rem(spacing[mt]) : mt,
+            marginTop: typeof mt === 'number' ? rem(mt) : mt in spacing ? rem(spacing[mt as keyof typeof spacing]) : mt,
         },
         ml && {
-            marginLeft: typeof ml === 'number' ? rem(ml) : ml in spacing ? rem(spacing[ml]) : ml,
+            marginLeft: typeof ml === 'number' ? rem(ml) : ml in spacing ? rem(spacing[ml as keyof typeof spacing]) : ml,
         },
         mr && {
-            marginRight: typeof mr === 'number' ? rem(mr) : mr in spacing ? rem(spacing[mr]) : mr,
+            marginRight: typeof mr === 'number' ? rem(mr) : mr in spacing ? rem(spacing[mr as keyof typeof spacing]) : mr,
         },
         mb && {
-            marginBottom: typeof mb === 'number' ? rem(mb) : mb in spacing ? rem(spacing[mb]) : mb,
+            marginBottom: typeof mb === 'number' ? rem(mb) : mb in spacing ? rem(spacing[mb as keyof typeof spacing]) : mb,
         },
         borderRadiusProp && {
             borderRadius: rem(borderRadius[borderRadiusProp]),
