@@ -1,12 +1,12 @@
 import styled from '@emotion/styled'
 import { ExclusiveBoxProps } from './box.shared'
-import { rem } from 'polished'
 import { spacing } from '@/tokens/spacing'
 import { elevation } from '@/tokens/elevation'
 import { SoftRequired } from '@/utils/object'
-import { borderRadius, borderStyle } from '@/tokens/border.ts'
+import { borderRadius, borderStyle, borderWidth } from '@/tokens/border.ts'
 import { colors } from '@/tokens/colors.ts'
 import get from 'lodash/get'
+import { getRawValue, getRemValue } from '@/utils/css-in-js.ts'
 
 type StBoxProps = {
     props: SoftRequired<
@@ -46,12 +46,6 @@ type StBoxProps = {
             | 'bw'
         >
     >
-}
-
-const getValue = <V extends string | number, R extends Record<string, unknown>>(value: V, from?: R) => {
-    if (typeof value === 'number') return rem(value)
-    if (from && value in from) return rem(from[value as unknown as keyof R] as string)
-    return value
 }
 
 export const StBox = styled('div', {
@@ -113,95 +107,95 @@ export const StBox = styled('div', {
             background: get(colors, bg) || bg,
         },
         w && {
-            width: w === 'full' ? '100%' : getValue(w),
+            width: w === 'full' ? '100%' : getRemValue(w),
         },
         h && {
-            height: h === 'full' ? '100%' : getValue(h),
+            height: h === 'full' ? '100%' : getRemValue(h),
         },
         minW && {
-            minWidth: minW === 'full' ? '100%' : getValue(minW),
+            minWidth: minW === 'full' ? '100%' : getRemValue(minW),
         },
         minH && {
-            minHeight: minH === 'full' ? '100%' : getValue(minH),
+            minHeight: minH === 'full' ? '100%' : getRemValue(minH),
         },
         maxW && {
-            maxWidth: maxW === 'full' ? '100%' : getValue(maxW),
+            maxWidth: maxW === 'full' ? '100%' : getRemValue(maxW),
         },
         maxH && {
-            maxHeight: maxH === 'full' ? '100%' : getValue(maxH),
+            maxHeight: maxH === 'full' ? '100%' : getRemValue(maxH),
         },
         p && {
-            paddingTop: getValue(p, spacing),
-            paddingLeft: getValue(p, spacing),
-            paddingRight: getValue(p, spacing),
-            paddingBottom: getValue(p, spacing),
+            paddingTop: getRemValue(p, spacing),
+            paddingLeft: getRemValue(p, spacing),
+            paddingRight: getRemValue(p, spacing),
+            paddingBottom: getRemValue(p, spacing),
         },
         px && {
-            paddingLeft: getValue(px, spacing),
-            paddingRight: getValue(px, spacing),
+            paddingLeft: getRemValue(px, spacing),
+            paddingRight: getRemValue(px, spacing),
         },
         py && {
-            paddingTop: getValue(py, spacing),
-            paddingBottom: getValue(py, spacing),
+            paddingTop: getRemValue(py, spacing),
+            paddingBottom: getRemValue(py, spacing),
         },
         pt && {
-            paddingTop: getValue(pt, spacing),
+            paddingTop: getRemValue(pt, spacing),
         },
         pl && {
-            paddingLeft: getValue(pl, spacing),
+            paddingLeft: getRemValue(pl, spacing),
         },
         pr && {
-            paddingRight: getValue(pr, spacing),
+            paddingRight: getRemValue(pr, spacing),
         },
         pb && {
-            paddingBottom: getValue(pb, spacing),
+            paddingBottom: getRemValue(pb, spacing),
         },
         m && {
-            marginTop: getValue(m, spacing),
-            marginLeft: getValue(m, spacing),
-            marginRight: getValue(m, spacing),
-            marginBottom: getValue(m, spacing),
+            marginTop: getRemValue(m, spacing),
+            marginLeft: getRemValue(m, spacing),
+            marginRight: getRemValue(m, spacing),
+            marginBottom: getRemValue(m, spacing),
         },
         mx && {
-            marginLeft: getValue(mx, spacing),
-            marginRight: getValue(mx, spacing),
+            marginLeft: getRemValue(mx, spacing),
+            marginRight: getRemValue(mx, spacing),
         },
         my && {
-            marginTop: getValue(my, spacing),
-            marginBottom: getValue(my, spacing),
+            marginTop: getRemValue(my, spacing),
+            marginBottom: getRemValue(my, spacing),
         },
         mt && {
-            marginTop: getValue(mt, spacing),
+            marginTop: getRemValue(mt, spacing),
         },
         ml && {
-            marginLeft: getValue(ml, spacing),
+            marginLeft: getRemValue(ml, spacing),
         },
         mr && {
-            marginRight: getValue(mr, spacing),
+            marginRight: getRemValue(mr, spacing),
         },
         mb && {
-            marginBottom: getValue(mb, spacing),
+            marginBottom: getRemValue(mb, spacing),
         },
         br && {
-            borderRadius: getValue(br, borderRadius),
+            borderRadius: getRemValue(br, borderRadius),
         },
         brtl && {
-            borderTopLeftRadius: getValue(brtl, borderRadius),
+            borderTopLeftRadius: getRemValue(brtl, borderRadius),
         },
         brtr && {
-            borderTopRightRadius: getValue(brtr, borderRadius),
+            borderTopRightRadius: getRemValue(brtr, borderRadius),
         },
         brbl && {
-            borderBottomLeftRadius: getValue(brbl, borderRadius),
+            borderBottomLeftRadius: getRemValue(brbl, borderRadius),
         },
         brbr && {
-            borderBottomRightRadius: getValue(brbr, borderRadius),
+            borderBottomRightRadius: getRemValue(brbr, borderRadius),
         },
         bs && {
-            borderStyle: getValue(bs, borderStyle),
+            borderStyle: getRawValue(bs, borderStyle),
         },
         bw && {
-            borderWidth: bw,
+            borderWidth: getRemValue(bw, borderWidth),
         },
     ]
 )

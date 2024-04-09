@@ -20,8 +20,13 @@ export const getFontSizeStyle = (tailwindFontSize: TailwindFontSize) => ({
     letterSpacing: getLetterSpacing(tailwindFontSize),
 })
 
-export type PropsToFilter<E extends keyof JSX.IntrinsicElements, P> = Record<keyof Omit<Required<P>, keyof JSX.IntrinsicElements[E]>, true>
-export const propsToFilter =
-    <E extends keyof JSX.IntrinsicElements = 'div', P = Record<string, unknown>, K extends PropsToFilter<E, P> = PropsToFilter<E, P>>(propsToFilter: K) =>
-    (prop: string) =>
-        ['as', 'theme'].includes(prop) ? false : !propsToFilter[prop as keyof K]
+export const getRemValue = <V extends string | number, R extends Record<string, unknown>>(value: V, from?: R) => {
+    if (typeof value === 'number') return rem(value)
+    if (from && value in from) return rem(from[value as unknown as keyof R] as string)
+    return value
+}
+
+export const getRawValue = <V extends string | number, R extends Record<string, unknown>>(value: V, from?: R) => {
+    if (from && value in from) return from[value as unknown as keyof R]
+    return value
+}
