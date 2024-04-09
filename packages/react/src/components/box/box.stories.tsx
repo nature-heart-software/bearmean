@@ -7,7 +7,7 @@ export default {
 } as Meta<typeof Box>
 
 const Template: StoryFn<typeof Box> = (args) => (
-    <Box px={'5'} py={'5'} backgroundColor={'slate.100'} {...args}>
+    <Box px={'5'} py={'5'} bg={'slate.100'} {...args}>
         content
     </Box>
 )

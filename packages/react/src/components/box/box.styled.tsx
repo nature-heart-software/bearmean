@@ -14,7 +14,7 @@ type StBoxProps = {
             ExclusiveBoxProps,
             | 'opacity'
             | 'elevation'
-            | 'backgroundColor'
+            | 'bg'
             | 'w'
             | 'h'
             | 'minH'
@@ -37,13 +37,21 @@ type StBoxProps = {
             | 'mb'
             | 'grow'
             | 'shrink'
-            | 'borderRadius'
-            | 'borderTopLeftRadius'
-            | 'borderTopRightRadius'
-            | 'borderBottomLeftRadius'
-            | 'borderBottomRightRadius'
+            | 'br'
+            | 'brtl'
+            | 'brtr'
+            | 'brbl'
+            | 'brbr'
+            | 'bs'
+            | 'bw'
         >
     >
+}
+
+const getSpacingValue = <S extends string | number>(value: S) => {
+    if (typeof value === 'number') return rem(value)
+    if (value in spacing) return rem(spacing[value as keyof typeof spacing])
+    return value
 }
 
 export const StBox = styled('div', {
@@ -55,7 +63,7 @@ export const StBox = styled('div', {
             shrink,
             opacity,
             elevation: elevationProp,
-            backgroundColor,
+            bg,
             w,
             h,
             minW,
@@ -76,11 +84,13 @@ export const StBox = styled('div', {
             ml,
             mb,
             mr,
-            borderRadius: borderRadiusProp,
-            borderTopLeftRadius,
-            borderTopRightRadius,
-            borderBottomLeftRadius,
-            borderBottomRightRadius,
+            br,
+            brtl,
+            brtr,
+            brbl,
+            brbr,
+            bs,
+            bw,
         },
     }) => [
         {
@@ -97,13 +107,13 @@ export const StBox = styled('div', {
             opacity,
         },
         elevationProp && {
-            boxShadow: elevation[elevationProp],
+            boxShadow: elevationProp in elevation ? elevation[elevationProp as keyof typeof elevation] : elevationProp,
         },
-        backgroundColor && {
-            backgroundColor: get(colors, backgroundColor) || backgroundColor,
+        bg && {
+            background: get(colors, bg) || bg,
         },
-        ['string', 'number'].includes(typeof w) && {
-            width: w === 'auto' ? w : w === 'full' ? '100%' : rem(w as number),
+        w && {
+            width: w === 'full' ? '100%' : typeof w === 'number' ? rem(w) : w,
         },
         ['string', 'number'].includes(typeof h) && {
             height: h === 'auto' ? h : h === 'full' ? '100%' : rem(h as number),
@@ -121,59 +131,59 @@ export const StBox = styled('div', {
             maxHeight: maxH === 'auto' ? maxH : maxH === 'full' ? '100%' : rem(maxH as number),
         },
         p && {
-            paddingTop: typeof p === 'number' ? rem(p) : rem(spacing[p]),
-            paddingLeft: typeof p === 'number' ? rem(p) : rem(spacing[p]),
-            paddingRight: typeof p === 'number' ? rem(p) : rem(spacing[p]),
-            paddingBottom: typeof p === 'number' ? rem(p) : rem(spacing[p]),
+            paddingTop: getSpacingValue(p),
+            paddingLeft: getSpacingValue(p),
+            paddingRight: getSpacingValue(p),
+            paddingBottom: getSpacingValue(p),
         },
         px && {
-            paddingLeft: typeof px === 'number' ? rem(px) : rem(spacing[px]),
-            paddingRight: typeof px === 'number' ? rem(px) : rem(spacing[px]),
+            paddingLeft: getSpacingValue(px),
+            paddingRight: getSpacingValue(px),
         },
         py && {
-            paddingTop: typeof py === 'number' ? rem(py) : rem(spacing[py]),
-            paddingBottom: typeof py === 'number' ? rem(py) : rem(spacing[py]),
+            paddingTop: getSpacingValue(py),
+            paddingBottom: getSpacingValue(py),
         },
         pt && {
-            paddingTop: typeof pt === 'number' ? rem(pt) : rem(spacing[pt]),
+            paddingTop: getSpacingValue(pt),
         },
         pl && {
-            paddingLeft: typeof pl === 'number' ? rem(pl) : rem(spacing[pl]),
+            paddingLeft: getSpacingValue(pl),
         },
         pr && {
-            paddingRight: typeof pr === 'number' ? rem(pr) : rem(spacing[pr]),
+            paddingRight: getSpacingValue(pr),
         },
         pb && {
-            paddingBottom: typeof pb === 'number' ? rem(pb) : rem(spacing[pb]),
+            paddingBottom: getSpacingValue(pb),
         },
         m && {
-            marginTop: typeof m === 'number' ? rem(m) : m in spacing ? rem(spacing[m as keyof typeof spacing]) : m,
-            marginLeft: typeof m === 'number' ? rem(m) : m in spacing ? rem(spacing[m as keyof typeof spacing]) : m,
-            marginRight: typeof m === 'number' ? rem(m) : m in spacing ? rem(spacing[m as keyof typeof spacing]) : m,
-            marginBottom: typeof m === 'number' ? rem(m) : m in spacing ? rem(spacing[m as keyof typeof spacing]) : m,
+            marginTop: getSpacingValue(m),
+            marginLeft: getSpacingValue(m),
+            marginRight: getSpacingValue(m),
+            marginBottom: getSpacingValue(m),
         },
         mx && {
-            marginLeft: typeof mx === 'number' ? rem(mx) : mx in spacing ? rem(spacing[mx as keyof typeof spacing]) : mx,
-            marginRight: typeof mx === 'number' ? rem(mx) : mx in spacing ? rem(spacing[mx as keyof typeof spacing]) : mx,
+            marginLeft: getSpacingValue(mx),
+            marginRight: getSpacingValue(mx),
         },
         my && {
-            marginTop: typeof my === 'number' ? rem(my) : my in spacing ? rem(spacing[my as keyof typeof spacing]) : my,
-            marginBottom: typeof my === 'number' ? rem(my) : my in spacing ? rem(spacing[my as keyof typeof spacing]) : my,
+            marginTop: getSpacingValue(my),
+            marginBottom: getSpacingValue(my),
         },
         mt && {
-            marginTop: typeof mt === 'number' ? rem(mt) : mt in spacing ? rem(spacing[mt as keyof typeof spacing]) : mt,
+            marginTop: getSpacingValue(mt),
         },
         ml && {
-            marginLeft: typeof ml === 'number' ? rem(ml) : ml in spacing ? rem(spacing[ml as keyof typeof spacing]) : ml,
+            marginLeft: getSpacingValue(ml),
         },
         mr && {
-            marginRight: typeof mr === 'number' ? rem(mr) : mr in spacing ? rem(spacing[mr as keyof typeof spacing]) : mr,
+            marginRight: getSpacingValue(mr),
         },
         mb && {
-            marginBottom: typeof mb === 'number' ? rem(mb) : mb in spacing ? rem(spacing[mb as keyof typeof spacing]) : mb,
+            marginBottom: getSpacingValue(mb),
         },
-        borderRadiusProp && {
-            borderRadius: rem(borderRadius[borderRadiusProp]),
+        br && {
+            borderRadius: rem(borderRadius[br]),
         },
         borderTopLeftRadius && {
             borderTopLeftRadius: rem(borderRadius[borderTopLeftRadius]),

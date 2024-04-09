@@ -5,48 +5,49 @@ import { Elevation } from '@/tokens/elevation'
 import { BorderRadius } from '@/tokens/border-radius'
 import { Colors } from '@/tokens/colors.ts'
 
-export type MarginSpacing = Spacing | 'auto'
-export type PaddingSpacing = PositiveSpacing
-export type BoxSpacing<S = any> = S | number
+export type MarginSpacing = Spacing | (CSSProperties['margin'] & {})
+export type PaddingSpacing = PositiveSpacing | (CSSProperties['padding'] & {})
 
 export type ExclusiveBoxProps = {
     opacity?: CSSProperties['opacity']
-    elevation?: Elevation
-    backgroundColor?: ObjectDotNotation<Colors>
-    w?: 'auto' | 'full' | number
-    h?: 'auto' | 'full' | number
-    minH?: 'auto' | 'full' | number
-    minW?: 'auto' | 'full' | number
-    maxH?: 'auto' | 'full' | number
-    maxW?: 'auto' | 'full' | number
-    p?: BoxSpacing<PaddingSpacing>
-    px?: BoxSpacing<PaddingSpacing>
-    py?: BoxSpacing<PaddingSpacing>
-    pl?: BoxSpacing<PaddingSpacing>
-    pr?: BoxSpacing<PaddingSpacing>
-    pt?: BoxSpacing<PaddingSpacing>
-    pb?: BoxSpacing<PaddingSpacing>
-    m?: BoxSpacing<MarginSpacing>
-    mx?: BoxSpacing<MarginSpacing>
-    my?: BoxSpacing<MarginSpacing>
-    ml?: BoxSpacing<MarginSpacing>
-    mr?: BoxSpacing<MarginSpacing>
-    mt?: BoxSpacing<MarginSpacing>
-    mb?: BoxSpacing<MarginSpacing>
+    elevation?: Elevation | (CSSProperties['boxShadow'] & {})
+    bg?: ObjectDotNotation<Colors> | (CSSProperties['background'] & {})
+    w?: 'auto' | 'full' | (CSSProperties['width'] & {})
+    h?: 'auto' | 'full' | (CSSProperties['height'] & {})
+    minH?: 'auto' | 'full' | (CSSProperties['minHeight'] & {})
+    minW?: 'auto' | 'full' | (CSSProperties['minWidth'] & {})
+    maxH?: 'auto' | 'full' | (CSSProperties['maxHeight'] & {})
+    maxW?: 'auto' | 'full' | (CSSProperties['maxWidth'] & {})
+    p?: PaddingSpacing
+    px?: PaddingSpacing
+    py?: PaddingSpacing
+    pl?: PaddingSpacing
+    pr?: PaddingSpacing
+    pt?: PaddingSpacing
+    pb?: PaddingSpacing
+    m?: MarginSpacing
+    mx?: MarginSpacing
+    my?: MarginSpacing
+    ml?: MarginSpacing
+    mr?: MarginSpacing
+    mt?: MarginSpacing
+    mb?: MarginSpacing
     grow?: CSSProperties['flexGrow'] | boolean
     shrink?: CSSProperties['flexShrink'] | boolean
-    borderRadius?: BorderRadius
-    borderTopLeftRadius?: BorderRadius
-    borderTopRightRadius?: BorderRadius
-    borderBottomLeftRadius?: BorderRadius
-    borderBottomRightRadius?: BorderRadius
+    br?: BorderRadius | (CSSProperties['borderRadius'] & {})
+    brtl?: BorderRadius | (CSSProperties['borderTopLeftRadius'] & {})
+    brtr?: BorderRadius | (CSSProperties['borderTopRightRadius'] & {})
+    brbl?: BorderRadius | (CSSProperties['borderBottomLeftRadius'] & {})
+    brbr?: BorderRadius | (CSSProperties['borderBottomRightRadius'] & {})
+    bs?: CSSProperties['borderStyle'] & {}
+    bw?: CSSProperties['borderWidth'] & {}
 }
 
 export const useExtractBoxProps = <P>(allProps: ExclusiveBoxProps & P) => {
     const {
         opacity,
         elevation,
-        backgroundColor,
+        bg,
         w,
         h,
         minH,
@@ -69,18 +70,20 @@ export const useExtractBoxProps = <P>(allProps: ExclusiveBoxProps & P) => {
         mb,
         grow,
         shrink,
-        borderRadius,
-        borderTopLeftRadius,
-        borderTopRightRadius,
-        borderBottomLeftRadius,
-        borderBottomRightRadius,
+        br,
+        brtl,
+        brtr,
+        brbl,
+        brbr,
+        bs,
+        bw,
         ...props
     } = allProps
 
     const boxProps: SoftRequired<ExclusiveBoxProps> = {
         opacity: setNullIfUndefined(opacity),
         elevation: setNullIfUndefined(elevation),
-        backgroundColor: setNullIfUndefined(backgroundColor),
+        bg: setNullIfUndefined(bg),
         w: setNullIfUndefined(w),
         h: setNullIfUndefined(h),
         minH: setNullIfUndefined(minH),
@@ -103,11 +106,13 @@ export const useExtractBoxProps = <P>(allProps: ExclusiveBoxProps & P) => {
         mb: setNullIfUndefined(mb),
         grow: setNullIfUndefined(grow),
         shrink: setNullIfUndefined(shrink),
-        borderRadius: setNullIfUndefined(borderRadius),
-        borderTopLeftRadius: setNullIfUndefined(borderTopLeftRadius),
-        borderTopRightRadius: setNullIfUndefined(borderTopRightRadius),
-        borderBottomLeftRadius: setNullIfUndefined(borderBottomLeftRadius),
-        borderBottomRightRadius: setNullIfUndefined(borderBottomRightRadius),
+        br: setNullIfUndefined(br),
+        brtl: setNullIfUndefined(brtl),
+        brtr: setNullIfUndefined(brtr),
+        brbl: setNullIfUndefined(brbl),
+        brbr: setNullIfUndefined(brbr),
+        bs: setNullIfUndefined(bs),
+        bw: setNullIfUndefined(bw),
     }
     return {
         boxProps,
@@ -117,6 +122,9 @@ export const useExtractBoxProps = <P>(allProps: ExclusiveBoxProps & P) => {
 
 export type BoxProps = HTMLAttributes<HTMLDivElement> & ExclusiveBoxProps
 
-export const defaultBoxProps = {} as const
+export const defaultBoxProps = {
+    bs: 'solid',
+    bw: 1,
+} as const
 
 export type BoxPropsWithDefaults = RequireField<BoxProps, keyof typeof defaultBoxProps>
