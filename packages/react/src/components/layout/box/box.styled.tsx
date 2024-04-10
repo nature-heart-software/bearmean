@@ -44,6 +44,24 @@ type StBoxProps = {
             | 'brbr'
             | 'bs'
             | 'bw'
+            | 'relative'
+            | 'absolute'
+            | 'fixed'
+            | 'sticky'
+            | 'static'
+            | 'position'
+            | 'inset'
+            | 'top'
+            | 'left'
+            | 'right'
+            | 'bottom'
+            | 'z'
+            | 'overflow'
+            | 'cursor'
+            | 'pointerEvents'
+            | 'userSelect'
+            | 'transform'
+            | 'transformOrigin'
         >
     >
 }
@@ -85,6 +103,24 @@ export const StBox = styled('div', {
             brbr,
             bs,
             bw,
+            relative,
+            absolute,
+            fixed,
+            sticky,
+            static: staticProp,
+            position,
+            inset,
+            top,
+            left,
+            right,
+            bottom,
+            z,
+            overflow,
+            cursor,
+            pointerEvents,
+            userSelect,
+            transform,
+            transformOrigin,
         },
     }) => [
         {
@@ -196,6 +232,60 @@ export const StBox = styled('div', {
         },
         bw && {
             borderWidth: getRemValue(bw, borderWidth),
+        },
+        position && {
+            position,
+        },
+        relative && {
+            position: 'relative',
+        },
+        absolute && {
+            position: 'absolute',
+        },
+        fixed && {
+            position: 'fixed',
+        },
+        sticky && {
+            position: 'sticky',
+        },
+        staticProp && {
+            position: 'static',
+        },
+        inset && {
+            inset: typeof inset === 'boolean' ? 0 : getRemValue(inset),
+        },
+        top && {
+            top: typeof top === 'boolean' ? 0 : getRemValue(top),
+        },
+        left && {
+            left: typeof left === 'boolean' ? 0 : getRemValue(left),
+        },
+        right && {
+            right: typeof right === 'boolean' ? 0 : getRemValue(right),
+        },
+        bottom && {
+            bottom: typeof bottom === 'boolean' ? 0 : getRemValue(bottom),
+        },
+        z && {
+            zIndex: z,
+        },
+        overflow && {
+            overflow,
+        },
+        cursor && {
+            cursor,
+        },
+        pointerEvents && {
+            pointerEvents,
+        },
+        userSelect && {
+            userSelect,
+        },
+        transform && {
+            transform,
+        },
+        transformOrigin && {
+            transformOrigin,
         },
     ]
 )

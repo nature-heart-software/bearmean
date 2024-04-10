@@ -41,6 +41,24 @@ export type ExclusiveBoxProps = {
     brbr?: BorderRadius | (CSSProperties['borderBottomRightRadius'] & {})
     bs?: BorderStyle | (CSSProperties['borderStyle'] & {})
     bw?: BorderWidth | (CSSProperties['borderWidth'] & {})
+    relative?: boolean
+    absolute?: boolean
+    fixed?: boolean
+    sticky?: boolean
+    static?: boolean
+    position?: CSSProperties['position']
+    inset?: CSSProperties['inset'] | boolean
+    top?: CSSProperties['top'] | boolean
+    left?: CSSProperties['left'] | boolean
+    right?: CSSProperties['right'] | boolean
+    bottom?: CSSProperties['bottom'] | boolean
+    z?: CSSProperties['zIndex']
+    overflow?: CSSProperties['overflow']
+    cursor?: CSSProperties['cursor']
+    pointerEvents?: CSSProperties['pointerEvents']
+    userSelect?: CSSProperties['userSelect']
+    transform?: CSSProperties['transform']
+    transformOrigin?: CSSProperties['transformOrigin']
 }
 
 export const useExtractBoxProps = <P>(allProps: ExclusiveBoxProps & P) => {
@@ -77,6 +95,24 @@ export const useExtractBoxProps = <P>(allProps: ExclusiveBoxProps & P) => {
         brbr,
         bs,
         bw,
+        relative,
+        absolute,
+        fixed,
+        sticky,
+        static: staticProp,
+        position,
+        inset,
+        top,
+        left,
+        right,
+        bottom,
+        z,
+        overflow,
+        cursor,
+        pointerEvents,
+        userSelect,
+        transform,
+        transformOrigin,
         ...props
     } = allProps
 
@@ -113,6 +149,24 @@ export const useExtractBoxProps = <P>(allProps: ExclusiveBoxProps & P) => {
         brbr: setNullIfUndefined(brbr),
         bs: setNullIfUndefined(bs),
         bw: setNullIfUndefined(bw),
+        relative: setNullIfUndefined(relative),
+        absolute: setNullIfUndefined(absolute),
+        fixed: setNullIfUndefined(fixed),
+        sticky: setNullIfUndefined(sticky),
+        static: setNullIfUndefined(staticProp),
+        position: setNullIfUndefined(position),
+        inset: setNullIfUndefined(inset),
+        top: setNullIfUndefined(top),
+        left: setNullIfUndefined(left),
+        right: setNullIfUndefined(right),
+        bottom: setNullIfUndefined(bottom),
+        z: setNullIfUndefined(z),
+        overflow: setNullIfUndefined(overflow),
+        cursor: setNullIfUndefined(cursor),
+        pointerEvents: setNullIfUndefined(pointerEvents),
+        userSelect: setNullIfUndefined(userSelect),
+        transform: setNullIfUndefined(transform),
+        transformOrigin: setNullIfUndefined(transformOrigin),
     }
     return {
         boxProps,
