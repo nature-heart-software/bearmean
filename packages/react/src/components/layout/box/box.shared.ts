@@ -1,23 +1,24 @@
-import { ObjectDotNotation, RequireField, setNullIfUndefined, SoftRequired } from '@/utils/object.ts'
-import { CSSProperties, HTMLAttributes } from 'react'
+import { RequireField, setNullIfUndefined, SoftRequired } from '@/utils/object.ts'
+import { HTMLAttributes } from 'react'
 import { PositiveSpacing, Spacing } from '@/tokens/spacing.ts'
 import { Elevation } from '@/tokens/elevation.ts'
 import { BorderRadius, BorderStyle, BorderWidth } from '@/tokens/border.ts'
 import { Colors } from '@/tokens/colors.ts'
+import { Properties } from 'csstype'
 
-export type MarginSpacing = Spacing | (CSSProperties['margin'] & {})
-export type PaddingSpacing = PositiveSpacing | (CSSProperties['padding'] & {})
+export type MarginSpacing = Spacing | Properties['margin'] | number
+export type PaddingSpacing = PositiveSpacing | Properties['padding'] | number
 
 export type ExclusiveBoxProps = {
-    opacity?: CSSProperties['opacity']
-    elevation?: Elevation | (CSSProperties['boxShadow'] & {})
-    bg?: ObjectDotNotation<Colors> | (CSSProperties['background'] & {})
-    w?: 'auto' | 'full' | (CSSProperties['width'] & {})
-    h?: 'auto' | 'full' | (CSSProperties['height'] & {})
-    minH?: 'auto' | 'full' | (CSSProperties['minHeight'] & {})
-    minW?: 'auto' | 'full' | (CSSProperties['minWidth'] & {})
-    maxH?: 'auto' | 'full' | (CSSProperties['maxHeight'] & {})
-    maxW?: 'auto' | 'full' | (CSSProperties['maxWidth'] & {})
+    opacity?: Properties['opacity']
+    elevation?: Elevation | Properties['boxShadow']
+    bg?: Colors | Properties['background']
+    w?: 'auto' | 'full' | Properties['width'] | number
+    h?: 'auto' | 'full' | Properties['height'] | number
+    minH?: 'auto' | 'full' | Properties['minHeight'] | number
+    minW?: 'auto' | 'full' | Properties['minWidth'] | number
+    maxH?: 'auto' | 'full' | Properties['maxHeight'] | number
+    maxW?: 'auto' | 'full' | Properties['maxWidth'] | number
     p?: PaddingSpacing
     px?: PaddingSpacing
     py?: PaddingSpacing
@@ -32,34 +33,35 @@ export type ExclusiveBoxProps = {
     mr?: MarginSpacing
     mt?: MarginSpacing
     mb?: MarginSpacing
-    grow?: CSSProperties['flexGrow'] | boolean
-    shrink?: CSSProperties['flexShrink'] | boolean
-    br?: BorderRadius | (CSSProperties['borderRadius'] & {})
-    brtl?: BorderRadius | (CSSProperties['borderTopLeftRadius'] & {})
-    brtr?: BorderRadius | (CSSProperties['borderTopRightRadius'] & {})
-    brbl?: BorderRadius | (CSSProperties['borderBottomLeftRadius'] & {})
-    brbr?: BorderRadius | (CSSProperties['borderBottomRightRadius'] & {})
-    bs?: BorderStyle | (CSSProperties['borderStyle'] & {})
-    bw?: BorderWidth | (CSSProperties['borderWidth'] & {})
+    grow?: Properties['flexGrow'] | boolean
+    shrink?: Properties['flexShrink'] | boolean
+    br?: BorderRadius | Properties['borderRadius'] | number
+    brtl?: BorderRadius | Properties['borderTopLeftRadius'] | number
+    brtr?: BorderRadius | Properties['borderTopRightRadius'] | number
+    brbl?: BorderRadius | Properties['borderBottomLeftRadius'] | number
+    brbr?: BorderRadius | Properties['borderBottomRightRadius'] | number
+    bs?: BorderStyle | Properties['borderStyle']
+    bw?: BorderWidth | Properties['borderWidth'] | number
+    bc?: Colors | Properties['borderColor']
     relative?: boolean
     absolute?: boolean
     fixed?: boolean
     sticky?: boolean
     static?: boolean
-    position?: CSSProperties['position']
-    inset?: CSSProperties['inset'] | boolean
-    top?: CSSProperties['top'] | boolean
-    left?: CSSProperties['left'] | boolean
-    right?: CSSProperties['right'] | boolean
-    bottom?: CSSProperties['bottom'] | boolean
-    z?: CSSProperties['zIndex']
-    overflow?: CSSProperties['overflow']
-    cursor?: CSSProperties['cursor']
-    pointerEvents?: CSSProperties['pointerEvents']
-    userSelect?: CSSProperties['userSelect']
-    transform?: CSSProperties['transform']
-    transformOrigin?: CSSProperties['transformOrigin']
-    ratio?: CSSProperties['aspectRatio'] | number
+    position?: Properties['position']
+    inset?: Properties['inset'] | boolean | number
+    top?: Properties['top'] | boolean | number
+    left?: Properties['left'] | boolean | number
+    right?: Properties['right'] | boolean | number
+    bottom?: Properties['bottom'] | boolean | number
+    z?: Properties['zIndex'] | number
+    overflow?: Properties['overflow']
+    cursor?: Properties['cursor']
+    pointerEvents?: Properties['pointerEvents']
+    userSelect?: Properties['userSelect']
+    transform?: Properties['transform']
+    transformOrigin?: Properties['transformOrigin']
+    ratio?: Properties['aspectRatio'] | number
 }
 
 export const useExtractBoxProps = <P>(allProps: ExclusiveBoxProps & P) => {
@@ -96,6 +98,7 @@ export const useExtractBoxProps = <P>(allProps: ExclusiveBoxProps & P) => {
         brbr,
         bs,
         bw,
+        bc,
         relative,
         absolute,
         fixed,
@@ -151,6 +154,7 @@ export const useExtractBoxProps = <P>(allProps: ExclusiveBoxProps & P) => {
         brbr: setNullIfUndefined(brbr),
         bs: setNullIfUndefined(bs),
         bw: setNullIfUndefined(bw),
+        bc: setNullIfUndefined(bc),
         relative: setNullIfUndefined(relative),
         absolute: setNullIfUndefined(absolute),
         fixed: setNullIfUndefined(fixed),
@@ -181,7 +185,7 @@ export type BoxProps = HTMLAttributes<HTMLDivElement> & ExclusiveBoxProps
 
 export const defaultBoxProps = {
     bs: 'solid',
-    bw: 1,
+    bw: 0,
 } as const
 
 export type BoxPropsWithDefaults = RequireField<BoxProps, keyof typeof defaultBoxProps>

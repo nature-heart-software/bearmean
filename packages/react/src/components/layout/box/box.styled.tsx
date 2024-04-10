@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
 import { ExclusiveBoxProps } from './box.shared.ts'
-import { spacing } from '@/tokens/spacing.ts'
+import { spacing as _spacing } from '@/tokens/spacing.ts'
 import { elevation } from '@/tokens/elevation.ts'
 import { SoftRequired } from '@/utils/object.ts'
-import { borderRadius, borderStyle, borderWidth } from '@/tokens/border.ts'
-import { colors } from '@/tokens/colors.ts'
+import { borderRadius as _borderRadius, borderStyle as _borderStyle, borderWidth as _borderWidth } from '@/tokens/border.ts'
+import { colors as _colors } from '@/tokens/colors.ts'
 import get from 'lodash/get'
 import { getRawValue, getRemValue } from '@/utils/css-in-js.ts'
 
@@ -44,6 +44,7 @@ type StBoxProps = {
             | 'brbr'
             | 'bs'
             | 'bw'
+            | 'bc'
             | 'relative'
             | 'absolute'
             | 'fixed'
@@ -71,6 +72,7 @@ export const StBox = styled('div', {
     shouldForwardProp: (prop) => !['props', 'as'].includes(prop),
 })<StBoxProps>(
     ({
+        theme: { spacing = _spacing, colors = _colors, borderRadius = _borderRadius, borderStyle = _borderStyle, borderWidth = _borderWidth },
         props: {
             grow,
             shrink,
@@ -104,6 +106,7 @@ export const StBox = styled('div', {
             brbr,
             bs,
             bw,
+            bc,
             relative,
             absolute,
             fixed,
@@ -232,8 +235,12 @@ export const StBox = styled('div', {
         bs && {
             borderStyle: getRawValue(bs, borderStyle),
         },
-        bw && {
-            borderWidth: getRemValue(bw, borderWidth),
+        typeof bw !== 'undefined' &&
+            bw !== null && {
+                borderWidth: getRemValue(bw, borderWidth),
+            },
+        bc && {
+            borderColor: get(colors, bc) || bc,
         },
         position && {
             position,

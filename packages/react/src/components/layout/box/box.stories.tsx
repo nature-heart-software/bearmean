@@ -6,11 +6,7 @@ export default {
     component: Box,
 } as Meta<typeof Box>
 
-const Template: StoryFn<typeof Box> = (args) => (
-    <Box {...args}>
-        <button>content</button>
-    </Box>
-)
+const Template: StoryFn<typeof Box> = (args) => <Box {...args}>content</Box>
 
 export const Default = Template.bind({})
 Default.args = {

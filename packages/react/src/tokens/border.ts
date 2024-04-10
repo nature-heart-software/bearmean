@@ -19,3 +19,11 @@ export const borderWidth = {
 } as const
 
 export type BorderWidth = keyof typeof borderWidth
+
+declare module '@emotion/react' {
+    export interface Theme {
+        borderRadius: typeof borderRadius
+        borderStyle: typeof borderStyle
+        borderWidth: typeof borderWidth
+    }
+}

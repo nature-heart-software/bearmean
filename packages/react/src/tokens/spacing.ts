@@ -40,3 +40,11 @@ export type Spacing = keyof typeof spacing
 
 export type NegativeSpacing = keyof typeof negativeSpacing
 export type PositiveSpacing = keyof typeof positiveSpacing
+
+declare module '@emotion/react' {
+    export interface Theme {
+        spacing: typeof spacing
+        negativeSpacing: typeof negativeSpacing
+        positiveSpacing: typeof positiveSpacing
+    }
+}

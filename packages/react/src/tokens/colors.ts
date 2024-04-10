@@ -1,3 +1,5 @@
+import { ObjectDotNotation } from '@/utils/object.ts'
+
 export const colors = {
     inherit: 'inherit',
     current: 'currentColor',
@@ -292,4 +294,10 @@ export const colors = {
     },
 } as const
 
-export type Colors = typeof colors
+export type Colors = ObjectDotNotation<typeof colors>
+
+declare module '@emotion/react' {
+    export interface Theme {
+        colors: typeof colors
+    }
+}

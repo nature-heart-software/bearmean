@@ -3,3 +3,9 @@ export const elevation = {
 } as const
 
 export type Elevation = keyof typeof elevation
+
+declare module '@emotion/react' {
+    export interface Theme {
+        elevation: typeof elevation
+    }
+}
