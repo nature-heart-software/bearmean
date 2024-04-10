@@ -62,6 +62,7 @@ type StBoxProps = {
             | 'userSelect'
             | 'transform'
             | 'transformOrigin'
+            | 'ratio'
         >
     >
 }
@@ -121,6 +122,7 @@ export const StBox = styled('div', {
             userSelect,
             transform,
             transformOrigin,
+            ratio,
         },
     }) => [
         {
@@ -286,6 +288,9 @@ export const StBox = styled('div', {
         },
         transformOrigin && {
             transformOrigin,
+        },
+        ratio && {
+            aspectRatio: ratio,
         },
     ]
 )

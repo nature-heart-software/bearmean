@@ -59,6 +59,7 @@ export type ExclusiveBoxProps = {
     userSelect?: CSSProperties['userSelect']
     transform?: CSSProperties['transform']
     transformOrigin?: CSSProperties['transformOrigin']
+    ratio?: CSSProperties['aspectRatio'] | number
 }
 
 export const useExtractBoxProps = <P>(allProps: ExclusiveBoxProps & P) => {
@@ -113,6 +114,7 @@ export const useExtractBoxProps = <P>(allProps: ExclusiveBoxProps & P) => {
         userSelect,
         transform,
         transformOrigin,
+        ratio,
         ...props
     } = allProps
 
@@ -167,6 +169,7 @@ export const useExtractBoxProps = <P>(allProps: ExclusiveBoxProps & P) => {
         userSelect: setNullIfUndefined(userSelect),
         transform: setNullIfUndefined(transform),
         transformOrigin: setNullIfUndefined(transformOrigin),
+        ratio: setNullIfUndefined(ratio),
     }
     return {
         boxProps,
