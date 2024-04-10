@@ -1,7 +1,7 @@
-import { ObjectDotNotation, RequireField, setNullIfUndefined, SoftRequired } from '@/utils/object'
+import { ObjectDotNotation, RequireField, setNullIfUndefined, SoftRequired } from '@/utils/object.ts'
 import { CSSProperties, HTMLAttributes } from 'react'
-import { PositiveSpacing, Spacing } from '@/tokens/spacing'
-import { Elevation } from '@/tokens/elevation'
+import { PositiveSpacing, Spacing } from '@/tokens/spacing.ts'
+import { Elevation } from '@/tokens/elevation.ts'
 import { BorderRadius, BorderStyle, BorderWidth } from '@/tokens/border.ts'
 import { Colors } from '@/tokens/colors.ts'
 

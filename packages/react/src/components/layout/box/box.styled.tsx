@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
-import { ExclusiveBoxProps } from './box.shared'
-import { spacing } from '@/tokens/spacing'
-import { elevation } from '@/tokens/elevation'
-import { SoftRequired } from '@/utils/object'
+import { ExclusiveBoxProps } from './box.shared.ts'
+import { spacing } from '@/tokens/spacing.ts'
+import { elevation } from '@/tokens/elevation.ts'
+import { SoftRequired } from '@/utils/object.ts'
 import { borderRadius, borderStyle, borderWidth } from '@/tokens/border.ts'
 import { colors } from '@/tokens/colors.ts'
 import get from 'lodash/get'
@@ -101,7 +101,7 @@ export const StBox = styled('div', {
             opacity,
         },
         elevationProp && {
-            boxShadow: elevationProp in elevation ? elevation[elevationProp as keyof typeof elevation] : elevationProp,
+            boxShadow: getRawValue(elevationProp, elevation),
         },
         bg && {
             background: get(colors, bg) || bg,

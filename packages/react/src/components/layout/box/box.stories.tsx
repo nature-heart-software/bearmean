@@ -7,10 +7,14 @@ export default {
 } as Meta<typeof Box>
 
 const Template: StoryFn<typeof Box> = (args) => (
-    <Box px={'5'} py={'5'} bg={'slate.100'} {...args}>
-        content
+    <Box {...args}>
+        <button>content</button>
     </Box>
 )
 
 export const Default = Template.bind({})
-Default.args = {}
+Default.args = {
+    px: '5',
+    py: '5',
+    bg: 'slate.100',
+}
