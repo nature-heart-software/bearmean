@@ -1,0 +1,9 @@
+{
+  "react": {
+    "paths": {
+      "components": "./src/components",
+      "tokens": "./src/tokens",
+      "utils": "./src/utils"
+    }
+  }
+}

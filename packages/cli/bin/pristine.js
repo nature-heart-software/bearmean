@@ -3,9 +3,9 @@
 const fs = require('fs')
 const ts = require('typescript')
 const path = require('path')
-const {walk} = require('@root/walk')
-const {createMatchPath, register, loadConfig} = require('tsconfig-paths')
-const {resolve} = require('path')
+const { walk } = require('@root/walk')
+const { createMatchPath, register, loadConfig } = require('tsconfig-paths')
+const { resolve } = require('path')
 const copy = require('copy')
 const crawl = require('../modules/crawl')
 const {
@@ -23,8 +23,7 @@ require.resolve = (request, options) => {
     for (const extension of fileExtensions) {
         try {
             return originalRequireResolve(resolve(request + extension), options)
-        } catch (error) {
-        }
+        } catch (error) {}
     }
     return originalRequireResolve(request, options)
 }
@@ -69,7 +68,7 @@ function loadSourceConfig(packageName, cliConfig) {
             return Promise.resolve()
         }).then(() => {
             if (!config) {
-                const modulePath = require.resolve(cliConfig.packages[packageName])
+                const modulePath = path.join(require.resolve(cliConfig.packages[packageName]), '..')
                 if (fs.existsSync(modulePath)) {
                     configPath = path.resolve(modulePath, cliConfig.sourceConfigFileName)
                     config = require(configPath)
@@ -83,7 +82,7 @@ function loadSourceConfig(packageName, cliConfig) {
     })
 }
 
-function loadTargetConfig({cliConfig}) {
+function loadTargetConfig({ cliConfig }) {
     return new Promise((resolve) => {
         let config
         let configPath
@@ -103,7 +102,7 @@ function loadTargetConfig({cliConfig}) {
     })
 }
 
-function getComponentPath({componentName, packageName, sourceConfig, sourceConfigPath}) {
+function getComponentPath({ componentName, packageName, sourceConfig, sourceConfigPath }) {
     return new Promise((resolve) => {
         const exclude = ['node_modules', '.git', '.idea', '.vscode', 'dist', 'build', 'coverage', 'public', 'static', 'tmp', 'temp', 'logs', 'logs', 'log']
         return walk(path.resolve(sourceConfigPath, '..', sourceConfig[packageName].paths.components), (err, pathname, dirent) => {
@@ -129,7 +128,7 @@ async function pristine() {
         console.log(`Usage: ${cliConfig.commandName} <action> <component_name>`)
         return
     }
-    const {config: sourceConfig, configPath: sourceConfigPath} = await loadSourceConfig(packageName, cliConfig)
+    const { config: sourceConfig, configPath: sourceConfigPath } = await loadSourceConfig(packageName, cliConfig)
     if (!sourceConfig) {
         console.log(`${cliConfig.sourceConfigFileName} not found`)
         return
@@ -146,7 +145,7 @@ async function pristine() {
         console.log(`Component ${componentName} not found`)
         return
     }
-    const {paths, absoluteBaseUrl} = loadConfig(path.dirname(componentPath))
+    const { paths, absoluteBaseUrl } = loadConfig(path.dirname(componentPath))
     const matchPath = createMatchPath(absoluteBaseUrl, paths)
 
     register({
@@ -176,8 +175,7 @@ async function pristine() {
                         const pathToResolve = path.resolve(path.dirname(filePath), importPath)
 
                         dependencyPath = require.resolve(pathToResolve)
-                    } catch (error) {
-                    }
+                    } catch (error) {}
                 }
 
                 if (dependencyPath && !dependencies.has(dependencyPath)) {
@@ -197,8 +195,8 @@ async function pristine() {
     const tokensPath = path.resolve(sourceConfigPath, '..', sourceConfig[packageName].paths.tokens)
     const utilsPath = path.resolve(sourceConfigPath, '..', sourceConfig[packageName].paths.utils)
 
-    const {config: targetConfig, configPath: targetConfigPath} = await loadTargetConfig({cliConfig})
-    const {paths: targetPaths, absoluteBaseUrl: targetAbsoluteBaseUrl} = loadConfig(process.cwd())
+    const { config: targetConfig, configPath: targetConfigPath } = await loadTargetConfig({ cliConfig })
+    const { paths: targetPaths, absoluteBaseUrl: targetAbsoluteBaseUrl } = loadConfig(process.cwd())
     const componentFolders = Array.from(dependencies)
         .filter((dep) => dep.startsWith(componentsPath))
         .filter((dep) => dep.includes('index'))
@@ -207,15 +205,14 @@ async function pristine() {
                 .replace(componentsPath, '')
                 .split(path.sep)
                 .filter((name) => !name.includes('index'))
-                .join(path.sep),
+                .join(path.sep)
         )
 
     console.log('Components:')
     componentFolders.forEach((folder) => {
         const targetFolder = path.join(targetAbsoluteBaseUrl, resolvePath(targetConfig.aliases.components, targetPaths), folder)
         console.log('--', folder, '>', targetFolder)
-        copy(path.join(componentsPath, folder, '/*'), targetFolder, {overwrite: false}, () => {
-        })
+        copy(path.join(componentsPath, folder, '/*'), targetFolder, { overwrite: false }, () => {})
     })
 
     console.log('Utils:')
@@ -224,8 +221,7 @@ async function pristine() {
         .forEach((file) => {
             const targetFolder = path.join(targetAbsoluteBaseUrl, resolvePath(targetConfig.aliases.utils, targetPaths))
             console.log('--', file.replace(utilsPath, ''), '>', path.join(targetFolder, path.basename(file)))
-            copy.one(file, targetFolder, {overwrite: false, flatten: true}, () => {
-            })
+            copy.one(file, targetFolder, { overwrite: false, flatten: true }, () => {})
         })
 
     console.log('Tokens:')
@@ -234,8 +230,7 @@ async function pristine() {
         .forEach((file) => {
             const targetFolder = path.join(targetAbsoluteBaseUrl, resolvePath(targetConfig.aliases.tokens, targetPaths))
             console.log('--', file.replace(tokensPath, ''), '>', path.join(targetFolder, path.basename(file)))
-            copy.one(file, targetFolder, {overwrite: false, flatten: true}, () => {
-            })
+            copy.one(file, targetFolder, { overwrite: false, flatten: true }, () => {})
         })
 }
 
