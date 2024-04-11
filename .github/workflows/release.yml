@@ -45,12 +45,14 @@ jobs:
         uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
+          access: public
           package: packages/cli
 
       - name: Publish React
         uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
+          access: public
           package: packages/react
 
       - name: Rollback Release
