@@ -1,7 +1,13 @@
 {
     "name": "@pristine/react",
-    "private": false,
     "version": "0.0.0",
+    "private": false,
+    "homepage": "https://github.com/nature-heart-software/pristine",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nature-heart-software/pristine",
+        "directory": "packages/react"
+    },
     "type": "module",
     "main": "./package.json",
     "scripts": {
