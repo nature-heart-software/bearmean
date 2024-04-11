@@ -5,7 +5,7 @@
     "homepage": "https://github.com/nature-heart-software/pristine",
     "repository": {
         "type": "git",
-        "url": "https://github.com/nature-heart-software/pristine",
+        "url": "git+https://github.com/nature-heart-software/pristine.git",
         "directory": "packages/react"
     },
     "type": "module",
