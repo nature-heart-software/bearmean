@@ -1,7 +1,7 @@
 {
   "aliases": {
-    "components": "@/components ",
-    "utils": "@/utils ",
-    "tokens": "@/tokens "
+    "components": "@/components",
+    "utils": "@/utils",
+    "tokens": "@/tokens"
   }
 }
