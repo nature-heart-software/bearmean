@@ -41,8 +41,13 @@ jobs:
       - name: Version
         run: npx lerna version $RELEASE_VERSION --yes --no-private --force-publish --no-git-tag-version
 
-      - name: Publish
-        run: npx lerna publish from-package --yes
+      - name: Publish CLI
+        working-directory: packages/cli
+        run: npm publish
+
+      - name: Publish React
+        working-directory: packages/react
+        run: npm publish
 
       - name: Rollback Release
         if: failure()
