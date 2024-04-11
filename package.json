@@ -11,10 +11,9 @@
   ],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "prettier": "^3.2.5"
-  },
   "devDependencies": {
+    "prettier": "^3.2.5",
+    "chromatic": "^11.3.0",
     "lerna": "^8.1.2"
   }
 }

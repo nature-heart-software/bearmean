@@ -4,7 +4,7 @@ import { Box } from './'
 export default {
     title: 'Components/Layout/Box',
     component: Box,
-} as Meta<typeof Box>
+} satisfies Meta<typeof Box>
 
 const Template: StoryFn<typeof Box> = (args) => <Box {...args}>content</Box>
 
