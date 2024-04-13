@@ -2,78 +2,19 @@ import styled from '@emotion/styled'
 import { ExclusiveBoxProps } from './box.shared.ts'
 import { spacing as _spacing } from '@/tokens/spacing.ts'
 import { elevation } from '@/tokens/elevation.ts'
-import { SoftRequired } from '@/utils/object.ts'
 import { borderRadius as _borderRadius, borderStyle as _borderStyle, borderWidth as _borderWidth } from '@/tokens/border.ts'
 import { colors as _colors } from '@/tokens/colors.ts'
 import get from 'lodash/get'
 import { getRawValue, getRemValue } from '@/utils/css-in-js.ts'
 
-type StBoxProps = {
-    props: SoftRequired<
-        Pick<
-            ExclusiveBoxProps,
-            | 'opacity'
-            | 'elevation'
-            | 'bg'
-            | 'w'
-            | 'h'
-            | 'minH'
-            | 'minW'
-            | 'maxH'
-            | 'maxW'
-            | 'p'
-            | 'px'
-            | 'py'
-            | 'pl'
-            | 'pr'
-            | 'pt'
-            | 'pb'
-            | 'm'
-            | 'mx'
-            | 'my'
-            | 'ml'
-            | 'mr'
-            | 'mt'
-            | 'mb'
-            | 'grow'
-            | 'shrink'
-            | 'br'
-            | 'brtl'
-            | 'brtr'
-            | 'brbl'
-            | 'brbr'
-            | 'bs'
-            | 'bw'
-            | 'bc'
-            | 'relative'
-            | 'absolute'
-            | 'fixed'
-            | 'sticky'
-            | 'static'
-            | 'position'
-            | 'inset'
-            | 'top'
-            | 'left'
-            | 'right'
-            | 'bottom'
-            | 'z'
-            | 'overflow'
-            | 'cursor'
-            | 'pointerEvents'
-            | 'userSelect'
-            | 'transform'
-            | 'transformOrigin'
-            | 'ratio'
-        >
-    >
-}
-
 export const StBox = styled('div', {
-    shouldForwardProp: (prop) => !['props', 'as'].includes(prop),
-})<StBoxProps>(
+    shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),
+})<{
+    styled: ExclusiveBoxProps
+}>(
     ({
         theme: { spacing = _spacing, colors = _colors, borderRadius = _borderRadius, borderStyle = _borderStyle, borderWidth = _borderWidth },
-        props: {
+        styled: {
             grow,
             shrink,
             opacity,

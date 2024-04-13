@@ -1,20 +1,21 @@
 import { forwardRef } from 'react'
 import { StBox } from './box.styled.tsx'
-import { BoxProps, defaultBoxProps, useExtractBoxProps } from './box.shared.ts'
-import { defaultProps } from '@/utils/component.ts'
+import { BoxProps, exclusiveBoxProps } from './box.shared.ts'
+import { Slot } from '@radix-ui/react-slot'
+import { useExtractProps } from '@/utils/component.ts'
 
-export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(initialProps, forwardedRef) {
-    const { children, ...defaultedProps } = defaultProps(initialProps, defaultBoxProps)
-    const { props, boxProps } = useExtractBoxProps(defaultedProps)
+export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box({ children, asChild, ...initialProps }, forwardedRef) {
+    const [boxProps, props] = useExtractProps(initialProps, exclusiveBoxProps)
+    const Comp = asChild ? StBox.withComponent(Slot) : StBox
     return (
-        <StBox
+        <Comp
             ref={forwardedRef}
             {...props}
-            props={{
+            styled={{
                 ...boxProps,
             }}
         >
             {children}
-        </StBox>
+        </Comp>
     )
 })

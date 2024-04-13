@@ -14,13 +14,6 @@ export const createPartial =
     (partial: Partial<T>) =>
         partial
 
-export type RequireField<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>
-export type SoftRequired<T> = T extends object ? { [K in keyof T]-?: undefined extends T[K] ? T[K] | null : T[K] } : T
-
-export function setNullIfUndefined<V>(value: V) {
-    return value === undefined ? null : value
-}
-
 export type BreakDownObject<O, R = void> = {
     [K in keyof O as string]: K extends string ? (R extends string ? ObjectDotNotation<O[K], `${R}.${K}`> : ObjectDotNotation<O[K], K>) : never
 }
