@@ -9,6 +9,7 @@ import { defineProps } from '@/utils/component.ts'
 export type MarginSpacing = Spacing | Properties['margin'] | number
 export type PaddingSpacing = PositiveSpacing | Properties['padding'] | number
 
+export const value = <V = undefined>(value?: V) => value
 export const exclusiveBoxProps = defineProps(({ optional }) => ({
     opacity: optional<Properties['opacity']>(),
     elevation: optional<Elevation | Properties['boxShadow']>(),
@@ -36,12 +37,12 @@ export const exclusiveBoxProps = defineProps(({ optional }) => ({
     grow: optional<Properties['flexGrow'] | boolean>(),
     shrink: optional<Properties['flexShrink'] | boolean>(),
     br: optional<BorderRadius | Properties['borderRadius'] | number>(),
-    brtl: optional<BorderRadius | Properties['borderTopLeftRadius'] | number>(),
-    brtr: optional<BorderRadius | Properties['borderTopRightRadius'] | number>(),
-    brbl: optional<BorderRadius | Properties['borderBottomLeftRadius'] | number>(),
-    brbr: optional<BorderRadius | Properties['borderBottomRightRadius'] | number>(),
-    bs: optional<BorderStyle | Properties['borderStyle']>('solid'),
-    bw: optional<BorderWidth | Properties['borderWidth'] | number>(0),
+    btlr: optional<BorderRadius | Properties['borderTopLeftRadius'] | number>(),
+    btrr: optional<BorderRadius | Properties['borderTopRightRadius'] | number>(),
+    bblr: optional<BorderRadius | Properties['borderBottomLeftRadius'] | number>(),
+    bbrr: optional<BorderRadius | Properties['borderBottomRightRadius'] | number>(),
+    bs: optional<BorderStyle | Properties['borderStyle']>(),
+    bw: optional<BorderWidth | Properties['borderWidth'] | number>(),
     bc: optional<Colors | Properties['borderColor']>(),
     relative: optional<boolean>(),
     absolute: optional<boolean>(),

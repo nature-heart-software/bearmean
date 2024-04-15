@@ -5,8 +5,11 @@ const meta = {
     title: 'Components/Layout/Box',
     component: Box,
 } satisfies Meta<typeof Box>
+
 export default meta
+
 type Story = StoryObj<typeof meta>
+
 const Template: StoryFn<typeof Box> = (args) => <Box {...args}>content</Box>
 
 export const Default = Template.bind({})
@@ -19,7 +22,7 @@ Default.args = {
 export const AsChild: Story = {
     render(args) {
         return (
-            <Box {...args} asChild>
+            <Box {...args}>
                 <button>content</button>
             </Box>
         )

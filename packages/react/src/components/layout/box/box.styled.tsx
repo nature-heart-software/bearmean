@@ -41,12 +41,12 @@ export const StBox = styled('div', {
             mb,
             mr,
             br,
-            brtl,
-            brtr,
-            brbl,
-            brbr,
-            bs,
-            bw,
+            btlr,
+            btrr,
+            bblr,
+            bbrr,
+            bs = 'solid',
+            bw = 0,
             bc,
             relative,
             absolute,
@@ -161,17 +161,17 @@ export const StBox = styled('div', {
         br && {
             borderRadius: getRemValue(br, borderRadius),
         },
-        brtl && {
-            borderTopLeftRadius: getRemValue(brtl, borderRadius),
+        btlr && {
+            borderTopLeftRadius: getRemValue(btlr, borderRadius),
         },
-        brtr && {
-            borderTopRightRadius: getRemValue(brtr, borderRadius),
+        btrr && {
+            borderTopRightRadius: getRemValue(btrr, borderRadius),
         },
-        brbl && {
-            borderBottomLeftRadius: getRemValue(brbl, borderRadius),
+        bblr && {
+            borderBottomLeftRadius: getRemValue(bblr, borderRadius),
         },
-        brbr && {
-            borderBottomRightRadius: getRemValue(brbr, borderRadius),
+        bbrr && {
+            borderBottomRightRadius: getRemValue(bbrr, borderRadius),
         },
         bs && {
             borderStyle: getRawValue(bs, borderStyle),

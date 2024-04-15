@@ -12,6 +12,7 @@ const optional = <T>(defaultValue?: T) => defaultValue as T | undefined
 const required = <T>(defaultValue?: T) => defaultValue as NonUndefined<T>
 
 type Props = Record<string, unknown>
+
 type DefinitionUtils = {
     optional: <T>(defaultValue?: T) => T | undefined
     required: <T>(defaultValue?: T) => NonUndefined<T>
