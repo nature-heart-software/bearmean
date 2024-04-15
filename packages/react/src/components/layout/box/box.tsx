@@ -9,6 +9,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box({ children,
     const Comp = asChild ? StBox.withComponent(Slot) : StBox
     return (
         <Comp
+            data-part={'box'}
             ref={forwardedRef}
             {...props}
             styled={{
