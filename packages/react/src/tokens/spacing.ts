@@ -12,7 +12,7 @@ export const negativeSpacing = {
     '-3': -8,
     '-2': -4,
     '-1': -2,
-}
+} as const
 
 export const positiveSpacing = {
     '0': 0,
