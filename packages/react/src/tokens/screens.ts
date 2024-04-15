@@ -7,7 +7,7 @@ export const screens = {
         margin: 0,
     },
     sm: {
-        value: 425,
+        value: 640,
         gutter: spacing['5'],
         margin: spacing['5'],
     },

@@ -5,6 +5,9 @@ import { Box } from '@/components/layout'
 const meta = {
     title: 'Components/Layout/Container',
     component: Container,
+    parameters: {
+        layout: 'fullscreen',
+    },
 } satisfies Meta<typeof Container>
 
 export default meta
@@ -21,6 +24,12 @@ const Template: StoryFn<typeof Container> = (args) => (
 
 export const Default = Template.bind({})
 Default.args = {
+    bg: 'slate.100',
+}
+
+export const Size = Template.bind({})
+Size.args = {
+    size: 'md',
     bg: 'slate.100',
 }
 
