@@ -5,7 +5,7 @@ import { Screen, screens, Screens } from '@/tokens/screens.ts'
 import { Spacing } from '@/tokens/spacing.ts'
 import { Properties } from 'csstype'
 
-type ColPropName<T extends string> = T | `${T}Start` | `${T}End`
+type ColPropName<T extends string> = `${T}Span` | `${T}Start` | `${T}End`
 type ColBreakpointProps = ColPropName<Screen>
 type RowPropName<T extends string> = `${T}RowSpan` | `${T}RowStart` | `${T}RowEnd`
 type RowPreakpointProps = RowPropName<Screen>
@@ -26,7 +26,7 @@ export const exclusiveGridProps = defineProps(({ optional }) => ({
 
 export const exclusiveGridColProps = defineProps(({ optional }) => ({
     ...exclusiveBoxProps,
-    span: optional<Properties['columnSpan'] | number>(),
+    span: optional<number>(),
     start: optional<Properties['gridColumnStart'] | number>(),
     end: optional<Properties['gridColumnEnd'] | number>(),
     rowSpan: optional<Properties['gridRow'] | number>(),
@@ -36,7 +36,7 @@ export const exclusiveGridColProps = defineProps(({ optional }) => ({
     ...(Object.keys(screens) as Screen[])
         .map((screen) => {
             return {
-                [`${screen}Span` as const]: optional<Properties['columnSpan'] | number>(),
+                [`${screen}Span` as const]: optional<number>(),
                 [`${screen}Start` as const]: optional<Properties['gridColumnStart'] | number>(),
                 [`${screen}End` as const]: optional<Properties['gridColumnEnd'] | number>(),
                 [`${screen}RowSpan` as const]: optional<Properties['gridRow'] | number>(),
@@ -49,7 +49,11 @@ export const exclusiveGridColProps = defineProps(({ optional }) => ({
 
 export type ExclusiveGridProps = typeof exclusiveGridProps
 
-export type GridProps = HTMLAttributes<HTMLDivElement> &
-    ExclusiveGridProps & {
+export type ExclusiveGridColProps = typeof exclusiveGridColProps
+
+export type GridProps = HTMLAttributes<HTMLDivElement> & ExclusiveGridProps
+
+export type GridColProps = HTMLAttributes<HTMLDivElement> &
+    ExclusiveGridColProps & {
         asChild?: boolean
     }
