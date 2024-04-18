@@ -1,8 +1,9 @@
 import styled from '@emotion/styled'
 import { ExclusivePositionProps } from './position.shared.ts'
-import { getRemValue } from '@/utils/css-in-js.ts'
+import { getRawValue, getRemValue } from '@/utils/css-in-js.ts'
 import { StBox } from '@/components/layout'
 import { Properties } from 'csstype'
+import { level as _level } from '@/tokens/level.ts'
 
 export const StPosition = styled(StBox, {
     shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),
@@ -10,6 +11,7 @@ export const StPosition = styled(StBox, {
     styled: ExclusivePositionProps
 }>(
     ({
+        theme: { level = _level },
         styled: {
             relative,
             absolute,
@@ -53,7 +55,7 @@ export const StPosition = styled(StBox, {
             bottom: typeof bottom === 'boolean' ? 0 : getRemValue(bottom),
         },
         z && {
-            zIndex: z,
+            zIndex: getRawValue(z, level),
         },
         transform && {
             transform,

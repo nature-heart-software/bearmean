@@ -1,13 +1,9 @@
 import { HTMLAttributes } from 'react'
-import { PositiveSpacing, Spacing } from '@/tokens/spacing.ts'
 import { Properties } from 'csstype'
 import { defineProps } from '@/utils/component.ts'
 import { exclusiveBoxProps } from '@/components/layout'
+import { Level } from '@/tokens/level.ts'
 
-export type MarginSpacing = Spacing | Properties['margin'] | number
-export type PaddingSpacing = PositiveSpacing | Properties['padding'] | number
-
-export const value = <V = undefined>(value?: V) => value
 export const exclusivePositionProps = defineProps(({ optional }) => ({
     ...exclusiveBoxProps,
     value: optional<Properties['position']>(),
@@ -27,7 +23,7 @@ export const exclusivePositionProps = defineProps(({ optional }) => ({
     rotate: optional<Properties['rotate']>(),
     scale: optional<Properties['scale']>(),
     perspective: optional<Properties['perspective']>(),
-    z: optional<Properties['zIndex'] | number>(),
+    z: optional<Level | Properties['zIndex'] | number>(),
 }))
 
 export type ExclusivePositionProps = typeof exclusivePositionProps

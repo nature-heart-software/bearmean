@@ -47,7 +47,6 @@ export const exclusiveBoxProps = defineProps(({ optional }) => ({
     cursor: optional<Properties['cursor']>(),
     pointerEvents: optional<Properties['pointerEvents']>(),
     userSelect: optional<Properties['userSelect']>(),
-    ratio: optional<Properties['aspectRatio'] | number>(),
 }))
 
 export type ExclusiveBoxProps = typeof exclusiveBoxProps

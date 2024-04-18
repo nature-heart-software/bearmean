@@ -52,7 +52,6 @@ export const StBox = styled('div', {
             cursor,
             pointerEvents,
             userSelect,
-            ratio,
         },
     }) => [
         {
@@ -180,9 +179,6 @@ export const StBox = styled('div', {
         },
         userSelect && {
             userSelect,
-        },
-        ratio && {
-            aspectRatio: ratio,
         },
     ]
 )

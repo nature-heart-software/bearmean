@@ -1,0 +1,16 @@
+import { HTMLAttributes } from 'react'
+import { Properties } from 'csstype'
+import { defineProps } from '@/utils/component.ts'
+import { exclusiveBoxProps } from '@/components/layout'
+
+export const exclusiveAspectProps = defineProps(({ optional }) => ({
+    ...exclusiveBoxProps,
+    ratio: optional<Properties['aspectRatio'] | number>(),
+}))
+
+export type ExclusiveAspectProps = typeof exclusiveAspectProps
+
+export type AspectProps = HTMLAttributes<HTMLDivElement> &
+    ExclusiveAspectProps & {
+        asChild?: boolean
+    }
