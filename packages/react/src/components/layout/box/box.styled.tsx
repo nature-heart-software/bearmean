@@ -22,10 +22,10 @@ export const StBox = styled('div', {
             bg,
             w,
             h,
-            minW,
-            minH,
-            maxW,
-            maxH,
+            mih,
+            miw,
+            mah,
+            maw,
             p,
             px,
             py,
@@ -80,17 +80,17 @@ export const StBox = styled('div', {
         h && {
             height: h === 'full' ? '100%' : getRemValue(h),
         },
-        minW && {
-            minWidth: minW === 'full' ? '100%' : getRemValue(minW),
+        miw && {
+            minWidth: miw === 'full' ? '100%' : getRemValue(miw),
         },
-        minH && {
-            minHeight: minH === 'full' ? '100%' : getRemValue(minH),
+        mih && {
+            minHeight: mih === 'full' ? '100%' : getRemValue(mih),
         },
-        maxW && {
-            maxWidth: maxW === 'full' ? '100%' : getRemValue(maxW),
+        maw && {
+            maxWidth: maw === 'full' ? '100%' : getRemValue(maw),
         },
-        maxH && {
-            maxHeight: maxH === 'full' ? '100%' : getRemValue(maxH),
+        mah && {
+            maxHeight: mah === 'full' ? '100%' : getRemValue(mah),
         },
         p && {
             paddingTop: getRemValue(p, spacing),
