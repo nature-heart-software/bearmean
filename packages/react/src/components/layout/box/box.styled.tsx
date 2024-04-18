@@ -48,24 +48,10 @@ export const StBox = styled('div', {
             bs = 'solid',
             bw = 0,
             bc,
-            relative,
-            absolute,
-            fixed,
-            sticky,
-            static: staticProp,
-            position,
-            inset,
-            top,
-            left,
-            right,
-            bottom,
-            z,
             overflow,
             cursor,
             pointerEvents,
             userSelect,
-            transform,
-            transformOrigin,
             ratio,
         },
     }) => [
@@ -183,42 +169,6 @@ export const StBox = styled('div', {
         bc && {
             borderColor: get(colors, bc) || bc,
         },
-        position && {
-            position,
-        },
-        relative && {
-            position: 'relative',
-        },
-        absolute && {
-            position: 'absolute',
-        },
-        fixed && {
-            position: 'fixed',
-        },
-        sticky && {
-            position: 'sticky',
-        },
-        staticProp && {
-            position: 'static',
-        },
-        inset && {
-            inset: typeof inset === 'boolean' ? 0 : getRemValue(inset),
-        },
-        top && {
-            top: typeof top === 'boolean' ? 0 : getRemValue(top),
-        },
-        left && {
-            left: typeof left === 'boolean' ? 0 : getRemValue(left),
-        },
-        right && {
-            right: typeof right === 'boolean' ? 0 : getRemValue(right),
-        },
-        bottom && {
-            bottom: typeof bottom === 'boolean' ? 0 : getRemValue(bottom),
-        },
-        z && {
-            zIndex: z,
-        },
         overflow && {
             overflow,
         },
@@ -230,12 +180,6 @@ export const StBox = styled('div', {
         },
         userSelect && {
             userSelect,
-        },
-        transform && {
-            transform,
-        },
-        transformOrigin && {
-            transformOrigin,
         },
         ratio && {
             aspectRatio: ratio,

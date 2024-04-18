@@ -9,7 +9,6 @@ import { defineProps } from '@/utils/component.ts'
 export type MarginSpacing = Spacing | Properties['margin'] | number
 export type PaddingSpacing = PositiveSpacing | Properties['padding'] | number
 
-export const value = <V = undefined>(value?: V) => value
 export const exclusiveBoxProps = defineProps(({ optional }) => ({
     opacity: optional<Properties['opacity']>(),
     elevation: optional<Elevation | Properties['boxShadow']>(),
@@ -44,24 +43,10 @@ export const exclusiveBoxProps = defineProps(({ optional }) => ({
     bs: optional<BorderStyle | Properties['borderStyle']>(),
     bw: optional<BorderWidth | Properties['borderWidth'] | number>(),
     bc: optional<Colors | Properties['borderColor']>(),
-    relative: optional<boolean>(),
-    absolute: optional<boolean>(),
-    fixed: optional<boolean>(),
-    sticky: optional<boolean>(),
-    static: optional<boolean>(),
-    position: optional<Properties['position']>(),
-    inset: optional<Properties['inset'] | boolean | number>(),
-    top: optional<Properties['top'] | boolean | number>(),
-    left: optional<Properties['left'] | boolean | number>(),
-    right: optional<Properties['right'] | boolean | number>(),
-    bottom: optional<Properties['bottom'] | boolean | number>(),
-    z: optional<Properties['zIndex'] | number>(),
     overflow: optional<Properties['overflow']>(),
     cursor: optional<Properties['cursor']>(),
     pointerEvents: optional<Properties['pointerEvents']>(),
     userSelect: optional<Properties['userSelect']>(),
-    transform: optional<Properties['transform']>(),
-    transformOrigin: optional<Properties['transformOrigin']>(),
     ratio: optional<Properties['aspectRatio'] | number>(),
 }))
 
