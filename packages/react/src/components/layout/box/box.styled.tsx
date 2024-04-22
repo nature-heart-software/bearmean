@@ -1,11 +1,11 @@
 import styled from '@emotion/styled'
-import { ExclusiveBoxProps } from './box.shared.ts'
-import { spacing as _spacing } from '@/tokens/spacing.ts'
-import { elevation } from '@/tokens/elevation.ts'
-import { borderRadius as _borderRadius, borderStyle as _borderStyle, borderWidth as _borderWidth } from '@/tokens/border.ts'
-import { colors as _colors } from '@/tokens/colors.ts'
+import { ExclusiveBoxProps } from './box.shared'
+import { spacing as _spacing } from '@/tokens/spacing'
+import { elevation } from '@/tokens/elevation'
+import { borderRadius as _borderRadius, borderStyle as _borderStyle, borderWidth as _borderWidth } from '@/tokens/border'
+import { colors as _colors } from '@/tokens/colors'
 import get from 'lodash/get'
-import { getRawValue, getRemValue } from '@/utils/css-in-js.ts'
+import { getRawValue, getRemValue } from '@/utils/css-in-js'
 
 export const StBox = styled('div', {
     shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),

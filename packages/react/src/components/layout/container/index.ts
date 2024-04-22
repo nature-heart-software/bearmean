@@ -1,3 +1,3 @@
-export * from './container.shared.ts'
-export * from './container.styled.tsx'
-export * from './container.tsx'
+export * from './container.shared'
+export * from './container.styled'
+export * from './container'

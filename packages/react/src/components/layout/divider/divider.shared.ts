@@ -1,7 +1,7 @@
 import { HTMLAttributes } from 'react'
 import { exclusiveBoxProps } from '@/components/layout'
-import { createPartial } from '@/utils/object.ts'
-import { defineProps } from '@/utils/component.ts'
+import { createPartial } from '@/utils/object'
+import { defineProps } from '@/utils/component'
 
 export const exclusiveDividerProps = defineProps(() => ({
     ...exclusiveBoxProps,

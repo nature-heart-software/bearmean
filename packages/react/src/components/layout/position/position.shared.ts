@@ -1,8 +1,8 @@
 import { HTMLAttributes } from 'react'
 import { Properties } from 'csstype'
-import { defineProps } from '@/utils/component.ts'
+import { defineProps } from '@/utils/component'
 import { exclusiveBoxProps } from '@/components/layout'
-import { Level } from '@/tokens/level.ts'
+import { Level } from '@/tokens/level'
 
 export const exclusivePositionProps = defineProps(({ optional }) => ({
     ...exclusiveBoxProps,

@@ -1,8 +1,8 @@
 import { Context, createContext, forwardRef, ForwardRefExoticComponent, PropsWithoutRef, RefAttributes, useContext } from 'react'
-import { StGrid, StGridCol } from './grid.styled.tsx'
-import { exclusiveGridColProps, exclusiveGridProps, GridColProps, GridProps } from './grid.shared.ts'
+import { StGrid, StGridCol } from './grid.styled'
+import { exclusiveGridColProps, exclusiveGridProps, GridColProps, GridProps } from './grid.shared'
 import { Slot } from '@radix-ui/react-slot'
-import { useExtractProps } from '@/utils/component.ts'
+import { useExtractProps } from '@/utils/component'
 
 const GridContext = createContext({}) as Context<Pick<GridProps, 'columns'>>
 

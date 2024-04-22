@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react'
-import { Spacing } from '@/tokens/spacing.ts'
-import { defineProps } from '@/utils/component.ts'
+import { Spacing } from '@/tokens/spacing'
+import { defineProps } from '@/utils/component'
 import { Properties } from 'csstype'
 import { exclusiveBoxProps } from '@/components/layout'
 

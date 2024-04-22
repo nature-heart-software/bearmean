@@ -1,9 +1,9 @@
 import styled from '@emotion/styled'
-import { ExclusivePositionProps } from './position.shared.ts'
-import { getRawValue, getRemValue } from '@/utils/css-in-js.ts'
+import { ExclusivePositionProps } from './position.shared'
+import { getRawValue, getRemValue } from '@/utils/css-in-js'
 import { StBox } from '@/components/layout'
 import { Properties } from 'csstype'
-import { level as _level } from '@/tokens/level.ts'
+import { level as _level } from '@/tokens/level'
 
 export const StPosition = styled(StBox, {
     shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),

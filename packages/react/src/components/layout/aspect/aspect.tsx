@@ -1,8 +1,8 @@
 import { forwardRef } from 'react'
-import { StAspect } from './aspect.styled.tsx'
-import { AspectProps, exclusiveAspectProps } from './aspect.shared.ts'
+import { StAspect } from './aspect.styled'
+import { AspectProps, exclusiveAspectProps } from './aspect.shared'
 import { Slot } from '@radix-ui/react-slot'
-import { useExtractProps } from '@/utils/component.ts'
+import { useExtractProps } from '@/utils/component'
 
 export const Aspect = forwardRef<HTMLDivElement, AspectProps>(function Aspect({ children, asChild, ...initialProps }, forwardedRef) {
     const [aspectProps, { ...props }] = useExtractProps(initialProps, exclusiveAspectProps)

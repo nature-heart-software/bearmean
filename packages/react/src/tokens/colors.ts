@@ -1,4 +1,4 @@
-import { ObjectDotNotation } from '@/utils/object.ts'
+import { ObjectDotNotation } from '@/utils/object'
 
 export const colors = {
     inherit: 'inherit',

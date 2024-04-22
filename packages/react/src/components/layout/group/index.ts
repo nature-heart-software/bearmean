@@ -1,3 +1,3 @@
-export * from './group.shared.ts'
-export * from './group.styled.tsx'
-export * from './group.tsx'
+export * from './group.shared'
+export * from './group.styled'
+export * from './group'

@@ -1,8 +1,8 @@
 import { HTMLAttributes } from 'react'
-import { defineProps } from '@/utils/component.ts'
+import { defineProps } from '@/utils/component'
 import { exclusiveBoxProps } from '@/components/layout'
-import { Screen, screens, Screens } from '@/tokens/screens.ts'
-import { Spacing } from '@/tokens/spacing.ts'
+import { Screen, screens, Screens } from '@/tokens/screens'
+import { Spacing } from '@/tokens/spacing'
 import { Properties } from 'csstype'
 
 type ColPropName<T extends string> = `${T}Span` | `${T}Start` | `${T}End`

@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react'
 import { Properties } from 'csstype'
-import { defineProps } from '@/utils/component.ts'
+import { defineProps } from '@/utils/component'
 import { exclusiveBoxProps } from '@/components/layout'
 
 export const exclusiveAspectProps = defineProps(({ optional }) => ({

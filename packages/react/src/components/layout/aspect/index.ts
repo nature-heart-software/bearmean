@@ -1,3 +1,3 @@
-export * from './aspect.shared.ts'
-export * from './aspect.styled.tsx'
-export * from './aspect.tsx'
+export * from './aspect.shared'
+export * from './aspect.styled'
+export * from './aspect'

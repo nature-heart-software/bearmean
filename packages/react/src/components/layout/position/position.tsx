@@ -1,8 +1,8 @@
 import { forwardRef } from 'react'
-import { StPosition } from './position.styled.tsx'
-import { exclusivePositionProps, PositionProps } from './position.shared.ts'
+import { StPosition } from './position.styled'
+import { exclusivePositionProps, PositionProps } from './position.shared'
 import { Slot } from '@radix-ui/react-slot'
-import { useExtractProps } from '@/utils/component.ts'
+import { useExtractProps } from '@/utils/component'
 
 export const Position = forwardRef<HTMLDivElement, PositionProps>(function Position({ children, asChild, ...initialProps }, forwardedRef) {
     const [positionProps, { translate, ...props }] = useExtractProps(initialProps, exclusivePositionProps)

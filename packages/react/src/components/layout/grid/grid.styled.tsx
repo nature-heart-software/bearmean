@@ -1,9 +1,9 @@
 import styled from '@emotion/styled'
-import { ExclusiveGridColProps, ExclusiveGridProps } from './grid.shared.ts'
+import { ExclusiveGridColProps, ExclusiveGridProps } from './grid.shared'
 import { StBox } from '@/components/layout'
-import { spacing as _spacing } from '@/tokens/spacing.ts'
-import { Screen, Screens, screens as _screens } from '@/tokens/screens.ts'
-import { getRemValue } from '@/utils/css-in-js.ts'
+import { spacing as _spacing } from '@/tokens/spacing'
+import { Screen, Screens, screens as _screens } from '@/tokens/screens'
+import { getRemValue } from '@/utils/css-in-js'
 import { rem } from 'polished'
 
 export const StGrid = styled(StBox, {

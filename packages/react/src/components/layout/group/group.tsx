@@ -1,8 +1,8 @@
 import { forwardRef } from 'react'
-import { StGroup } from './group.styled.tsx'
-import { exclusiveGroupProps, GroupProps } from './group.shared.ts'
+import { StGroup } from './group.styled'
+import { exclusiveGroupProps, GroupProps } from './group.shared'
 import { Slot } from '@radix-ui/react-slot'
-import { useExtractProps } from '@/utils/component.ts'
+import { useExtractProps } from '@/utils/component'
 
 export const Group = forwardRef<HTMLDivElement, GroupProps>(function Group({ children, asChild, ...initialProps }, forwardedRef) {
     const [groupProps, props] = useExtractProps(initialProps, exclusiveGroupProps)

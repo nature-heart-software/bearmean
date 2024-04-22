@@ -1,7 +1,7 @@
 import { HTMLAttributes } from 'react'
-import { defineProps } from '@/utils/component.ts'
+import { defineProps } from '@/utils/component'
 import { exclusiveBoxProps } from '@/components/layout'
-import { Screen, Screens } from '@/tokens/screens.ts'
+import { Screen, Screens } from '@/tokens/screens'
 
 export const exclusiveContainerProps = defineProps(({ optional }) => ({
     ...exclusiveBoxProps,

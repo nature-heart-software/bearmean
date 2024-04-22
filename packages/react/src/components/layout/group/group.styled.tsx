@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
-import { ExclusiveGroupProps } from './group.shared.ts'
-import { getRemValue } from '@/utils/css-in-js.ts'
-import { spacing as _spacing } from '@/tokens/spacing.ts'
+import { ExclusiveGroupProps } from './group.shared'
+import { getRemValue } from '@/utils/css-in-js'
+import { spacing as _spacing } from '@/tokens/spacing'
 import { StBox } from '@/components/layout'
 
 const POSITIONS = {
