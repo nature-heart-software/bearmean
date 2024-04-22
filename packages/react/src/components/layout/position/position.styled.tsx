@@ -4,6 +4,7 @@ import { getRawValue, getRemValue } from '@/utils/css-in-js'
 import { StBox } from '@/components/layout'
 import { Properties } from 'csstype'
 import { level as _level } from '@/tokens/level'
+import { spacing as _spacing } from '@/tokens/spacing'
 
 export const StPosition = styled(StBox, {
     shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),
@@ -11,7 +12,7 @@ export const StPosition = styled(StBox, {
     styled: ExclusivePositionProps
 }>(
     ({
-        theme: { level = _level },
+        theme: { level = _level, spacing = _spacing },
         styled: {
             relative,
             absolute,
@@ -40,19 +41,19 @@ export const StPosition = styled(StBox, {
                 )[0] as Properties['position']) || value,
         },
         inset && {
-            inset: typeof inset === 'boolean' ? 0 : getRemValue(inset),
+            inset: typeof inset === 'boolean' ? 0 : getRemValue(inset, spacing),
         },
         top && {
-            top: typeof top === 'boolean' ? 0 : getRemValue(top),
+            top: typeof top === 'boolean' ? 0 : getRemValue(top, spacing),
         },
         left && {
-            left: typeof left === 'boolean' ? 0 : getRemValue(left),
+            left: typeof left === 'boolean' ? 0 : getRemValue(left, spacing),
         },
         right && {
-            right: typeof right === 'boolean' ? 0 : getRemValue(right),
+            right: typeof right === 'boolean' ? 0 : getRemValue(right, spacing),
         },
         bottom && {
-            bottom: typeof bottom === 'boolean' ? 0 : getRemValue(bottom),
+            bottom: typeof bottom === 'boolean' ? 0 : getRemValue(bottom, spacing),
         },
         z && {
             zIndex: getRawValue(z, level),
