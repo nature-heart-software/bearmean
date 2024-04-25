@@ -1,5 +1,6 @@
 import pick from 'lodash/pick'
 import { omit } from 'lodash'
+import { Screen, screens } from '@/tokens/screens.ts'
 
 export type UndefinedProperties<T> = {
     [P in keyof T]-?: undefined extends T[P] ? P : never
@@ -10,18 +11,38 @@ export type ToOptional<T> = Partial<Pick<T, UndefinedProperties<T>>> & Pick<T, E
 type NonUndefined<T> = T extends undefined ? never : T
 const optional = <T>(defaultValue?: T) => defaultValue as T | undefined
 const required = <T>(defaultValue?: T) => defaultValue as NonUndefined<T>
+const responsive = <P extends Record<string, unknown>>(props: P) => {
+    return {
+        ...props,
+        ...(Object.keys(screens) as Screen[])
+            .map((screen) => {
+                return (Object.entries(props) as [keyof P, P[keyof P]][])
+                    .map(([prop, value]) => {
+                        const capitalizedProp = String(prop).charAt(0).toUpperCase() + String(prop).slice(1)
+
+                        return {
+                            [`${screen}${capitalizedProp}`]: value,
+                        }
+                    })
+                    .reduce((acc, curr) => ({ ...acc, ...curr }), {})
+            })
+            .reduce((acc, curr) => ({ ...acc, ...curr }), {}),
+    } as P & { [key in `${Screen}${Capitalize<Extract<keyof P, string>>}`]: P[keyof P] }
+}
 
 type Props = Record<string, unknown>
 
 type DefinitionUtils = {
     optional: <T>(defaultValue?: T) => T | undefined
     required: <T>(defaultValue?: T) => NonUndefined<T>
+    responsive: <P extends Record<string, unknown>>(props: P) => P & { [key in `${Screen}${Capitalize<Extract<keyof P, string>>}`]: P[keyof P] }
 }
 type Definition<P extends Props> = (DefinitionUtils: DefinitionUtils) => P
 export const defineProps = <P extends Props>(definition: Definition<P>) =>
     definition({
         optional,
         required,
+        responsive,
     }) as ToOptional<P>
 
 export const useExtractProps = <D extends Record<any, any>, P extends Record<any, any>>(props: P, defaultProps: D) => {

@@ -1,4 +1,5 @@
 import { rem } from 'polished'
+import { Screen, Screens, screens as _screens } from '@/tokens/screens.ts'
 
 export const getRemValue = <V extends string | number, R extends Record<string, unknown>>(value: V, from?: R) => {
     if (typeof value === 'number') return rem(value)
@@ -9,4 +10,39 @@ export const getRemValue = <V extends string | number, R extends Record<string, 
 export const getRawValue = <V extends string | number, R extends Record<string, unknown>>(value: V, from?: R) => {
     if (from && value in from) return from[value as unknown as keyof R]
     return value
+}
+
+export const defineMixins = <
+    Context extends {
+        theme?: { screens: Screens }
+        styled: Record<string, any>
+    },
+>(
+    context: Context
+) => {
+    const getResponsive = <Prop extends keyof Context['styled'], Callback extends (value: Context['styled'][Prop], screen: Screen | '', prop: Prop) => any>(
+        prop: Prop,
+        callback: Callback
+    ) => {
+        const screens = context.theme?.screens || _screens
+        const props = context.styled
+        return [
+            callback(props[prop as keyof typeof props], '', prop),
+            ...(Object.entries(screens) as [Screen, Screens[keyof Screens]][]).map(([screen, { value }]) => {
+                const responsiveProp = `${screen}${String(prop).charAt(0).toUpperCase() + String(prop).slice(1)}` as Prop
+                const responsiveValue = props[responsiveProp as keyof typeof props]
+                const result = callback(responsiveValue, screen, responsiveProp)
+                return (
+                    result && {
+                        [`@media (min-width: ${rem(value)})`]: result,
+                    }
+                )
+            }),
+        ]
+            .filter(Boolean)
+            .reduce((acc, curr) => ({ ...acc, ...curr }), {})
+    }
+    return {
+        getResponsive,
+    }
 }

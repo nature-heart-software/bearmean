@@ -1,7 +1,7 @@
 import { HTMLAttributes } from 'react'
 import { defineProps } from '@/utils/component.ts'
 import { exclusiveBoxProps } from '@/components/layout'
-import { Screen, screens, Screens } from '@/tokens/screens.ts'
+import { Screen, Screens } from '@/tokens/screens.ts'
 import { Spacing } from '@/tokens/spacing.ts'
 import { Properties } from 'csstype'
 
@@ -24,27 +24,17 @@ export const exclusiveGridProps = defineProps(({ optional }) => ({
     align: optional<Properties['alignItems']>(),
 }))
 
-export const exclusiveGridColProps = defineProps(({ optional }) => ({
+export const exclusiveGridColProps = defineProps(({ optional, responsive }) => ({
     ...exclusiveBoxProps,
-    span: optional<number>(),
-    start: optional<Properties['gridColumnStart'] | number>(),
-    end: optional<Properties['gridColumnEnd'] | number>(),
-    rowSpan: optional<Properties['gridRow'] | number>(),
-    rowStart: optional<Properties['gridRowStart'] | number>(),
-    rowEnd: optional<Properties['gridRowEnd'] | number>(),
     columns: exclusiveGridProps.columns,
-    ...(Object.keys(screens) as Screen[])
-        .map((screen) => {
-            return {
-                [`${screen}Span` as const]: optional<number>(),
-                [`${screen}Start` as const]: optional<Properties['gridColumnStart'] | number>(),
-                [`${screen}End` as const]: optional<Properties['gridColumnEnd'] | number>(),
-                [`${screen}RowSpan` as const]: optional<Properties['gridRow'] | number>(),
-                [`${screen}RowStart` as const]: optional<Properties['gridRowStart'] | number>(),
-                [`${screen}RowEnd` as const]: optional<Properties['gridRowEnd'] | number>(),
-            } as GridColResponsiveProps
-        })
-        .reduce((acc, curr) => ({ ...acc, ...curr }), {}),
+    ...responsive({
+        span: optional<number>(),
+        start: optional<Properties['gridColumnStart'] | number>(),
+        end: optional<Properties['gridColumnEnd'] | number>(),
+        rowSpan: optional<Properties['gridRow'] | number>(),
+        rowStart: optional<Properties['gridRowStart'] | number>(),
+        rowEnd: optional<Properties['gridRowEnd'] | number>(),
+    }),
 }))
 
 export type ExclusiveGridProps = typeof exclusiveGridProps

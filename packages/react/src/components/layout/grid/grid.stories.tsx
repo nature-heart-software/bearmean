@@ -14,6 +14,11 @@ type Story = StoryObj<typeof meta>
 const Template: StoryFn<typeof Grid> = (args) => (
     <Box p={'5'} bg="slate.100">
         <Grid {...args} h={500}>
+            <Grid.Col>
+                <Box px={'5'} py={'3'} h={'full'} bg={'slate.200'} style={{ textAlign: 'center' }}>
+                    1
+                </Box>
+            </Grid.Col>
             <Grid.Col span={4}>
                 <Box px={'5'} py={'3'} h={'full'} bg={'slate.200'} style={{ textAlign: 'center' }}>
                     1

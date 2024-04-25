@@ -3,8 +3,9 @@ import { exclusiveBoxProps } from '@/components/layout'
 import { createPartial } from '@/utils/object.ts'
 import { defineProps } from '@/utils/component.ts'
 
-export const exclusiveDividerProps = defineProps(() => ({
+export const exclusiveDividerProps = defineProps(({ optional }) => ({
     ...exclusiveBoxProps,
+    size: optional<number>(),
 }))
 
 const definePartialProps = createPartial<typeof exclusiveDividerProps>()
@@ -23,7 +24,6 @@ export const dividerVariants = {
 export const exclusiveDividerPropsWithVariants = defineProps(({ optional }) => ({
     ...exclusiveDividerProps,
     variant: optional<keyof typeof dividerVariants>(),
-    size: optional<number>(),
 }))
 
 export type ExclusiveDividerProps = typeof exclusiveDividerPropsWithVariants
