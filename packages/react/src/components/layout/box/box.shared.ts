@@ -1,10 +1,10 @@
 import { HTMLAttributes } from 'react'
-import { PositiveSpacing, Spacing } from '@/tokens/spacing.ts'
-import { Elevation } from '@/tokens/elevation.ts'
-import { BorderRadius, BorderStyle, BorderWidth } from '@/tokens/border.ts'
-import { Colors } from '@/tokens/colors.ts'
+import { PositiveSpacing, Spacing } from '@/tokens/spacing'
+import { Elevation } from '@/tokens/elevation'
+import { BorderRadius, BorderStyle, BorderWidth } from '@/tokens/border'
+import { Colors } from '@/tokens/colors'
 import { Properties } from 'csstype'
-import { defineProps } from '@/utils/component.ts'
+import { defineProps } from '@/utils/component'
 
 export type MarginSpacing = Spacing | Properties['margin'] | number
 export type PaddingSpacing = PositiveSpacing | Properties['padding'] | number

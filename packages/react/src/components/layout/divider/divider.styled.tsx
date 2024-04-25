@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
-import { ExclusiveDividerProps } from './divider.shared.ts'
+import { ExclusiveDividerProps } from './divider.shared'
 import { StBox } from '@/components/layout'
 import { rem } from 'polished'
-import { colors as _colors } from '@/tokens/colors.ts'
+import { colors as _colors } from '@/tokens/colors'
 import get from 'lodash/get'
 
 export const StDivider = styled(StBox, {

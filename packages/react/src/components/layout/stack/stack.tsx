@@ -1,8 +1,8 @@
 import { forwardRef } from 'react'
-import { StStack } from './stack.styled.tsx'
-import { exclusiveStackProps, StackProps } from './stack.shared.ts'
+import { StStack } from './stack.styled'
+import { exclusiveStackProps, StackProps } from './stack.shared'
 import { Slot } from '@radix-ui/react-slot'
-import { useExtractProps } from '@/utils/component.ts'
+import { useExtractProps } from '@/utils/component'
 
 export const Stack = forwardRef<HTMLDivElement, StackProps>(function Stack({ children, asChild, ...initialProps }, forwardedRef) {
     const [stackProps, props] = useExtractProps(initialProps, exclusiveStackProps)

@@ -1,3 +1,3 @@
-export * from './box.shared.ts'
-export * from './box.styled.tsx'
-export * from './box.tsx'
+export * from './box.shared'
+export * from './box.styled'
+export * from './box'

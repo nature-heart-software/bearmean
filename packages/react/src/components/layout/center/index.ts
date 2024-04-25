@@ -1,3 +1,3 @@
-export * from './center.shared.ts'
-export * from './center.styled.tsx'
-export * from './center.tsx'
+export * from './center.shared'
+export * from './center.styled'
+export * from './center'

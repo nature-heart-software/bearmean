@@ -1,3 +1,3 @@
-export * from './grid.shared.ts'
-export * from './grid.styled.tsx'
-export * from './grid.tsx'
+export * from './grid.shared'
+export * from './grid.styled'
+export * from './grid'

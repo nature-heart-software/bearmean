@@ -1,8 +1,8 @@
 import { forwardRef } from 'react'
-import { StContainer } from './container.styled.tsx'
-import { ContainerProps, exclusiveContainerProps } from './container.shared.ts'
+import { StContainer } from './container.styled'
+import { ContainerProps, exclusiveContainerProps } from './container.shared'
 import { Slot } from '@radix-ui/react-slot'
-import { useExtractProps } from '@/utils/component.ts'
+import { useExtractProps } from '@/utils/component'
 
 export const Container = forwardRef<HTMLDivElement, ContainerProps>(function Container({ children, asChild, ...initialProps }, forwardedRef) {
     const [containerProps, props] = useExtractProps(initialProps, exclusiveContainerProps)

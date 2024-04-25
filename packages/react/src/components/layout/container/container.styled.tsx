@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
-import { ExclusiveContainerProps } from './container.shared.ts'
+import { ExclusiveContainerProps } from './container.shared'
 import { StBox } from '@/components/layout'
-import { Screens, screens as _screens } from '@/tokens/screens.ts'
+import { Screens, screens as _screens } from '@/tokens/screens'
 import { rem } from 'polished'
 
 export const StContainer = styled(StBox, {

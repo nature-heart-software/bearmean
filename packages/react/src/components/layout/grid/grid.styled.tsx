@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
-import { ExclusiveGridColProps, ExclusiveGridProps } from './grid.shared.ts'
+import { ExclusiveGridColProps, ExclusiveGridProps } from './grid.shared'
 import { StBox } from '@/components/layout'
-import { spacing as _spacing } from '@/tokens/spacing.ts'
-import { defineMixins, getRemValue } from '@/utils/css-in-js.ts'
+import { spacing as _spacing } from '@/tokens/spacing'
+import { defineMixins, getRemValue } from '@/utils/css-in-js'
 
 export const StGrid = styled(StBox, {
     shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),

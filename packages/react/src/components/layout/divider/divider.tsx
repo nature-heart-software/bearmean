@@ -1,8 +1,8 @@
 import { forwardRef, useMemo } from 'react'
-import { StDivider } from './divider.styled.tsx'
-import { DividerProps, dividerVariants, exclusiveDividerProps } from './divider.shared.ts'
+import { StDivider } from './divider.styled'
+import { DividerProps, dividerVariants, exclusiveDividerProps } from './divider.shared'
 import { Slot } from '@radix-ui/react-slot'
-import { useExtractProps } from '@/utils/component.ts'
+import { useExtractProps } from '@/utils/component'
 
 export const Divider = forwardRef<HTMLDivElement, DividerProps>(function Divider({ children, asChild, variant = 'horizontal', ...initialProps }, forwardedRef) {
     const variantProps = useMemo(() => (variant ? dividerVariants[variant] : {}), [variant])
