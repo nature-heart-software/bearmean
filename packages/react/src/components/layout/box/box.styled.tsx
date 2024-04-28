@@ -6,6 +6,7 @@ import { borderRadius as _borderRadius, borderStyle as _borderStyle, borderWidth
 import { colors as _colors } from '@/tokens/colors'
 import get from 'lodash/get'
 import { getRawValue, getRemValue } from '@/utils/css-in-js'
+import isUndefined from 'lodash/isUndefined'
 
 export const StBox = styled('div', {
     shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),
@@ -58,113 +59,112 @@ export const StBox = styled('div', {
             minWidth: 0,
             minHeight: 0,
         },
-        typeof grow !== 'undefined' && {
+        !isUndefined(grow) && {
             flexGrow: Number(grow),
         },
-        typeof shrink !== 'undefined' && {
+        !isUndefined(shrink) && {
             flexGrow: Number(grow),
         },
-        typeof opacity === 'number' && {
+        !isUndefined(opacity) && {
             opacity,
         },
         elevationProp && {
             boxShadow: getRawValue(elevationProp, elevation),
         },
-        bg && {
+        !isUndefined(bg) && {
             background: get(colors, bg) || bg,
         },
-        w && {
+        !isUndefined(w) && {
             width: w === 'full' ? '100%' : getRemValue(w),
         },
-        h && {
+        !isUndefined(h) && {
             height: h === 'full' ? '100%' : getRemValue(h),
         },
-        miw && {
+        !isUndefined(miw) && {
             minWidth: miw === 'full' ? '100%' : getRemValue(miw),
         },
-        mih && {
+        !isUndefined(mih) && {
             minHeight: mih === 'full' ? '100%' : getRemValue(mih),
         },
-        maw && {
+        !isUndefined(maw) && {
             maxWidth: maw === 'full' ? '100%' : getRemValue(maw),
         },
-        mah && {
+        !isUndefined(mah) && {
             maxHeight: mah === 'full' ? '100%' : getRemValue(mah),
         },
-        p && {
+        !isUndefined(p) && {
             paddingTop: getRemValue(p, spacing),
             paddingLeft: getRemValue(p, spacing),
             paddingRight: getRemValue(p, spacing),
             paddingBottom: getRemValue(p, spacing),
         },
-        px && {
+        !isUndefined(px) && {
             paddingLeft: getRemValue(px, spacing),
             paddingRight: getRemValue(px, spacing),
         },
-        py && {
+        !isUndefined(py) && {
             paddingTop: getRemValue(py, spacing),
             paddingBottom: getRemValue(py, spacing),
         },
-        pt && {
+        !isUndefined(pt) && {
             paddingTop: getRemValue(pt, spacing),
         },
-        pl && {
+        !isUndefined(pl) && {
             paddingLeft: getRemValue(pl, spacing),
         },
-        pr && {
+        !isUndefined(pr) && {
             paddingRight: getRemValue(pr, spacing),
         },
-        pb && {
+        !isUndefined(pb) && {
             paddingBottom: getRemValue(pb, spacing),
         },
-        m && {
+        !isUndefined(m) && {
             marginTop: getRemValue(m, spacing),
             marginLeft: getRemValue(m, spacing),
             marginRight: getRemValue(m, spacing),
             marginBottom: getRemValue(m, spacing),
         },
-        mx && {
+        !isUndefined(mx) && {
             marginLeft: getRemValue(mx, spacing),
             marginRight: getRemValue(mx, spacing),
         },
-        my && {
+        !isUndefined(my) && {
             marginTop: getRemValue(my, spacing),
             marginBottom: getRemValue(my, spacing),
         },
-        mt && {
+        !isUndefined(mt) && {
             marginTop: getRemValue(mt, spacing),
         },
-        ml && {
+        !isUndefined(ml) && {
             marginLeft: getRemValue(ml, spacing),
         },
-        mr && {
+        !isUndefined(mr) && {
             marginRight: getRemValue(mr, spacing),
         },
-        mb && {
+        !isUndefined(mb) && {
             marginBottom: getRemValue(mb, spacing),
         },
-        br && {
+        !isUndefined(br) && {
             borderRadius: getRemValue(br, borderRadius),
         },
-        btlr && {
+        !isUndefined(btlr) && {
             borderTopLeftRadius: getRemValue(btlr, borderRadius),
         },
-        btrr && {
+        !isUndefined(btrr) && {
             borderTopRightRadius: getRemValue(btrr, borderRadius),
         },
-        bblr && {
+        !isUndefined(bblr) && {
             borderBottomLeftRadius: getRemValue(bblr, borderRadius),
         },
-        bbrr && {
+        !isUndefined(bbrr) && {
             borderBottomRightRadius: getRemValue(bbrr, borderRadius),
         },
         bs && {
             borderStyle: getRawValue(bs, borderStyle),
         },
-        typeof bw !== 'undefined' &&
-            bw !== null && {
-                borderWidth: getRemValue(bw, borderWidth),
-            },
+        !isUndefined(bw) && {
+            borderWidth: getRemValue(bw, borderWidth),
+        },
         bc && {
             borderColor: get(colors, bc) || bc,
         },

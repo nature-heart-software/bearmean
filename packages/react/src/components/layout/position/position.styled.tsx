@@ -5,6 +5,7 @@ import { StBox } from '@/components/layout'
 import { Properties } from 'csstype'
 import { level as _level } from '@/tokens/level'
 import { spacing as _spacing } from '@/tokens/spacing'
+import isUndefined from 'lodash/isUndefined'
 
 export const StPosition = styled(StBox, {
     shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),
@@ -40,22 +41,22 @@ export const StPosition = styled(StBox, {
                     Boolean
                 )[0] as Properties['position']) || value,
         },
-        inset && {
+        !isUndefined(inset) && {
             inset: typeof inset === 'boolean' ? 0 : getRemValue(inset, spacing),
         },
-        top && {
+        !isUndefined(top) && {
             top: typeof top === 'boolean' ? 0 : getRemValue(top, spacing),
         },
-        left && {
+        !isUndefined(left) && {
             left: typeof left === 'boolean' ? 0 : getRemValue(left, spacing),
         },
-        right && {
+        !isUndefined(right) && {
             right: typeof right === 'boolean' ? 0 : getRemValue(right, spacing),
         },
-        bottom && {
+        !isUndefined(bottom) && {
             bottom: typeof bottom === 'boolean' ? 0 : getRemValue(bottom, spacing),
         },
-        z && {
+        !isUndefined(z) && {
             zIndex: getRawValue(z, level),
         },
         transform && {
@@ -73,7 +74,7 @@ export const StPosition = styled(StBox, {
         rotate && {
             rotate,
         },
-        scale && {
+        !isUndefined(scale) && {
             scale,
         },
     ]
