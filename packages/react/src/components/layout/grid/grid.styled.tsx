@@ -15,7 +15,7 @@ export const StGrid = styled(StBox, {
         gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
         gap: getRemValue(gap, spacing),
     },
-    rows && {
+    !isUndefined(rows) && {
         gridTemplateRows: `repeat(${rows}, minmax(0, 1fr))`,
     },
     align && {
@@ -33,7 +33,7 @@ export const StGridCol = styled(StBox, {
         styled: {
             ...context.styled,
             span: context.styled.span || 12,
-            rowSpan: context.styled.span || null,
+            rowSpan: context.styled.rowSpan || null,
         },
     })
     return [
