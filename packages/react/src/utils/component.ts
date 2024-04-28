@@ -1,6 +1,6 @@
 import pick from 'lodash/pick'
 import { omit } from 'lodash'
-import { Screen, screens } from '@/tokens/screens.ts'
+import { Screen, screens } from '@/tokens/screens'
 
 export type UndefinedProperties<T> = {
     [P in keyof T]-?: undefined extends T[P] ? P : never
@@ -45,7 +45,7 @@ export const defineProps = <P extends Props>(definition: Definition<P>) =>
         responsive,
     }) as ToOptional<P>
 
-export const useExtractProps = <D extends Record<any, any>, P extends Record<any, any>>(props: P, defaultProps: D) => {
+export const useExtractProps = <D extends Record<string, unknown>, P extends Record<string, unknown>>(props: P, defaultProps: D) => {
     const extractedProps = { ...defaultProps, ...pick(props, Object.keys(defaultProps)) } as D
     const rest = omit(props, Object.keys(defaultProps)) as Exclude<P, keyof D>
     return [extractedProps, rest]
