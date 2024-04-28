@@ -3,6 +3,7 @@ import { ExclusiveGridColProps, ExclusiveGridProps } from './grid.shared'
 import { StBox } from '@/components/layout'
 import { spacing as _spacing } from '@/tokens/spacing'
 import { defineMixins, getRemValue } from '@/utils/css-in-js'
+import isUndefined from 'lodash/isUndefined'
 
 export const StGrid = styled(StBox, {
     shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),
@@ -43,42 +44,42 @@ export const StGridCol = styled(StBox, {
         getResponsive(
             'span',
             (value) =>
-                typeof value !== 'undefined' && {
+                !isUndefined(value) && {
                     gridColumn: `span ${value} / span ${value}`,
                 }
         ),
         getResponsive(
             'start',
             (value) =>
-                typeof value !== 'undefined' && {
+                !isUndefined(value) && {
                     gridColumnStart: value,
                 }
         ),
         getResponsive(
             'end',
             (value) =>
-                typeof value !== 'undefined' && {
+                !isUndefined(value) && {
                     gridColumnEnd: value,
                 }
         ),
         getResponsive(
             'rowSpan',
             (value) =>
-                typeof value !== 'undefined' && {
+                !isUndefined(value) && {
                     gridRow: value ? `span ${value} / span ${value}` : 'auto',
                 }
         ),
         getResponsive(
             'rowStart',
             (value) =>
-                typeof value !== 'undefined' && {
+                !isUndefined(value) && {
                     gridRowStart: value,
                 }
         ),
         getResponsive(
             'rowEnd',
             (value) =>
-                typeof value !== 'undefined' && {
+                !isUndefined(value) && {
                     gridRowEnd: value,
                 }
         ),
