@@ -9,7 +9,7 @@ export const Group = forwardRef<HTMLDivElement, GroupProps>(function Group({ chi
     const Comp = asChild ? StGroup.withComponent(Slot) : StGroup
     return (
         <Comp
-            data-part={'group'}
+            data-group
             ref={forwardedRef}
             {...props}
             styled={{

@@ -13,7 +13,7 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(function Divider
     const Comp = asChild ? StDivider.withComponent(Slot) : StDivider
     return (
         <Comp
-            data-part={'divider'}
+            data-divider
             ref={forwardedRef}
             {...props}
             styled={{

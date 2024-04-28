@@ -10,7 +10,7 @@ export const Aspect = forwardRef<HTMLDivElement, AspectProps>(function Aspect({ 
     const Comp = asChild ? StAspect.withComponent(Slot) : StAspect
     return (
         <Comp
-            data-part={'aspect'}
+            data-aspect
             ref={forwardedRef}
             {...props}
             styled={{

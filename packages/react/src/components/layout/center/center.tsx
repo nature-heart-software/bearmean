@@ -9,7 +9,7 @@ export const Center = forwardRef<HTMLDivElement, CenterProps>(function Center({ 
     const Comp = asChild ? StCenter.withComponent(Slot) : StCenter
     return (
         <Comp
-            data-part={'center'}
+            data-center
             ref={forwardedRef}
             {...props}
             styled={{

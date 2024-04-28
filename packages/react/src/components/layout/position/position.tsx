@@ -9,7 +9,7 @@ export const Position = forwardRef<HTMLDivElement, PositionProps>(function Posit
     const Comp = asChild ? StPosition.withComponent(Slot) : StPosition
     return (
         <Comp
-            data-part={'position'}
+            data-position
             ref={forwardedRef}
             {...props}
             styled={{

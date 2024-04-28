@@ -12,7 +12,7 @@ const GridCol = forwardRef<HTMLDivElement, GridColProps>(function GridCol({ chil
     const { columns } = useContext(GridContext)
     return (
         <Comp
-            data-part={'grid-col'}
+            data-grid-col
             ref={forwardedRef}
             {...props}
             styled={{
@@ -37,7 +37,7 @@ export const Grid = forwardRef(function Grid({ children, ...initialProps }, forw
             }}
         >
             <StGrid
-                data-part={'grid'}
+                data-grid
                 ref={forwardedRef}
                 {...props}
                 styled={{

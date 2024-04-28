@@ -9,7 +9,7 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(function Con
     const Comp = asChild ? StContainer.withComponent(Slot) : StContainer
     return (
         <Comp
-            data-part={'container'}
+            data-container
             ref={forwardedRef}
             {...props}
             styled={{

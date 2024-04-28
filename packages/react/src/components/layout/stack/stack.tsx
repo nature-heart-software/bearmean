@@ -9,7 +9,7 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(function Stack({ chi
     const Comp = asChild ? StStack.withComponent(Slot) : StStack
     return (
         <Comp
-            data-part={'stack'}
+            data-stack
             ref={forwardedRef}
             {...props}
             styled={{
