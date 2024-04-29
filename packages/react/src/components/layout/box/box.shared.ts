@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'react'
 import { PositiveSpacing, Spacing } from '@/tokens/spacing'
 import { Elevation } from '@/tokens/elevation'
 import { BorderRadius, BorderStyle, BorderWidth } from '@/tokens/border'
-import { Colors } from '@/tokens/colors'
+import { Color } from '@/tokens/colors'
 import { Properties } from 'csstype'
 import { defineProps } from '@/utils/component'
 
@@ -12,7 +12,7 @@ export type PaddingSpacing = PositiveSpacing | Properties['padding'] | number
 export const exclusiveBoxProps = defineProps(({ optional }) => ({
     opacity: optional<Properties['opacity']>(),
     elevation: optional<Elevation | Properties['boxShadow']>(),
-    bg: optional<Colors | Properties['background']>(),
+    bg: optional<Color | Properties['background']>(),
     w: optional<'full' | Properties['width'] | number>(),
     h: optional<'full' | Properties['height'] | number>(),
     mih: optional<'full' | Properties['minHeight'] | number>(),
@@ -46,7 +46,7 @@ export const exclusiveBoxProps = defineProps(({ optional }) => ({
     brw: optional<BorderWidth | Properties['borderRightWidth'] | number>(),
     blw: optional<BorderWidth | Properties['borderLeftWidth'] | number>(),
     bbw: optional<BorderWidth | Properties['borderBottomWidth'] | number>(),
-    bc: optional<Colors | Properties['borderColor']>(),
+    bc: optional<Color | Properties['borderColor']>(),
     overflow: optional<Properties['overflow']>(),
     cursor: optional<Properties['cursor']>(),
     pointerEvents: optional<Properties['pointerEvents']>(),

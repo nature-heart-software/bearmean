@@ -34,6 +34,6 @@ export type Screen = keyof Screens
 
 declare module '@emotion/react' {
     export interface Theme {
-        screens: typeof screens
+        screens: Screens
     }
 }

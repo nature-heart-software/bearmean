@@ -294,10 +294,11 @@ export const colors = {
     },
 } as const
 
-export type Colors = ObjectDotNotation<typeof colors>
+export type Colors = typeof colors
+export type Color = ObjectDotNotation<Colors>
 
 declare module '@emotion/react' {
     export interface Theme {
-        colors: typeof colors
+        colors: Colors
     }
 }
