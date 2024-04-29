@@ -48,6 +48,10 @@ export const StBox = styled('div', {
             bbrr,
             bs = 'solid',
             bw = 0,
+            btw,
+            brw,
+            blw,
+            bbw,
             bc,
             overflow,
             cursor,
@@ -164,6 +168,18 @@ export const StBox = styled('div', {
         },
         !isUndefined(bw) && {
             borderWidth: getRemValue(bw, borderWidth),
+        },
+        !isUndefined(btw) && {
+            borderColor: getRemValue(btw, borderWidth),
+        },
+        !isUndefined(brw) && {
+            borderColor: getRemValue(brw, borderWidth),
+        },
+        !isUndefined(blw) && {
+            borderColor: getRemValue(blw, borderWidth),
+        },
+        !isUndefined(bbw) && {
+            borderColor: getRemValue(bbw, borderWidth),
         },
         bc && {
             borderColor: get(colors, bc) || bc,
