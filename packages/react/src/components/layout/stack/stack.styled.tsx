@@ -20,7 +20,7 @@ export const StStack = styled(StBox, {
     shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),
 })<{
     styled: ExclusiveStackProps
-}>(({ theme: { spacing = _spacing }, styled: { justify = 'left', align = 'top', gap = '3' } }) => ({
+}>(({ theme: { spacing = _spacing }, styled: { justify = 'stretch', align = 'top', gap = '3' } }) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: align in POSITIONS ? POSITIONS[align as keyof typeof POSITIONS] : align,
