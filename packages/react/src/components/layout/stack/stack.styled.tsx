@@ -21,7 +21,7 @@ export const StStack = styled(StBox, {
 })<{
     styled: ExclusiveStackProps
 }>(({ theme: { spacing = _spacing }, styled: { justify = 'stretch', align = 'top', gap = '3' } }) => ({
-    display: 'flex',
+    display: 'inline-flex',
     flexDirection: 'column',
     justifyContent: align in POSITIONS ? POSITIONS[align as keyof typeof POSITIONS] : align,
     alignItems: justify in POSITIONS ? POSITIONS[justify as keyof typeof POSITIONS] : justify,

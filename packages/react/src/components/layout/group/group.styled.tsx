@@ -21,7 +21,7 @@ export const StGroup = styled(StBox, {
 })<{
     styled: ExclusiveGroupProps
 }>(({ theme: { spacing = _spacing }, styled: { direction = 'row', wrap = false, justify = 'left', align = 'center', gap = '3' } }) => ({
-    display: 'flex',
+    display: 'inline-flex',
     justifyContent:
         direction === 'row'
             ? justify in POSITIONS
