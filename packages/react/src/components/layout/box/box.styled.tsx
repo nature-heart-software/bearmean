@@ -170,16 +170,16 @@ export const StBox = styled('div', {
             borderWidth: getRemValue(bw, borderWidth),
         },
         !isUndefined(btw) && {
-            borderColor: getRemValue(btw, borderWidth),
+            borderBottomWidth: getRemValue(btw, borderWidth),
         },
         !isUndefined(brw) && {
-            borderColor: getRemValue(brw, borderWidth),
+            borderRightWidth: getRemValue(brw, borderWidth),
         },
         !isUndefined(blw) && {
-            borderColor: getRemValue(blw, borderWidth),
+            borderLeftWidth: getRemValue(blw, borderWidth),
         },
         !isUndefined(bbw) && {
-            borderColor: getRemValue(bbw, borderWidth),
+            borderBottomWidth: getRemValue(bbw, borderWidth),
         },
         bc && {
             borderColor: get(colors, bc) || bc,
