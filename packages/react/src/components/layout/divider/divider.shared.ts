@@ -12,12 +12,12 @@ const definePartialProps = createPartial<typeof exclusiveDividerProps>()
 
 export const dividerVariants = {
     horizontal: definePartialProps({
-        pt: 3,
-        pb: 3,
+        mt: '3',
+        mb: '3',
     }),
     vertical: definePartialProps({
-        pl: 3,
-        pr: 3,
+        ml: '3',
+        mr: '3',
     }),
 } as const
 
