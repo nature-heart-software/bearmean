@@ -67,7 +67,7 @@ export const StBox = styled('div', {
             flexGrow: Number(grow),
         },
         !isUndefined(shrink) && {
-            flexGrow: Number(grow),
+            flexShrink: Number(shrink),
         },
         !isUndefined(opacity) && {
             opacity,
