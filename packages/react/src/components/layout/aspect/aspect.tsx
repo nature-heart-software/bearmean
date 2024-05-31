@@ -4,15 +4,15 @@ import { AspectProps, exclusiveAspectProps } from './aspect.shared'
 import { Slot } from '@radix-ui/react-slot'
 import { useExtractProps } from '@/utils/component'
 
-export const Aspect = forwardRef<HTMLDivElement, AspectProps>(function Aspect({ children, asChild, ...initialProps }, forwardedRef) {
-    const [aspectProps, { ...props }] = useExtractProps(initialProps, exclusiveAspectProps)
+export const Aspect = forwardRef<HTMLDivElement, AspectProps>(function Aspect({ children, asChild, ...props }, forwardedRef) {
+    const [aspectProps, ...htmlProps] = useExtractProps(props, exclusiveAspectProps)
 
     const Comp = asChild ? StAspect.withComponent(Slot) : StAspect
     return (
         <Comp
             data-aspect
             ref={forwardedRef}
-            {...props}
+            {...htmlProps}
             styled={{
                 ...aspectProps,
             }}

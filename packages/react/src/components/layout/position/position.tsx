@@ -4,14 +4,14 @@ import { exclusivePositionProps, PositionProps } from './position.shared'
 import { Slot } from '@radix-ui/react-slot'
 import { useExtractProps } from '@/utils/component'
 
-export const Position = forwardRef<HTMLDivElement, PositionProps>(function Position({ children, asChild, ...initialProps }, forwardedRef) {
-    const [positionProps, { translate, ...props }] = useExtractProps(initialProps, exclusivePositionProps)
+export const Position = forwardRef<HTMLDivElement, PositionProps>(function Position({ children, asChild, ...props }, forwardedRef) {
+    const [positionProps, { translate, ...htmlProps }] = useExtractProps(props, exclusivePositionProps)
     const Comp = asChild ? StPosition.withComponent(Slot) : StPosition
     return (
         <Comp
             data-position
             ref={forwardedRef}
-            {...props}
+            {...htmlProps}
             styled={{
                 ...positionProps,
             }}

@@ -4,14 +4,14 @@ import { CenterProps, exclusiveCenterProps } from './center.shared'
 import { Slot } from '@radix-ui/react-slot'
 import { useExtractProps } from '@/utils/component'
 
-export const Center = forwardRef<HTMLDivElement, CenterProps>(function Center({ children, asChild, ...initialProps }, forwardedRef) {
-    const [centerProps, props] = useExtractProps(initialProps, exclusiveCenterProps)
+export const Center = forwardRef<HTMLDivElement, CenterProps>(function Center({ children, asChild, ...props }, forwardedRef) {
+    const [centerProps, htmlProps] = useExtractProps(props, exclusiveCenterProps)
     const Comp = asChild ? StCenter.withComponent(Slot) : StCenter
     return (
         <Comp
             data-center
             ref={forwardedRef}
-            {...props}
+            {...htmlProps}
             styled={{
                 ...centerProps,
             }}
