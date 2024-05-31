@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'react'
-import { exclusiveBoxProps } from '@/components/layout'
+import { exclusiveBoxProps } from '@/components/layout/box'
 import { createPartial } from '@/utils/object'
 import { defineProps } from '@/utils/component'
 

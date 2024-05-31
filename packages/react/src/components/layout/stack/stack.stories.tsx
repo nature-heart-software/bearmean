@@ -1,6 +1,6 @@
 import { Meta, StoryFn, type StoryObj } from '@storybook/react'
 import { Stack } from './'
-import { Box } from '@/components/layout'
+import { Box } from '@/components/layout/box'
 
 const meta = {
     title: 'Components/Layout/Stack',

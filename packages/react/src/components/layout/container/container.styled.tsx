@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { ExclusiveContainerProps } from './container.shared'
-import { StBox } from '@/components/layout'
+import { StBox } from '@/components/layout/box'
 import { Screens, screens as _screens } from '@/tokens/screens'
 import { rem } from 'polished'
 

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { ExclusiveDividerProps } from './divider.shared'
-import { StBox } from '@/components/layout'
+import { StBox } from '@/components/layout/box'
 import { rem } from 'polished'
 import { colors as _colors } from '@/tokens/colors'
 import get from 'lodash/get'

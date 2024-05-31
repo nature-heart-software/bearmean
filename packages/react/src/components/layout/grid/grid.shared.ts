@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react'
 import { defineProps } from '@/utils/component'
-import { exclusiveBoxProps } from '@/components/layout'
+import { exclusiveBoxProps } from '@/components/layout/box'
 import { Screen, Screens } from '@/tokens/screens'
 import { Spacing } from '@/tokens/spacing'
 import { Properties } from 'csstype'

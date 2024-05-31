@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'react'
 import { Spacing } from '@/tokens/spacing'
 import { defineProps } from '@/utils/component'
 import { Properties } from 'csstype'
-import { exclusiveBoxProps } from '@/components/layout'
+import { exclusiveBoxProps } from '@/components/layout/box'
 
 export const groupJustifyValues = ['left', 'center', 'right', 'stretch', 'between', 'around'] as const
 export type GroupJustify = (typeof groupJustifyValues)[number]

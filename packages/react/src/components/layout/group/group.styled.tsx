@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { ExclusiveGroupProps } from './group.shared'
 import { getRemValue } from '@/utils/css-in-js'
 import { spacing as _spacing } from '@/tokens/spacing'
-import { StBox } from '@/components/layout'
+import { StBox } from '@/components/layout/box'
 
 const POSITIONS = {
     top: 'flex-start',

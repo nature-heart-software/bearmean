@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { ExclusiveGridColProps, ExclusiveGridProps } from './grid.shared'
-import { StBox } from '@/components/layout'
+import { StBox } from '@/components/layout/box'
 import { spacing as _spacing } from '@/tokens/spacing'
 import { defineMixins, getRemValue } from '@/utils/css-in-js'
 import isUndefined from 'lodash/isUndefined'
