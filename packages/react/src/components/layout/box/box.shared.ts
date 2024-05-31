@@ -9,7 +9,7 @@ import { defineProps } from '@/utils/component'
 export type MarginSpacing = Spacing | Properties['margin'] | number
 export type PaddingSpacing = PositiveSpacing | Properties['padding'] | number
 
-export const exclusiveBoxProps = defineProps(({ optional }) => ({
+export const boxPropsDefinition = defineProps(({ optional }) => ({
     opacity: optional<Properties['opacity']>(),
     elevation: optional<Elevation | Properties['boxShadow']>(),
     bg: optional<Color | Properties['background']>(),
@@ -53,9 +53,9 @@ export const exclusiveBoxProps = defineProps(({ optional }) => ({
     userSelect: optional<Properties['userSelect']>(),
 }))
 
-export type ExclusiveBoxProps = typeof exclusiveBoxProps
+export type BoxPropsDefinition = typeof boxPropsDefinition
 
 export type BoxProps = HTMLAttributes<HTMLDivElement> &
-    ExclusiveBoxProps & {
+    BoxPropsDefinition & {
         asChild?: boolean
     }

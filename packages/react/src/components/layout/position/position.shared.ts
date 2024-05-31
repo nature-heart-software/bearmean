@@ -1,12 +1,12 @@
 import { HTMLAttributes } from 'react'
 import { Properties } from 'csstype'
 import { defineProps } from '@/utils/component'
-import { exclusiveBoxProps } from '@/components/layout/box'
+import { boxPropsDefinition } from '@/components/layout/box'
 import { Level } from '@/tokens/level'
 import { Spacing } from '@/tokens/spacing'
 
-export const exclusivePositionProps = defineProps(({ optional }) => ({
-    ...exclusiveBoxProps,
+export const positionPropsDefinition = defineProps(({ optional }) => ({
+    ...boxPropsDefinition,
     value: optional<Properties['position']>(),
     relative: optional<boolean>(),
     absolute: optional<boolean>(),
@@ -27,9 +27,9 @@ export const exclusivePositionProps = defineProps(({ optional }) => ({
     z: optional<Level | Properties['zIndex'] | number>(),
 }))
 
-export type ExclusivePositionProps = typeof exclusivePositionProps
+export type PositionPropsDefinition = typeof positionPropsDefinition
 
 export type PositionProps = HTMLAttributes<HTMLDivElement> &
-    ExclusivePositionProps & {
+    PositionPropsDefinition & {
         asChild?: boolean
     }

@@ -1,15 +1,15 @@
 import { HTMLAttributes } from 'react'
 import { defineProps } from '@/utils/component'
-import { exclusiveBoxProps } from '@/components/layout/box'
+import { boxPropsDefinition } from '@/components/layout/box'
 
-export const exclusiveCenterProps = defineProps(({ optional }) => ({
-    ...exclusiveBoxProps,
+export const centerPropsDefinition = defineProps(({ optional }) => ({
+    ...boxPropsDefinition,
     inline: optional<boolean>(),
 }))
 
-export type ExclusiveCenterProps = typeof exclusiveCenterProps
+export type CenterPropsDefinition = typeof centerPropsDefinition
 
 export type CenterProps = HTMLAttributes<HTMLDivElement> &
-    ExclusiveCenterProps & {
+    CenterPropsDefinition & {
         asChild?: boolean
     }

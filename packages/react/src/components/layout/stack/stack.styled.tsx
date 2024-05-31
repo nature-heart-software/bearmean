@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { ExclusiveStackProps } from './stack.shared'
+import { StackPropsDefinition } from './stack.shared'
 import { getRemValue } from '@/utils/css-in-js'
 import { spacing as _spacing } from '@/tokens/spacing'
 import { StBox } from '@/components/layout/box'
@@ -19,7 +19,7 @@ const POSITIONS = {
 export const StStack = styled(StBox, {
     shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),
 })<{
-    styled: ExclusiveStackProps
+    styled: StackPropsDefinition
 }>(({ theme: { spacing = _spacing }, styled: { justify = 'stretch', align = 'top', gap = '3' } }) => ({
     display: 'inline-flex',
     flexDirection: 'column',

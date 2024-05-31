@@ -1,18 +1,18 @@
 import { HTMLAttributes } from 'react'
 import { defineProps } from '@/utils/component'
-import { exclusiveBoxProps } from '@/components/layout/box'
+import { boxPropsDefinition } from '@/components/layout/box'
 import { Screen, Screens } from '@/tokens/screens'
 
-export const exclusiveContainerProps = defineProps(({ optional }) => ({
-    ...exclusiveBoxProps,
+export const containerPropsDefinition = defineProps(({ optional }) => ({
+    ...boxPropsDefinition,
     fluid: optional<boolean>(),
     size: optional<Screen>(),
     breakpoints: optional<Screens[]>(),
 }))
 
-export type ExclusiveContainerProps = typeof exclusiveContainerProps
+export type ContainerPropsDefinition = typeof containerPropsDefinition
 
 export type ContainerProps = HTMLAttributes<HTMLDivElement> &
-    ExclusiveContainerProps & {
+    ContainerPropsDefinition & {
         asChild?: boolean
     }

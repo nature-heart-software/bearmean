@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { ExclusiveGroupProps } from './group.shared'
+import { GroupPropsDefinition } from './group.shared'
 import { getRemValue } from '@/utils/css-in-js'
 import { spacing as _spacing } from '@/tokens/spacing'
 import { StBox } from '@/components/layout/box'
@@ -19,7 +19,7 @@ const POSITIONS = {
 export const StGroup = styled(StBox, {
     shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),
 })<{
-    styled: ExclusiveGroupProps
+    styled: GroupPropsDefinition
 }>(({ theme: { spacing = _spacing }, styled: { direction = 'row', wrap = false, justify = 'left', align = 'center', gap = '3' } }) => ({
     display: 'inline-flex',
     justifyContent:

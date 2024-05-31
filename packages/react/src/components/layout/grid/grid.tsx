@@ -1,13 +1,13 @@
 import { Context, createContext, forwardRef, ForwardRefExoticComponent, PropsWithoutRef, RefAttributes, useContext } from 'react'
 import { StGrid, StGridCol } from './grid.styled'
-import { exclusiveGridColProps, exclusiveGridProps, GridColProps, GridProps } from './grid.shared'
+import { GridColProps, gridColPropsDefinition, GridProps, gridPropsDefinition } from './grid.shared'
 import { Slot } from '@radix-ui/react-slot'
 import { useExtractProps } from '@/utils/component'
 
 const GridContext = createContext({}) as Context<Pick<GridProps, 'columns'>>
 
 const GridCol = forwardRef<HTMLDivElement, GridColProps>(function GridCol({ children, asChild, ...props }, forwardedRef) {
-    const [gridColProps, htmlProps] = useExtractProps(props, exclusiveGridColProps)
+    const [gridColProps, htmlProps] = useExtractProps(props, gridColPropsDefinition)
     const Comp = asChild ? StGridCol.withComponent(Slot) : StGridCol
     const { columns } = useContext(GridContext)
     return (
@@ -28,7 +28,7 @@ const GridCol = forwardRef<HTMLDivElement, GridColProps>(function GridCol({ chil
 type GridType = ForwardRefExoticComponent<PropsWithoutRef<GridProps> & RefAttributes<HTMLDivElement>>
 
 export const Grid = forwardRef(function Grid({ children, ...props }, forwardedRef) {
-    const [gridProps, htmlProps] = useExtractProps(props, exclusiveGridProps)
+    const [gridProps, htmlProps] = useExtractProps(props, gridPropsDefinition)
     const { columns } = gridProps
     return (
         <GridContext.Provider

@@ -1,14 +1,14 @@
 import { HTMLAttributes } from 'react'
-import { exclusiveBoxProps } from '@/components/layout/box'
+import { boxPropsDefinition } from '@/components/layout/box'
 import { createPartial } from '@/utils/object'
 import { defineProps } from '@/utils/component'
 
-export const exclusiveDividerProps = defineProps(({ optional }) => ({
-    ...exclusiveBoxProps,
+export const dividerPropsDefinition = defineProps(({ optional }) => ({
+    ...boxPropsDefinition,
     size: optional<number>(),
 }))
 
-const definePartialProps = createPartial<typeof exclusiveDividerProps>()
+const definePartialProps = createPartial<typeof dividerPropsDefinition>()
 
 export const dividerVariants = {
     horizontal: definePartialProps({
@@ -21,14 +21,14 @@ export const dividerVariants = {
     }),
 } as const
 
-export const exclusiveDividerPropsWithVariants = defineProps(({ optional }) => ({
-    ...exclusiveDividerProps,
+export const dividerPropsDefinitionWithVariants = defineProps(({ optional }) => ({
+    ...dividerPropsDefinition,
     variant: optional<keyof typeof dividerVariants>(),
 }))
 
-export type ExclusiveDividerProps = typeof exclusiveDividerPropsWithVariants
+export type DividerPropsDefinition = typeof dividerPropsDefinitionWithVariants
 
 export type DividerProps = HTMLAttributes<HTMLDivElement> &
-    ExclusiveDividerProps & {
+    DividerPropsDefinition & {
         asChild?: boolean
     }

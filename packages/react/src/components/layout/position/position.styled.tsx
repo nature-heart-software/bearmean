@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { ExclusivePositionProps } from './position.shared'
+import { PositionPropsDefinition } from './position.shared'
 import { getRawValue, getRemValue } from '@/utils/css-in-js'
 import { StBox } from '@/components/layout/box'
 import { Properties } from 'csstype'
@@ -10,7 +10,7 @@ import isUndefined from 'lodash/isUndefined'
 export const StPosition = styled(StBox, {
     shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),
 })<{
-    styled: ExclusivePositionProps
+    styled: PositionPropsDefinition
 }>(
     ({
         theme: { level = _level, spacing = _spacing },

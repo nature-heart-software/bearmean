@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react'
 import { defineProps } from '@/utils/component'
-import { exclusiveBoxProps } from '@/components/layout/box'
+import { boxPropsDefinition } from '@/components/layout/box'
 import { Screen, Screens } from '@/tokens/screens'
 import { Spacing } from '@/tokens/spacing'
 import { Properties } from 'csstype'
@@ -15,8 +15,8 @@ export type GridColResponsiveProps = {
     [key in RowPreakpointProps]?: Properties['gridRowStart'] | number
 }
 
-export const exclusiveGridProps = defineProps(({ optional }) => ({
-    ...exclusiveBoxProps,
+export const gridPropsDefinition = defineProps(({ optional }) => ({
+    ...boxPropsDefinition,
     breakpoints: optional<Screens>(),
     gap: optional<Spacing | Properties['gap'] | number>(),
     columns: optional<number>(),
@@ -24,9 +24,9 @@ export const exclusiveGridProps = defineProps(({ optional }) => ({
     align: optional<Properties['alignItems']>(),
 }))
 
-export const exclusiveGridColProps = defineProps(({ optional, responsive }) => ({
-    ...exclusiveBoxProps,
-    columns: exclusiveGridProps.columns,
+export const gridColPropsDefinition = defineProps(({ optional, responsive }) => ({
+    ...boxPropsDefinition,
+    columns: gridPropsDefinition.columns,
     ...responsive({
         span: optional<number>(),
         start: optional<Properties['gridColumnStart'] | number>(),
@@ -37,13 +37,13 @@ export const exclusiveGridColProps = defineProps(({ optional, responsive }) => (
     }),
 }))
 
-export type ExclusiveGridProps = typeof exclusiveGridProps
+export type GridPropsDefinition = typeof gridPropsDefinition
 
-export type ExclusiveGridColProps = typeof exclusiveGridColProps
+export type GridColPropsDefinition = typeof gridColPropsDefinition
 
-export type GridProps = HTMLAttributes<HTMLDivElement> & ExclusiveGridProps
+export type GridProps = HTMLAttributes<HTMLDivElement> & GridPropsDefinition
 
 export type GridColProps = HTMLAttributes<HTMLDivElement> &
-    ExclusiveGridColProps & {
+    GridColPropsDefinition & {
         asChild?: boolean
     }
