@@ -1,13 +1,13 @@
 import { HTMLAttributes } from 'react'
 import { Properties } from 'csstype'
 import { defineProps } from '@/utils/component'
-import { boxPropsDefinition } from '@/components/layout/box'
 import { Level } from '@/tokens/level'
 import { Spacing } from '@/tokens/spacing'
+import { transformPropsDefinition } from '@/components/layout/transform'
 
 export const positionPropsDefinition = defineProps(({ optional }) => ({
-    ...boxPropsDefinition,
-    value: optional<Properties['position']>(),
+    ...transformPropsDefinition,
+    position: optional<Properties['position']>(),
     relative: optional<boolean>(),
     absolute: optional<boolean>(),
     fixed: optional<boolean>(),
@@ -18,12 +18,6 @@ export const positionPropsDefinition = defineProps(({ optional }) => ({
     left: optional<Spacing | Properties['left'] | boolean | number>(),
     right: optional<Spacing | Properties['right'] | boolean | number>(),
     bottom: optional<Spacing | Properties['bottom'] | boolean | number>(),
-    transform: optional<Properties['transform']>(),
-    transformOrigin: optional<Properties['transformOrigin']>(),
-    translate: optional<Properties['translate']>(),
-    rotate: optional<Properties['rotate']>(),
-    scale: optional<Properties['scale']>(),
-    perspective: optional<Properties['perspective']>(),
     z: optional<Level | Properties['zIndex'] | number>(),
 }))
 

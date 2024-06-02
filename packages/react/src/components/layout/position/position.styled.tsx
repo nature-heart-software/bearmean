@@ -1,45 +1,26 @@
 import styled from '@emotion/styled'
 import { PositionPropsDefinition } from './position.shared'
 import { getRawValue, getRemValue } from '@/utils/css-in-js'
-import { StBox } from '@/components/layout/box'
 import { Properties } from 'csstype'
 import { level as _level } from '@/tokens/level'
 import { spacing as _spacing } from '@/tokens/spacing'
 import isUndefined from 'lodash/isUndefined'
+import { StTransform } from '@/components/layout/transform'
 
-export const StPosition = styled(StBox, {
+export const StPosition = styled(StTransform, {
     shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),
 })<{
     styled: PositionPropsDefinition
 }>(
     ({
         theme: { level = _level, spacing = _spacing },
-        styled: {
-            relative,
-            absolute,
-            fixed,
-            sticky,
-            static: staticProp,
-            value = 'relative',
-            inset,
-            top,
-            left,
-            right,
-            bottom,
-            z,
-            transform,
-            transformOrigin,
-            perspective,
-            translate,
-            rotate,
-            scale,
-        },
+        styled: { relative, absolute, fixed, sticky, static: staticProp, position = 'relative', inset, top, left, right, bottom, z },
     }) => [
         {
             position:
                 ([relative && 'relative', absolute && 'absolute', fixed && 'fixed', sticky && 'sticky', staticProp && 'static'].filter(
                     Boolean
-                )[0] as Properties['position']) || value,
+                )[0] as Properties['position']) || position,
         },
         !isUndefined(inset) && {
             inset: typeof inset === 'boolean' ? 0 : getRemValue(inset, spacing),
@@ -58,24 +39,6 @@ export const StPosition = styled(StBox, {
         },
         !isUndefined(z) && {
             zIndex: getRawValue(z, level),
-        },
-        transform && {
-            transform,
-        },
-        transformOrigin && {
-            transformOrigin,
-        },
-        perspective && {
-            perspective,
-        },
-        translate && {
-            translate,
-        },
-        rotate && {
-            rotate,
-        },
-        !isUndefined(scale) && {
-            scale,
         },
     ]
 )
