@@ -36,10 +36,10 @@ export const AsChild: Story = {
     render(args) {
         return (
             <Stack {...args} asChild>
-                <button>
-                    <Box>💐</Box>
-                    <Box>(❁´◡`❁)</Box>
-                </button>
+                <div>
+                    <Box bg={'slate.200'}>💐</Box>
+                    <Box bg={'slate.200'}>(❁´◡`❁)</Box>
+                </div>
             </Stack>
         )
     },

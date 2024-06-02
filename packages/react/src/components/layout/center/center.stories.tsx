@@ -21,25 +21,20 @@ const Template: StoryFn<typeof Center> = (args) => (
 
 export const Default = Template.bind({})
 Default.args = {
-    px: '5',
-    py: '5',
+    p: '5',
     bg: 'slate.100',
 }
 
 export const AsChild: Story = {
     render(args) {
         return (
-            <Center {...args} asChild>
-                <button>
-                    <Box>💐</Box>
-                    <Box>(❁´◡`❁)</Box>
-                </button>
+            <Center {...args}>
+                <div>💐(❁´◡`❁)</div>
             </Center>
         )
     },
     args: {
-        px: '5',
-        py: '5',
+        p: '5',
         bg: 'slate.100',
         asChild: true,
     },

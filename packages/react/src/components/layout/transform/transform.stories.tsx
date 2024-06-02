@@ -10,27 +10,28 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-const Template: StoryFn<typeof Transform> = (args) => <Transform {...args}>content</Transform>
+const Template: StoryFn<typeof Transform> = () => <div style={{display: 'flex', gap: 16}}>
+    <Transform rotate={'180deg'}>🐻</Transform>
+    <Transform translate={'-50% -50%'}>🐻‍❄️</Transform>
+    <Transform scale={'1.3'}>🐼</Transform>
+    {/* Could be better */ }
+    <Transform perspective={'30px'}><Transform transform={'rotateY(45deg) translateZ(30px)'}>🦝</Transform></Transform>
+</div>
 
 export const Default = Template.bind({})
-Default.args = {
-    px: '5',
-    py: '5',
-    bg: 'slate.100',
-}
+Default.args = {}
 
 export const AsChild: Story = {
     render(args) {
         return (
-            <Transform {...args}>
-                <button>content</button>
+            <Transform { ...args }>
+                <button>💐(❁´◡`❁)</button>
             </Transform>
         )
     },
     args: {
-        px: '5',
-        py: '5',
-        bg: 'slate.100',
+        rotate: '45deg',
+        transformOrigin: '50% 50%',
         asChild: true,
     },
 }

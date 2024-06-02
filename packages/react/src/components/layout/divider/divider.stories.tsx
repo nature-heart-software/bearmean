@@ -1,4 +1,4 @@
-import { Meta, StoryFn, type StoryObj } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 import { Divider } from './'
 import { Box } from '@/components/layout/box'
 
@@ -9,44 +9,23 @@ const meta = {
 
 export default meta
 
-type Story = StoryObj<typeof meta>
-
 const Template: StoryFn<typeof Divider> = (args) => (
-    <Box bg={'slate.100'}>
-        <Box p={'5'} bg={'slate.200'}>
+    <div>
+        <Box p={'5'} bg={'slate.100'}>
             content
         </Box>
         <Divider {...args} />
-        <Box p={'5'} bg={'slate.200'}>
+        <Box p={'5'} bg={'slate.100'}>
             content
         </Box>
         <Divider {...args} />
-        <Box p={'5'} bg={'slate.200'}>
+        <Box p={'5'} bg={'slate.100'}>
             content
         </Box>
-    </Box>
+    </div>
 )
 
 export const Default = Template.bind({})
 Default.args = {
-    bc: 'slate.300',
-}
-
-export const AsChild: Story = {
-    render(args) {
-        return (
-            <Divider {...args} asChild>
-                <button>
-                    <Box>💐</Box>
-                    <Box>(❁´◡`❁)</Box>
-                </button>
-            </Divider>
-        )
-    },
-    args: {
-        px: '5',
-        py: '5',
-        bg: 'slate.100',
-        asChild: true,
-    },
+    bc: 'slate.200',
 }

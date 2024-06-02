@@ -112,10 +112,7 @@ export const AsChild: Story = {
             <Box p={'5'} bg="slate.100">
                 <Grid {...args}>
                     <Grid.Col bg={'slate.200'} span={6} asChild>
-                        <button>
-                            <Box>💐</Box>
-                            <Box>(❁´◡`❁)</Box>
-                        </button>
+                        <div>💐(❁´◡`❁)</div>
                     </Grid.Col>
                 </Grid>
             </Box>

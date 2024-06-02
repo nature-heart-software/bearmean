@@ -29,6 +29,4 @@ export const dividerPropsDefinitionWithVariants = defineProps(({ optional }) => 
 export type DividerPropsDefinition = typeof dividerPropsDefinitionWithVariants
 
 export type DividerProps = HTMLAttributes<HTMLDivElement> &
-    DividerPropsDefinition & {
-        asChild?: boolean
-    }
+    DividerPropsDefinition

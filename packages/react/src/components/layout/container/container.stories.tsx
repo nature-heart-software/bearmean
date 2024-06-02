@@ -36,17 +36,12 @@ Size.args = {
 export const AsChild: Story = {
     render(args) {
         return (
-            <Container {...args} asChild>
-                <button>
-                    <Box>💐</Box>
-                    <Box>(❁´◡`❁)</Box>
-                </button>
+            <Container {...args}>
+                <div>💐(❁´◡`❁)</div>
             </Container>
         )
     },
     args: {
-        px: '5',
-        py: '5',
         bg: 'slate.100',
         asChild: true,
     },

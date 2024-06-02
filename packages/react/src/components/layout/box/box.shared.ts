@@ -10,6 +10,7 @@ export type MarginSpacing = Spacing | Properties['margin'] | number
 export type PaddingSpacing = PositiveSpacing | Properties['padding'] | number
 
 export const boxPropsDefinition = defineProps(({ optional }) => ({
+    display: optional<Properties['display']>(),
     opacity: optional<Properties['opacity']>(),
     elevation: optional<Elevation | Properties['boxShadow']>(),
     bg: optional<Color | Properties['background']>(),

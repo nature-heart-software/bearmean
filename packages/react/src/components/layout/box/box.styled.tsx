@@ -16,6 +16,7 @@ export const StBox = styled('div', {
     ({
         theme: { spacing = _spacing, colors = _colors, borderRadius = _borderRadius, borderStyle = _borderStyle, borderWidth = _borderWidth },
         styled: {
+            display,
             grow,
             shrink,
             opacity,
@@ -62,6 +63,9 @@ export const StBox = styled('div', {
         {
             minWidth: 0,
             minHeight: 0,
+        },
+        !isUndefined(display) && {
+            display,
         },
         !isUndefined(grow) && {
             flexGrow: Number(grow),

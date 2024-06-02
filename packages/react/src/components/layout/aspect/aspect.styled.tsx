@@ -10,9 +10,6 @@ export const StAspect = styled(StBox, {
 })<{
     styled: AspectPropsDefinition
 }>(({ theme: { ratio = _ratio }, styled: { ratio: ratioProp } }) => [
-    {
-        display: 'block',
-    },
     !isUndefined(ratioProp) && {
         aspectRatio: getRawValue(ratioProp, ratio),
     },
