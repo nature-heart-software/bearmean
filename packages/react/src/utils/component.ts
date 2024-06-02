@@ -45,7 +45,7 @@ export const defineProps = <P extends Props>(definition: Definition<P>) =>
         responsive,
     }) as ToOptional<P>
 
-export const useExtractProps = <D extends Record<string, unknown>, P extends Record<string, unknown>>(props: P, propsDefinition: D) => {
+export const useDefinitionProps = <P extends Record<string, unknown>, D extends Record<string, unknown>>(props: P, propsDefinition: D) => {
     const extractedProps = { ...propsDefinition, ...pick(props, Object.keys(propsDefinition)) } as D
     const rest = omit(props, Object.keys(propsDefinition)) as Exclude<P, keyof D>
     return [extractedProps, rest]
