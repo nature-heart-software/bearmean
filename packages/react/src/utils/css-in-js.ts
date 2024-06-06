@@ -1,15 +1,22 @@
 import { rem } from 'polished'
 import { Screen, Screens, screens as _screens } from '@/tokens/screens'
 import { InterpolationPrimitive } from '@emotion/serialize'
+import get from 'lodash/get'
 
 export const getRemValue = <V extends string | number, R extends Record<string, unknown>>(value: V, from?: R) => {
     if (typeof value === 'number') return rem(value)
-    if (from && value in from) return rem(from[value as unknown as keyof R] as string)
+    const valueFromRecord = get(from || {}, value)
+    if (valueFromRecord !== null) {
+        return rem(valueFromRecord)
+    }
     return value
 }
 
 export const getRawValue = <V extends string | number, R extends Record<string, unknown>>(value: V, from?: R) => {
-    if (from && value in from) return from[value as unknown as keyof R]
+    const valueFromRecord = get(from || {}, value)
+    if (valueFromRecord !== null) {
+        return valueFromRecord
+    }
     return value
 }
 
