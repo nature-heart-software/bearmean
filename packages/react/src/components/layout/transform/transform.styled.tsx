@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { TransformPropsDefinition } from './transform.shared'
 import { StBox } from '@/components/layout/box'
 import isUndefined from 'lodash/isUndefined'
-import { getRawValue } from '@/utils'
+import { getRemValue } from '@/utils'
 import { spacing as _spacing } from '@/tokens'
 
 export const StTransform = styled(StBox, {
@@ -14,7 +14,6 @@ export const StTransform = styled(StBox, {
     styled: {
         transform: transformProp,
         transformOrigin,
-        perspective,
         translate,
         translateX,
         translateY,
@@ -26,31 +25,51 @@ export const StTransform = styled(StBox, {
         scaleY,
         scaleZ,
         scale3d,
+        skew,
+        skewX,
+        skewY,
+        rotateX,
+        rotateY,
+        rotateZ,
+        rotate3d,
+        perspective,
     },
 }) => {
     const transform = [
-        transformProp && `${getRawValue(transformProp, spacing)}`,
+        transformProp,
         translate &&
-            `translate(${translate
-                .map((value) => value && getRawValue(value, spacing))
-                .filter(Boolean)
-                .join(', ')})`,
-        translateX && `translateX(${getRawValue(translateX, spacing)})`,
-        translateY && `translateY(${getRawValue(translateY, spacing)})`,
-        translateZ && `translateZ(${getRawValue(translateZ, spacing)})`,
-        translate3d && `translate3d(${getRawValue(translate3d, spacing)})`,
-        scale && `scale(${getRawValue(scale, spacing)})`,
-        scaleX && `scaleX(${getRawValue(scaleX, spacing)})`,
-        scaleY && `scaleY(${getRawValue(scaleY, spacing)})`,
-        scaleZ && `scaleZ(${getRawValue(scaleZ, spacing)})`,
-        scale3d && `scale3d(${getRawValue(scale3d, spacing)})`,
+            `translate(${
+                typeof translate === 'object'
+                    ? translate
+                          .map((value) => getRemValue(value, spacing))
+                          .filter(Boolean)
+                          .join(', ')
+                    : translate
+            })`,
+        translateX && `translateX(${getRemValue(translateX, spacing)})`,
+        translateY && `translateY(${getRemValue(translateY, spacing)})`,
+        translateZ && `translateZ(${getRemValue(translateZ, spacing)})`,
+        translate3d && `translate3d(${translate3d.map((value) => getRemValue(value, spacing)).join(', ')})`,
+        scale && `scale(${typeof scale === 'object' ? scale.join(', ') : scale})`,
+        scaleX && `scaleX(${scaleX})`,
+        scaleY && `scaleY(${scaleY})`,
+        scaleZ && `scaleZ(${scaleZ})`,
+        scale3d && `scale3d(${typeof scale3d === 'object' ? scale3d.join(', ') : scale3d})`,
+        skew && `skew(${typeof skew === 'object' ? skew.join(', ') : skew})`,
+        skewX && `skewX(${skewX})`,
+        skewY && `skewY(${skewY})`,
+        rotate && `rotate(${typeof rotate === 'object' ? rotate.join(', ') : rotate})`,
+        rotateX && `rotateX(${rotateX})`,
+        rotateY && `rotateY(${rotateY})`,
+        rotateZ && `rotateZ(${rotateZ})`,
+        rotate3d && `rotate3d(${typeof rotate3d === 'object' ? rotate3d.join(', ') : rotate3d})`,
     ].join(' ')
     return [
         transform && {
             transform,
         },
         transformOrigin && {
-            transformOrigin,
+            transformOrigin: typeof transformOrigin === 'object' ? transformOrigin.join(' ') : transformOrigin,
         },
         perspective && {
             perspective,
