@@ -5,14 +5,13 @@ import { elevation } from '@/tokens/elevation'
 import { borderRadius as _borderRadius, borderStyle as _borderStyle, borderWidth as _borderWidth } from '@/tokens/border'
 import { colors as _colors } from '@/tokens/colors'
 import get from 'lodash/get'
-import { getRawValue, getRemValue } from '@/utils/css-in-js'
+import { getRawValue, getRemValue, getStyledOptions, StyledProps } from '@/utils/css-in-js'
 import isUndefined from 'lodash/isUndefined'
 
-export const StBox = styled('div', {
-    shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),
-})<{
-    styled: BoxPropsDefinition
-}>(
+export const StBox = styled(
+    'div',
+    getStyledOptions()
+)<StyledProps<BoxPropsDefinition>>(
     ({
         theme: { spacing = _spacing, colors = _colors, borderRadius = _borderRadius, borderStyle = _borderStyle, borderWidth = _borderWidth },
         styled: {

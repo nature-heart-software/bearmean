@@ -2,6 +2,18 @@ import { rem } from 'polished'
 import { Screen, Screens, screens as _screens } from '@/tokens/screens'
 import { InterpolationPrimitive } from '@emotion/serialize'
 import get from 'lodash/get'
+import { StyledOptions } from '@emotion/styled'
+
+export function getStyledOptions(override: StyledOptions = {}): StyledOptions {
+    return {
+        ...override,
+        shouldForwardProp: (prop) => !['styled', 'as'].includes(prop) || !!override.shouldForwardProp?.(prop),
+    }
+}
+
+export type StyledProps<P extends Record<string, unknown>> = {
+    styled: P
+}
 
 export const getRemValue = <V extends string | number, R extends Record<string, unknown>>(value: V, from?: R) => {
     if (typeof value === 'number') return rem(value)

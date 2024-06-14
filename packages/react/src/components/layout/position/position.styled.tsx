@@ -1,17 +1,16 @@
 import styled from '@emotion/styled'
 import { PositionPropsDefinition } from './position.shared'
-import { getRawValue, getRemValue } from '@/utils/css-in-js'
+import { getRawValue, getRemValue, getStyledOptions, StyledProps } from '@/utils/css-in-js'
 import { Properties } from 'csstype'
 import { level as _level } from '@/tokens/level'
 import { spacing as _spacing } from '@/tokens/spacing'
 import isUndefined from 'lodash/isUndefined'
 import { StTransform } from '@/components/layout/transform'
 
-export const StPosition = styled(StTransform, {
-    shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),
-})<{
-    styled: PositionPropsDefinition
-}>(
+export const StPosition = styled(
+    StTransform,
+    getStyledOptions()
+)<StyledProps<PositionPropsDefinition>>(
     ({
         theme: { level = _level, spacing = _spacing },
         styled: { relative, absolute, fixed, sticky, static: staticProp, position = 'relative', inset, top, left, right, bottom, z },
