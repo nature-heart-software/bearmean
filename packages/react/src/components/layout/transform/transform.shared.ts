@@ -21,12 +21,12 @@ export const transformPropsDefinition = defineProps(({ optional }) => ({
     skew: optional<string | number | (string | number)[]>(),
     skewX: optional<string | number>(),
     skewY: optional<string | number>(),
-    rotate: optional<string[]>(),
+    rotate: optional<string | string[]>(),
     rotateX: optional<string>(),
     rotateY: optional<string>(),
     rotateZ: optional<string>(),
     rotate3d: optional<string[]>(),
-    perspective: optional<Properties['perspective']>(),
+    perspective: optional<Properties['perspective'] | number>(),
 }))
 
 export type TransformPropsDefinition = typeof transformPropsDefinition
