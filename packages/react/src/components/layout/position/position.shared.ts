@@ -23,7 +23,7 @@ export const positionPropsDefinition = defineProps(({ optional }) => ({
 
 export type PositionPropsDefinition = typeof positionPropsDefinition
 
-export type PositionProps = Omit<HTMLAttributes<HTMLDivElement>, 'translate'> &
+export type PositionProps = HTMLAttributes<HTMLDivElement> &
     PositionPropsDefinition & {
         asChild?: boolean
     }

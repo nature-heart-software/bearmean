@@ -49,7 +49,7 @@ export const defineProps = <P extends Props>(definition: Definition<P>) =>
 export const useDefinitionProps = <P extends Record<string, unknown>, D extends Record<string, unknown>>(props: P, propsDefinition: D, variantProps?: D) => {
     const propsDefinitionWithVariants = { ...propsDefinition, ...variantProps } as D
     const extractedProps = { ...propsDefinitionWithVariants, ...pick(props, Object.keys(propsDefinitionWithVariants)) } as D
-    const rest = omit(props, Object.keys(propsDefinitionWithVariants)) as Exclude<P, keyof D>
+    const rest = omit(props, Object.keys(propsDefinitionWithVariants)) as Omit<P, keyof D>
     return [extractedProps, rest]
 }
 
