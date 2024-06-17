@@ -4,11 +4,12 @@ import { InterpolationPrimitive } from '@emotion/serialize'
 import get from 'lodash/get'
 import isUndefined from 'lodash/isUndefined'
 import { StyledOptions } from '@emotion/styled'
+import isPropValid from '@emotion/is-prop-valid'
 
 export function getStyledOptions(override: StyledOptions = {}): StyledOptions {
     return {
         ...override,
-        shouldForwardProp: (prop) => !['styled', 'as'].includes(prop) || !!override.shouldForwardProp?.(prop),
+        shouldForwardProp: (prop) => isPropValid(prop) || !!override.shouldForwardProp?.(prop),
     }
 }
 
