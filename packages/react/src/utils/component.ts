@@ -46,7 +46,11 @@ export const defineProps = <P extends Props>(definition: Definition<P>) =>
         responsive,
     }) as ToOptional<P>
 
-export const useDefinitionProps = <P extends Record<string, unknown>, D extends Record<string, unknown>>(props: P, propsDefinition: D, variantProps?: D) => {
+export const useDefinitionProps = <P extends Record<string, unknown>, D extends Record<string, unknown>>(
+    props: P,
+    propsDefinition: D,
+    variantProps?: D
+): [D, Omit<P, keyof D>] => {
     const propsDefinitionWithVariants = { ...propsDefinition, ...variantProps } as D
     const extractedProps = { ...propsDefinitionWithVariants, ...pick(props, Object.keys(propsDefinitionWithVariants)) } as D
     const rest = omit(props, Object.keys(propsDefinitionWithVariants)) as Omit<P, keyof D>
