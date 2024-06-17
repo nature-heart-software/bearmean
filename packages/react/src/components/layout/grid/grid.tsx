@@ -6,8 +6,8 @@ import { useDefinitionProps } from '@/utils/component'
 
 const GridContext = createContext({}) as Context<Pick<GridProps, 'columns'>>
 
-const GridCol = forwardRef<HTMLDivElement, GridColProps>(function GridCol({ children, asChild, ...props }, forwardedRef) {
-    const [gridColProps, htmlProps] = useDefinitionProps(props, gridColPropsDefinition)
+const GridCol = forwardRef<HTMLDivElement, GridColProps>(function GridCol(props, forwardedRef) {
+    const [gridColProps, { children, asChild, ...htmlProps }] = useDefinitionProps(props, gridColPropsDefinition)
     const Comp = asChild ? StGridCol.withComponent(Slot) : StGridCol
     const { columns } = useContext(GridContext)
     return (
