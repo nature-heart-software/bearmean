@@ -54,6 +54,8 @@ export const StBox = styled(
             bbw,
             bc,
             overflow,
+            overflowX,
+            overflowY,
             cursor,
             pointerEvents,
             userSelect,
@@ -189,6 +191,12 @@ export const StBox = styled(
         },
         overflow && {
             overflow,
+        },
+        overflowX && {
+            overflowX,
+        },
+        overflowY && {
+            overflowY,
         },
         cursor && {
             cursor,

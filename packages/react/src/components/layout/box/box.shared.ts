@@ -49,6 +49,8 @@ export const boxPropsDefinition = defineProps(({ optional }) => ({
     bbw: optional<BorderWidth | Properties['borderBottomWidth'] | number>(),
     bc: optional<Color | Properties['borderColor']>(),
     overflow: optional<Properties['overflow']>(),
+    overflowX: optional<Properties['overflowX']>(),
+    overflowY: optional<Properties['overflowY']>(),
     cursor: optional<Properties['cursor']>(),
     pointerEvents: optional<Properties['pointerEvents']>(),
     userSelect: optional<Properties['userSelect']>(),
