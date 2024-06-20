@@ -2,14 +2,13 @@ import styled from '@emotion/styled'
 import { GridColPropsDefinition, GridPropsDefinition } from './grid.shared'
 import { StBox } from '@/components/layout/box'
 import { spacing as _spacing } from '@/tokens/spacing'
-import { defineMixins, getRemValue } from '@/utils/css-in-js'
+import { defineMixins, getRemValue, getStyledOptions, StyledProps } from '@/utils/css-in-js'
 import isUndefined from 'lodash/isUndefined'
 
-export const StGrid = styled(StBox, {
-    shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),
-})<{
-    styled: GridPropsDefinition
-}>(({ theme: { spacing = _spacing }, styled: { align, columns = 12, rows, gap = '3' } }) => [
+export const StGrid = styled(
+    StBox,
+    getStyledOptions()
+)<StyledProps<GridPropsDefinition>>(({ theme: { spacing = _spacing }, styled: { align, columns = 12, rows, gap = '3' } }) => [
     {
         display: 'grid',
         gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
@@ -23,11 +22,10 @@ export const StGrid = styled(StBox, {
     },
 ])
 
-export const StGridCol = styled(StBox, {
-    shouldForwardProp: (prop) => !['styled', 'as'].includes(prop),
-})<{
-    styled: GridColPropsDefinition
-}>((context) => {
+export const StGridCol = styled(
+    StBox,
+    getStyledOptions()
+)<StyledProps<GridColPropsDefinition>>((context) => {
     const { getResponsive } = defineMixins({
         ...context,
         styled: {

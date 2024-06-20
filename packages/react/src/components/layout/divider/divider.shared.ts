@@ -3,12 +3,12 @@ import { boxPropsDefinition } from '@/components/layout/box'
 import { createPartial } from '@/utils/object'
 import { defineProps } from '@/utils/component'
 
-export const dividerPropsDefinition = defineProps(({ optional }) => ({
+export const dividerPropsDefinitionWithoutVariants = defineProps(({ optional }) => ({
     ...boxPropsDefinition,
     size: optional<number>(),
 }))
 
-const definePartialProps = createPartial<typeof dividerPropsDefinition>()
+const definePartialProps = createPartial<typeof dividerPropsDefinitionWithoutVariants>()
 
 export const dividerVariants = {
     horizontal: definePartialProps({
@@ -21,12 +21,11 @@ export const dividerVariants = {
     }),
 } as const
 
-export const dividerPropsDefinitionWithVariants = defineProps(({ optional }) => ({
-    ...dividerPropsDefinition,
+export const dividerPropsDefinition = defineProps(({ optional }) => ({
+    ...dividerPropsDefinitionWithoutVariants,
     variant: optional<keyof typeof dividerVariants>(),
 }))
 
-export type DividerPropsDefinition = typeof dividerPropsDefinitionWithVariants
+export type DividerPropsDefinition = typeof dividerPropsDefinition
 
-export type DividerProps = HTMLAttributes<HTMLDivElement> &
-    DividerPropsDefinition
+export type DividerProps = HTMLAttributes<HTMLDivElement> & DividerPropsDefinition

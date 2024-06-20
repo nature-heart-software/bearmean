@@ -2,11 +2,25 @@ import { rem } from 'polished'
 import { Screen, Screens, screens as _screens } from '@/tokens/screens'
 import { InterpolationPrimitive } from '@emotion/serialize'
 import get from 'lodash/get'
+import isUndefined from 'lodash/isUndefined'
+import { StyledOptions } from '@emotion/styled'
+import isPropValid from '@emotion/is-prop-valid'
+
+export function getStyledOptions(override: StyledOptions = {}): StyledOptions {
+    return {
+        ...override,
+        shouldForwardProp: (prop) => isPropValid(prop) || !!override.shouldForwardProp?.(prop),
+    }
+}
+
+export type StyledProps<P extends Record<string, unknown>> = {
+    styled: P
+}
 
 export const getRemValue = <V extends string | number, R extends Record<string, unknown>>(value: V, from?: R) => {
     if (typeof value === 'number') return rem(value)
     const valueFromRecord = get(from || {}, value)
-    if (valueFromRecord !== null) {
+    if (!isUndefined(valueFromRecord)) {
         return rem(valueFromRecord)
     }
     return value
@@ -14,7 +28,7 @@ export const getRemValue = <V extends string | number, R extends Record<string, 
 
 export const getRawValue = <V extends string | number, R extends Record<string, unknown>>(value: V, from?: R) => {
     const valueFromRecord = get(from || {}, value)
-    if (valueFromRecord !== null) {
+    if (!isUndefined(valueFromRecord)) {
         return valueFromRecord
     }
     return value

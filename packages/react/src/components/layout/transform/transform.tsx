@@ -4,8 +4,8 @@ import { TransformProps, transformPropsDefinition } from './transform.shared'
 import { Slot } from '@radix-ui/react-slot'
 import { useDefinitionProps } from '@/utils/component'
 
-export const Transform = forwardRef<HTMLDivElement, TransformProps>(function Transform({ children, asChild, ...props }, forwardedRef) {
-    const [transformProps, { translate, ...htmlProps }] = useDefinitionProps(props, transformPropsDefinition)
+export const Transform = forwardRef<HTMLDivElement, TransformProps>(function Transform(props, forwardedRef) {
+    const [transformProps, { children, asChild, ...htmlProps }] = useDefinitionProps(props, transformPropsDefinition)
     const Comp = asChild ? StTransform.withComponent(Slot) : StTransform
     return (
         <Comp

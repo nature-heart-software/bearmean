@@ -1,6 +1,7 @@
 import pick from 'lodash/pick'
 import { omit } from 'lodash'
 import { Screen, screens } from '@/tokens/screens'
+import { useMemo } from 'react'
 
 export type UndefinedProperties<T> = {
     [P in keyof T]-?: undefined extends T[P] ? P : never
@@ -30,7 +31,9 @@ const responsive = <P extends Record<string, unknown>>(props: P) => {
     } as P & { [key in `${Screen}${Capitalize<Extract<keyof P, string>>}`]: P[keyof P] }
 }
 
-type Props = Record<string, unknown>
+type Props = {
+    [name: string]: unknown
+}
 
 type DefinitionUtils = {
     optional: <T>(defaultValue?: T) => T | undefined
@@ -45,8 +48,13 @@ export const defineProps = <P extends Props>(definition: Definition<P>) =>
         responsive,
     }) as ToOptional<P>
 
-export const useDefinitionProps = <P extends Record<string, unknown>, D extends Record<string, unknown>>(props: P, propsDefinition: D) => {
-    const extractedProps = { ...propsDefinition, ...pick(props, Object.keys(propsDefinition)) } as D
-    const rest = omit(props, Object.keys(propsDefinition)) as Exclude<P, keyof D>
+export const useDefinitionProps = <P extends object, D extends object>(props: P, propsDefinition: D, overrideProps?: D): [D, Omit<P, keyof D>] => {
+    const propsDefinitionWithVariants = { ...propsDefinition, ...overrideProps } as D
+    const extractedProps = { ...propsDefinitionWithVariants, ...pick(props, Object.keys(propsDefinitionWithVariants)) } as D
+    const rest = omit(props, Object.keys(propsDefinitionWithVariants)) as Omit<P, keyof D>
     return [extractedProps, rest]
+}
+
+export const useVariantProps = <V extends Record<string, unknown>, CV extends keyof V>(variants: V, currentVariant?: CV) => {
+    return useMemo(() => (currentVariant ? variants[currentVariant] : {}), [currentVariant, variants])
 }
