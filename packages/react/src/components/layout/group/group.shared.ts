@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react'
 import { Spacing } from '@/tokens/spacing'
-import { defineProps } from '@/utils/component'
+import { defineProps, PropsDefinition } from '@/utils/component'
 import { Properties } from 'csstype'
 import { boxPropsDefinition } from '@/components/layout/box'
 
@@ -13,16 +13,16 @@ export type GroupDirection = (typeof groupDirectionValues)[number]
 
 export const groupPropsDefinition = defineProps(({ optional }) => ({
     ...boxPropsDefinition,
-    direction: optional<GroupDirection | Properties['flexDirection']>(),
-    justify: optional<GroupJustify | Properties['justifyContent']>(),
-    align: optional<GroupAlign | Properties['alignItems']>(),
-    gap: optional<Spacing | Properties['gap'] | number>(),
-    wrap: optional<boolean>(),
+    direction: optional<GroupDirection | Properties['flexDirection']>('row'),
+    justify: optional<GroupJustify | Properties['justifyContent']>('left'),
+    align: optional<GroupAlign | Properties['alignItems']>('center'),
+    gap: optional<Spacing | Properties['gap'] | number>('3'),
+    wrap: optional<boolean>(false),
 }))
 
 export type GroupPropsDefinition = typeof groupPropsDefinition
 
 export type GroupProps = HTMLAttributes<HTMLDivElement> &
-    GroupPropsDefinition & {
+    PropsDefinition<GroupPropsDefinition> & {
         asChild?: boolean
     }

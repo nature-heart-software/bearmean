@@ -5,6 +5,7 @@ import get from 'lodash/get'
 import isUndefined from 'lodash/isUndefined'
 import { StyledOptions } from '@emotion/styled'
 import isPropValid from '@emotion/is-prop-valid'
+import { PropsDefinitionWithDefaults } from '@/utils/component'
 
 export function getStyledOptions(override: StyledOptions = {}): StyledOptions {
     return {
@@ -13,8 +14,8 @@ export function getStyledOptions(override: StyledOptions = {}): StyledOptions {
     }
 }
 
-export type StyledProps<P extends Record<string, unknown>> = {
-    styled: P
+export type StyledProps<P extends object> = {
+    styled: PropsDefinitionWithDefaults<P>
 }
 
 export const getRemValue = <V extends string | number, R extends Record<string, unknown>>(value: V, from?: R) => {

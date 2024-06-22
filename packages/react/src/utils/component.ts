@@ -11,6 +11,10 @@ export type ToOptional<T> = Partial<Pick<T, UndefinedProperties<T>>> & Pick<T, E
 
 type NonUndefined<T> = T extends undefined ? never : T
 
+type OptionalType = '_OPTIONAL' & NonNullable<null>
+type RequiredType = '_REQUIRED' & NonNullable<null>
+type HasDefaultType = '_HAS_DEFAULT_VALUE' & NonNullable<null>
+
 type DefineOptional = {
     <T>(): T | undefined | '_OPTIONAL'
     <T>(defaultValue: T): T | undefined | '_OPTIONAL' | '_HAS_DEFAULT_VALUE'
@@ -67,9 +71,13 @@ export const defineProps = <P extends Props>(definition: Definition<P>) =>
         responsive,
     })
 
-export const useDefinitionProps = <P extends object, D extends object>(props: P, propsDefinition: D, overrideProps?: D): [D, Omit<P, keyof D>] => {
-    const propsDefinitionWithVariants = { ...propsDefinition, ...overrideProps } as D
-    const extractedProps = { ...propsDefinitionWithVariants, ...pick(props, Object.keys(propsDefinitionWithVariants)) } as D
+export const useDefinitionProps = <P extends object, D extends object>(
+    props: P,
+    propsDefinition: D,
+    overrideProps?: D
+): [PropsDefinitionWithDefaults<D>, Omit<P, keyof D>] => {
+    const propsDefinitionWithVariants = { ...propsDefinition, ...overrideProps } as PropsDefinitionWithDefaults<D>
+    const extractedProps = { ...propsDefinitionWithVariants, ...pick(props, Object.keys(propsDefinitionWithVariants)) } as PropsDefinitionWithDefaults<D>
     const rest = omit(props, Object.keys(propsDefinitionWithVariants)) as Omit<P, keyof D>
     return [extractedProps, rest]
 }
@@ -90,8 +98,8 @@ type RemoveUndefinedFromAllKeys<T> = {
     [K in keyof T]: RemoveUndefinedIfHasDefaultValue<T[K]>
 }
 
-type DefinitionProps<P> = ToOptional<RemoveItemFromAllKeys<P, '_OPTIONAL' | '_REQUIRED' | '_HAS_DEFAULT_VALUE'>>
-type DefinitionPropsWithDefaults<P> = RemoveItemFromAllKeys<RemoveUndefinedFromAllKeys<P>, '_OPTIONAL' | '_REQUIRED' | '_HAS_DEFAULT_VALUE'>
+export type PropsDefinition<P> = RemoveItemFromAllKeys<ToOptional<P>, '_OPTIONAL' | '_REQUIRED' | '_HAS_DEFAULT_VALUE'>
+export type PropsDefinitionWithDefaults<P> = RemoveItemFromAllKeys<RemoveUndefinedFromAllKeys<P>, '_OPTIONAL' | '_REQUIRED' | '_HAS_DEFAULT_VALUE'>
 
 // TODO: doesn't work with string, wrap everything with new methods or types, check if it works well with responsive
 type Vals = 'a' | 'b'
@@ -102,9 +110,9 @@ const someProps = defineProps(({ optional, required }) => ({
 }))
 
 const { optionalValue, requiredValue } = someProps as ToOptional<typeof someProps>
-const { optionalValue, requiredValue } = someProps as DefinitionProps<typeof someProps>
-const { optionalValue, requiredValue } = someProps as DefinitionPropsWithDefaults<typeof someProps>
+const { optionalValue, requiredValue } = someProps as PropsDefinition<typeof someProps>
+const { optionalValue, requiredValue } = someProps as PropsDefinitionWithDefaults<typeof someProps>
 
-function zea(props: ToOptional<RemoveItemFromAllKeys<typeof someProps, '_OPTIONAL' | '_REQUIRED' | '_HAS_DEFAULT_VALUE'>>) {}
+function zea(props: PropsDefinitionWithDefaults<typeof someProps>) {}
 
-zea({ requiredValue: 'a' })
+zea({ requiredValue: 'a', optionalValue: 'a' })
