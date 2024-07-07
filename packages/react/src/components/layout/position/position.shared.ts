@@ -1,13 +1,13 @@
 import { HTMLAttributes } from 'react'
 import { Properties } from 'csstype'
-import { defineProps } from '@/utils/component'
+import { defineProps, PropsDefinition } from '@/utils/component'
 import { Level } from '@/tokens/level'
 import { Spacing } from '@/tokens/spacing'
 import { transformPropsDefinition } from '@/components/layout/transform'
 
 export const positionPropsDefinition = defineProps(({ optional }) => ({
     ...transformPropsDefinition,
-    position: optional<Properties['position']>(),
+    position: optional<Properties['position']>('relative'),
     relative: optional<boolean>(),
     absolute: optional<boolean>(),
     fixed: optional<boolean>(),
@@ -24,6 +24,6 @@ export const positionPropsDefinition = defineProps(({ optional }) => ({
 export type PositionPropsDefinition = typeof positionPropsDefinition
 
 export type PositionProps = HTMLAttributes<HTMLDivElement> &
-    PositionPropsDefinition & {
+    PropsDefinition<PositionPropsDefinition> & {
         asChild?: boolean
     }

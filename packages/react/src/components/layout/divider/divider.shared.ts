@@ -1,11 +1,11 @@
 import { HTMLAttributes } from 'react'
 import { boxPropsDefinition } from '@/components/layout/box'
 import { createPartial } from '@/utils/object'
-import { defineProps } from '@/utils/component'
+import { defineProps, PropsDefinition } from '@/utils/component'
 
 export const dividerPropsDefinitionWithoutVariants = defineProps(({ optional }) => ({
     ...boxPropsDefinition,
-    size: optional<number>(),
+    size: optional<number>(1),
 }))
 
 const definePartialProps = createPartial<typeof dividerPropsDefinitionWithoutVariants>()
@@ -28,4 +28,4 @@ export const dividerPropsDefinition = defineProps(({ optional }) => ({
 
 export type DividerPropsDefinition = typeof dividerPropsDefinition
 
-export type DividerProps = HTMLAttributes<HTMLDivElement> & DividerPropsDefinition
+export type DividerProps = HTMLAttributes<HTMLDivElement> & PropsDefinition<DividerPropsDefinition>

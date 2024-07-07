@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'react'
-import { defineProps } from '@/utils/component'
+import { defineProps, PropsDefinition } from '@/utils/component'
 import { boxPropsDefinition } from '@/components/layout/box'
 import { Screen, Screens } from '@/tokens/screens'
 import { Spacing } from '@/tokens/spacing'
@@ -18,8 +18,8 @@ export type GridColResponsiveProps = {
 export const gridPropsDefinition = defineProps(({ optional }) => ({
     ...boxPropsDefinition,
     breakpoints: optional<Screens>(),
-    gap: optional<Spacing | Properties['gap'] | number>(),
-    columns: optional<number>(),
+    gap: optional<Spacing | Properties['gap'] | number>('3'),
+    columns: optional<number>(12),
     rows: optional<number>(),
     align: optional<Properties['alignItems']>(),
 }))
@@ -44,6 +44,6 @@ export type GridColPropsDefinition = typeof gridColPropsDefinition
 export type GridProps = HTMLAttributes<HTMLDivElement> & GridPropsDefinition
 
 export type GridColProps = HTMLAttributes<HTMLDivElement> &
-    GridColPropsDefinition & {
+    PropsDefinition<GridColPropsDefinition> & {
         asChild?: boolean
     }

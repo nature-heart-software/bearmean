@@ -13,7 +13,7 @@ export const StPosition = styled(
 )<StyledProps<PositionPropsDefinition>>(
     ({
         theme: { level = _level, spacing = _spacing },
-        styled: { relative, absolute, fixed, sticky, static: staticProp, position = 'relative', inset, top, left, right, bottom, z },
+        styled: { relative, absolute, fixed, sticky, static: staticProp, position, inset, top, left, right, bottom, z },
     }) => [
         {
             position:

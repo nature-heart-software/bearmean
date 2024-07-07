@@ -8,7 +8,7 @@ import isUndefined from 'lodash/isUndefined'
 export const StGrid = styled(
     StBox,
     getStyledOptions()
-)<StyledProps<GridPropsDefinition>>(({ theme: { spacing = _spacing }, styled: { align, columns = 12, rows, gap = '3' } }) => [
+)<StyledProps<GridPropsDefinition>>(({ theme: { spacing = _spacing }, styled: { align, columns, rows, gap } }) => [
     {
         display: 'grid',
         gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,

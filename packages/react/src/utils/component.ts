@@ -11,18 +11,19 @@ export type ToOptional<T> = Partial<Pick<T, UndefinedProperties<T>>> & Pick<T, E
 
 type NonUndefined<T> = T extends undefined ? never : T
 
-type OptionalType = '_OPTIONAL' & NonNullable<null>
-type RequiredType = '_REQUIRED' & NonNullable<null>
-type HasDefaultType = '_HAS_DEFAULT_VALUE' & NonNullable<null>
+type OptionalType = { _OPTIONAL: true }
+type RequiredType = { _REQUIRED: true }
+type HasDefaultValueType = { _HAS_DEFAULT_VALUE: true }
+type AllTypes = OptionalType | RequiredType | HasDefaultValueType
 
 type DefineOptional = {
-    <T>(): T | undefined | '_OPTIONAL'
-    <T>(defaultValue: T): T | undefined | '_OPTIONAL' | '_HAS_DEFAULT_VALUE'
+    <T>(): T | undefined | OptionalType
+    <T>(defaultValue: T): T | undefined | OptionalType | HasDefaultValueType
 }
 
 type DefineRequired = {
-    <T>(): NonUndefined<T> | '_REQUIRED'
-    <T>(defaultValue: T): NonUndefined<T> | '_REQUIRED' | '_HAS_DEFAULT_VALUE'
+    <T>(): NonUndefined<T> | RequiredType
+    <T>(defaultValue: T): NonUndefined<T> | RequiredType | HasDefaultValueType
 }
 
 const optional: DefineOptional = (defaultValue?) => {
@@ -92,27 +93,27 @@ type RemoveItemFromAllKeys<T, U> = {
     [K in keyof T]: RemoveUnionItem<T[K], U>
 }
 
-type RemoveUndefinedIfHasDefaultValue<T> = '_HAS_DEFAULT_VALUE' extends T ? NonNullable<T> : T
+type RemoveUndefinedIfHasDefaultValue<T> = HasDefaultValueType extends T ? NonNullable<T> : T
 
 type RemoveUndefinedFromAllKeys<T> = {
     [K in keyof T]: RemoveUndefinedIfHasDefaultValue<T[K]>
 }
 
-export type PropsDefinition<P> = RemoveItemFromAllKeys<ToOptional<P>, '_OPTIONAL' | '_REQUIRED' | '_HAS_DEFAULT_VALUE'>
-export type PropsDefinitionWithDefaults<P> = RemoveItemFromAllKeys<RemoveUndefinedFromAllKeys<P>, '_OPTIONAL' | '_REQUIRED' | '_HAS_DEFAULT_VALUE'>
+export type PropsDefinition<P> = RemoveItemFromAllKeys<ToOptional<P>, AllTypes>
+export type PropsDefinitionWithDefaults<P> = RemoveItemFromAllKeys<RemoveUndefinedFromAllKeys<P>, AllTypes>
 
 // TODO: doesn't work with string, wrap everything with new methods or types, check if it works well with responsive
-type Vals = 'a' | 'b'
+// type Vals = 'a' | 'b'
 
-const someProps = defineProps(({ optional, required }) => ({
-    optionalValue: optional<Vals>('a'),
-    requiredValue: required<Vals>(),
-}))
+// const someProps = defineProps(({ optional, required }) => ({
+//     optionalValue: optional<Vals>('a'),
+//     requiredValue: required<Vals>(),
+// }))
 
-const { optionalValue, requiredValue } = someProps as ToOptional<typeof someProps>
-const { optionalValue, requiredValue } = someProps as PropsDefinition<typeof someProps>
-const { optionalValue, requiredValue } = someProps as PropsDefinitionWithDefaults<typeof someProps>
-
-function zea(props: PropsDefinitionWithDefaults<typeof someProps>) {}
-
-zea({ requiredValue: 'a', optionalValue: 'a' })
+// const { optionalValue, requiredValue } = someProps as ToOptional<typeof someProps>
+// const { optionalValue, requiredValue } = someProps as PropsDefinition<typeof someProps>
+// const { optionalValue, requiredValue } = someProps as PropsDefinitionWithDefaults<typeof someProps>
+//
+// function zea(props: PropsDefinitionWithDefaults<typeof someProps>) {}
+//
+// zea({ requiredValue: 'a', optionalValue: 'a' })

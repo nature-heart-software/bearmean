@@ -4,7 +4,7 @@ import { Elevation } from '@/tokens/elevation'
 import { BorderRadius, BorderStyle, BorderWidth } from '@/tokens/border'
 import { Color } from '@/tokens/colors'
 import { Properties } from 'csstype'
-import { defineProps } from '@/utils/component'
+import { defineProps, PropsDefinition } from '@/utils/component'
 
 export type MarginSpacing = Spacing | Properties['margin'] | number
 export type PaddingSpacing = PositiveSpacing | Properties['padding'] | number
@@ -41,8 +41,8 @@ export const boxPropsDefinition = defineProps(({ optional }) => ({
     btrr: optional<BorderRadius | Properties['borderTopRightRadius'] | number>(),
     bblr: optional<BorderRadius | Properties['borderBottomLeftRadius'] | number>(),
     bbrr: optional<BorderRadius | Properties['borderBottomRightRadius'] | number>(),
-    bs: optional<BorderStyle | Properties['borderStyle']>(),
-    bw: optional<BorderWidth | Properties['borderWidth'] | number>(),
+    bs: optional<BorderStyle | Properties['borderStyle']>('solid'),
+    bw: optional<BorderWidth | Properties['borderWidth'] | number>(0),
     btw: optional<BorderWidth | Properties['borderTopWidth'] | number>(),
     brw: optional<BorderWidth | Properties['borderRightWidth'] | number>(),
     blw: optional<BorderWidth | Properties['borderLeftWidth'] | number>(),
@@ -59,6 +59,6 @@ export const boxPropsDefinition = defineProps(({ optional }) => ({
 export type BoxPropsDefinition = typeof boxPropsDefinition
 
 export type BoxProps = HTMLAttributes<HTMLDivElement> &
-    BoxPropsDefinition & {
+    PropsDefinition<BoxPropsDefinition> & {
         asChild?: boolean
     }

@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'react'
-import { defineProps } from '@/utils/component'
+import { defineProps, PropsDefinition } from '@/utils/component'
 import { boxPropsDefinition } from '@/components/layout/box'
 import { Screen, Screens } from '@/tokens/screens'
 
@@ -13,6 +13,6 @@ export const containerPropsDefinition = defineProps(({ optional }) => ({
 export type ContainerPropsDefinition = typeof containerPropsDefinition
 
 export type ContainerProps = HTMLAttributes<HTMLDivElement> &
-    ContainerPropsDefinition & {
+    PropsDefinition<ContainerPropsDefinition> & {
         asChild?: boolean
     }

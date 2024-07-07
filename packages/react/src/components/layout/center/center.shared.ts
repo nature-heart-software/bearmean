@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'react'
-import { defineProps } from '@/utils/component'
+import { defineProps, PropsDefinition } from '@/utils/component'
 import { boxPropsDefinition } from '@/components/layout/box'
 
 export const centerPropsDefinition = defineProps(({ optional }) => ({
@@ -10,6 +10,6 @@ export const centerPropsDefinition = defineProps(({ optional }) => ({
 export type CenterPropsDefinition = typeof centerPropsDefinition
 
 export type CenterProps = HTMLAttributes<HTMLDivElement> &
-    CenterPropsDefinition & {
+    PropsDefinition<CenterPropsDefinition> & {
         asChild?: boolean
     }
