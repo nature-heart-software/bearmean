@@ -81,5 +81,12 @@ export const StGridCol = styled(
                     gridRowEnd: value,
                 }
         ),
+        getResponsive(
+            'order',
+            (value) =>
+                !isUndefined(value) && {
+                    order: value,
+                }
+        ),
     ]
 })

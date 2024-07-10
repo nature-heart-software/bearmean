@@ -34,6 +34,7 @@ export const gridColPropsDefinition = defineProps(({ optional, responsive }) => 
         rowSpan: optional<Properties['gridRow'] | number>(),
         rowStart: optional<Properties['gridRowStart'] | number>(),
         rowEnd: optional<Properties['gridRowEnd'] | number>(),
+        order: optional<Properties['order'] | number>(),
     }),
 }))
 
