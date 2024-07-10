@@ -21,7 +21,7 @@ export const StGroup = styled(
     getStyledOptions()
 )<StyledProps<GroupPropsDefinition>>(
     ({ theme: { spacing = _spacing }, styled: { direction = 'row', wrap = false, justify = 'left', align = 'center', gap = '3' } }) => ({
-        display: 'inline-flex',
+        display: 'flex',
         justifyContent:
             direction === 'row'
                 ? justify in POSITIONS
