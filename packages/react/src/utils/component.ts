@@ -41,18 +41,18 @@ const responsive = <P extends Record<string, unknown>>(props: P) => {
         ...props,
         ...(Object.keys(screens) as Screen[])
             .map((screen) => {
-                return (Object.entries(props) as [keyof P, P[keyof P]][])
-                    .map(([prop, value]) => {
+                return (Object.keys(props) as (keyof P)[])
+                    .map((prop) => {
                         const capitalizedProp = String(prop).charAt(0).toUpperCase() + String(prop).slice(1)
 
                         return {
-                            [`${screen}${capitalizedProp}`]: value,
+                            [`${screen}${capitalizedProp}`]: undefined,
                         }
                     })
                     .reduce((acc, curr) => ({ ...acc, ...curr }), {})
             })
             .reduce((acc, curr) => ({ ...acc, ...curr }), {}),
-    } as P & { [key in `${Screen}${Capitalize<Extract<keyof P, string>>}`]: P[keyof P] }
+    } as P & { [key in `${Screen}${Capitalize<Extract<keyof P, string>>}`]: P[key] | undefined }
 }
 
 type Props = {
@@ -101,19 +101,3 @@ type RemoveUndefinedFromAllKeys<T> = {
 
 export type PropsDefinition<P> = RemoveItemFromAllKeys<ToOptional<P>, AllTypes>
 export type PropsDefinitionWithDefaults<P> = RemoveItemFromAllKeys<RemoveUndefinedFromAllKeys<P>, AllTypes>
-
-// TODO: doesn't work with string, wrap everything with new methods or types, check if it works well with responsive
-// type Vals = 'a' | 'b'
-
-// const someProps = defineProps(({ optional, required }) => ({
-//     optionalValue: optional<Vals>('a'),
-//     requiredValue: required<Vals>(),
-// }))
-
-// const { optionalValue, requiredValue } = someProps as ToOptional<typeof someProps>
-// const { optionalValue, requiredValue } = someProps as PropsDefinition<typeof someProps>
-// const { optionalValue, requiredValue } = someProps as PropsDefinitionWithDefaults<typeof someProps>
-//
-// function zea(props: PropsDefinitionWithDefaults<typeof someProps>) {}
-//
-// zea({ requiredValue: 'a', optionalValue: 'a' })

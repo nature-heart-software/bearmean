@@ -41,7 +41,7 @@ export type GridPropsDefinition = typeof gridPropsDefinition
 
 export type GridColPropsDefinition = typeof gridColPropsDefinition
 
-export type GridProps = HTMLAttributes<HTMLDivElement> & GridPropsDefinition
+export type GridProps = HTMLAttributes<HTMLDivElement> & PropsDefinition<GridPropsDefinition>
 
 export type GridColProps = HTMLAttributes<HTMLDivElement> &
     PropsDefinition<GridColPropsDefinition> & {
