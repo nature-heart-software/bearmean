@@ -1,4 +1,4 @@
-import { defineProps, useDefinitionProps } from '@/utils'
+import { defineProps, PropsDefinition, useDefinitionProps } from '@/utils'
 import { Color } from '@/tokens'
 import { Properties } from 'csstype'
 import { HTMLAttributes } from 'react'
@@ -17,12 +17,11 @@ const typedComponentPropsDefinition = defineProps(({ optional, required }) => ({
     requiredWithDefaultComplexString: required<ComplexString>('slate.100'),
 }))
 
-// type TypedComponentProps = HTMLAttributes<HTMLDivElement> & PropsDefinition<typeof typedComponentPropsDefinition>
-type TypedComponentProps = HTMLAttributes<HTMLDivElement> & typeof typedComponentPropsDefinition
+type TypedComponentProps = HTMLAttributes<HTMLDivElement> & PropsDefinition<typeof typedComponentPropsDefinition>
 
 export function TypedComponent(props: TypedComponentProps) {
     const [definedProps, htmlProps] = useDefinitionProps(props, typedComponentPropsDefinition)
-    definedProps.optionalString = undefined //
+    definedProps.optionalString = undefined
     definedProps.requiredString = undefined
     definedProps.optionalWithDefaultString = undefined
     definedProps.requiredWithDefaultString = undefined
