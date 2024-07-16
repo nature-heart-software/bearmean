@@ -3,10 +3,10 @@ import { Color } from '@/tokens'
 import { Properties } from 'csstype'
 import { HTMLAttributes } from 'react'
 
-type SimpleString = Color
+type SimpleString = 'left' | 'right'
 type ComplexString = Color | Properties['color']
 
-const typedComponentPropsDefinition = defineProps(({ optional, required }) => ({
+const typedComponentPropsDefinition = defineProps(({ optional, required, responsive }) => ({
     optionalString: optional<SimpleString>(),
     requiredString: required<SimpleString>(),
     optionalWithDefaultString: optional<SimpleString>('slate.100'),
@@ -15,6 +15,10 @@ const typedComponentPropsDefinition = defineProps(({ optional, required }) => ({
     requiredComplexString: required<ComplexString>(),
     optionalWithDefaultComplexString: optional<ComplexString>('slate.100'),
     requiredWithDefaultComplexString: required<ComplexString>('slate.100'),
+    ...responsive({
+        responsiveString: optional<SimpleString>(),
+        responsiveComplexeString: required<SimpleString>(),
+    }),
 }))
 
 type TypedComponentProps = HTMLAttributes<HTMLDivElement> & PropsDefinition<typeof typedComponentPropsDefinition>
@@ -29,7 +33,9 @@ export function TypedComponent(props: TypedComponentProps) {
     definedProps.requiredComplexString = undefined
     definedProps.optionalWithDefaultComplexString = undefined
     definedProps.requiredWithDefaultComplexString = undefined
-
+    definedProps.smResponsiveString = undefined
+    definedProps.responsiveComplexeString = undefined
+    definedProps.smResponsiveComplexeString = undefined
     return <div {...htmlProps} />
 }
 

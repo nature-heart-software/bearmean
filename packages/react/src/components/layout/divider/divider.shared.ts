@@ -8,7 +8,7 @@ export const dividerPropsDefinitionWithoutVariants = defineProps(({ optional }) 
     size: optional<number>(1),
 }))
 
-const definePartialProps = createPartial<typeof dividerPropsDefinitionWithoutVariants>()
+const definePartialProps = createPartial<PropsDefinition<typeof dividerPropsDefinitionWithoutVariants>>()
 
 export const dividerVariants = {
     horizontal: definePartialProps({

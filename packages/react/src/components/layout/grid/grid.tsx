@@ -10,8 +10,6 @@ const GridCol = forwardRef<HTMLDivElement, GridColProps>(function GridCol(props,
     const [gridColProps, { children, asChild, ...htmlProps }] = useDefinitionProps(props, gridColPropsDefinition)
     const Comp = asChild ? StGridCol.withComponent(Slot) : StGridCol
     const { columns } = useContext(GridContext)
-    gridColProps.span
-    gridColProps.smSpan
     return (
         <Comp
             data-grid-col

@@ -32,6 +32,10 @@ type DefineRequired = {
     <T>(defaultValue: T): OfType<NonUndefined<T>> & IsRequired & HasDefaultValue
 }
 
+type DefineResponsive = {
+    <P extends Definitions>(props: P): P & { [K in keyof P as `${Screen}${Capitalize<Extract<keyof P, string>>}`]: P[K] }
+}
+
 const optional: DefineOptional = (defaultValue?) => {
     return { value: defaultValue, _IS_OPTIONAL: true, _HAS_DEFAULT_VALUE: defaultValue !== undefined }
 }
@@ -40,34 +44,32 @@ const required: DefineRequired = (defaultValue?) => {
     return { value: defaultValue, _IS_REQUIRED: true, _HAS_DEFAULT_VALUE: defaultValue !== undefined }
 }
 
-const responsive = <P extends Definitions>(props: P) => {
+const responsive: DefineResponsive = (props) => {
     return {
         ...props,
         ...(Object.keys(screens) as Screen[])
             .map((screen) => {
-                return (Object.keys(props) as (keyof P)[])
+                return Object.keys(props)
                     .map((prop) => {
                         const capitalizedProp = String(prop).charAt(0).toUpperCase() + String(prop).slice(1)
 
                         return {
-                            [`${screen}${capitalizedProp}`]: undefined,
-                        }
+                            [`${screen}${capitalizedProp}`]: optional(),
+                        } as any
                     })
                     .reduce((acc, curr) => ({ ...acc, ...curr }), {})
             })
             .reduce((acc, curr) => ({ ...acc, ...curr }), {}),
-    } as P & { [key in `${Screen}${Capitalize<Extract<keyof P, string>>}`]: P[key] | undefined }
+    }
 }
 
 type DefinitionsUtils = {
     optional: DefineOptional
     required: DefineRequired
-    responsive: <P extends Definitions>(props: P) => P & { [key in `${Screen}${Capitalize<Extract<keyof P, string>>}`]: P[keyof P] | undefined }
+    responsive: DefineResponsive
 }
 
-type DefinitionsFn<P> = (DefinitionsUtils: DefinitionsUtils) => P
-
-export const defineProps = <P>(definition: DefinitionsFn<P>) =>
+export const defineProps = <P extends Definitions>(definition: (DefinitionsUtils: DefinitionsUtils) => P) =>
     definition({
         optional,
         required,
@@ -77,7 +79,7 @@ export const defineProps = <P>(definition: DefinitionsFn<P>) =>
 export const useDefinitionProps = <P extends object, D extends Definitions>(
     props: P,
     propsDefinition: D,
-    overrideProps?: D
+    overrideProps?: { [K in keyof D]?: D[K]['value'] }
 ): [PropsDefinitionWithDefaults<D>, Omit<P, keyof D>] => {
     const propsDefinitionWithVariants = { ...mapValues(propsDefinition, (definition) => definition.value), ...overrideProps } as PropsDefinitionWithDefaults<D>
     const extractedProps = { ...propsDefinitionWithVariants, ...pick(props, Object.keys(propsDefinitionWithVariants)) } as PropsDefinitionWithDefaults<D>
