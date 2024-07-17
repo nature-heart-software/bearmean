@@ -6,7 +6,7 @@ import { useDefinitionProps } from '@/utils/component'
 
 export const Group = forwardRef<HTMLDivElement, GroupProps>(function Group(props, forwardedRef) {
     const [groupProps, { children, asChild, ...htmlProps }] = useDefinitionProps(props, groupPropsDefinition)
-    const Comp = asChild ? StGroup.withComponent(Slot) : StGroup
+    const Comp = useMemo(() => (asChild ? StGroup.withComponent(Slot) : StGroup), [asChild])
     return (
         <Comp
             data-group

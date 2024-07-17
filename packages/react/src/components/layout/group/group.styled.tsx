@@ -20,7 +20,7 @@ export const StGroup = styled(
     StBox,
     getStyledOptions()
 )<StyledProps<GroupPropsDefinition>>(({ theme: { spacing = _spacing }, styled: { direction, wrap, justify, align, gap } }) => ({
-    display: 'inline-flex',
+    display: 'flex',
     justifyContent:
         direction === 'row'
             ? justify in POSITIONS

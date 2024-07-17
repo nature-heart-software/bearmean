@@ -10,7 +10,11 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-const Template: StoryFn<typeof Box> = (args) => <Box { ...args }><div>content</div></Box>
+const Template: StoryFn<typeof Box> = (args) => (
+    <Box {...args}>
+        <div>content</div>
+    </Box>
+)
 
 export const Default = Template.bind({})
 Default.args = {

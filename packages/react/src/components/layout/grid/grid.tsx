@@ -1,4 +1,4 @@
-import { Context, createContext, forwardRef, ForwardRefExoticComponent, PropsWithoutRef, RefAttributes, useContext } from 'react'
+import { Context, createContext, forwardRef, ForwardRefExoticComponent, PropsWithoutRef, RefAttributes, useContext, useMemo } from 'react'
 import { StGrid, StGridCol } from './grid.styled'
 import { GridColProps, gridColPropsDefinition, GridProps, gridPropsDefinition } from './grid.shared'
 import { Slot } from '@radix-ui/react-slot'
@@ -8,7 +8,7 @@ const GridContext = createContext({}) as Context<Pick<GridProps, 'columns'>>
 
 const GridCol = forwardRef<HTMLDivElement, GridColProps>(function GridCol(props, forwardedRef) {
     const [gridColProps, { children, asChild, ...htmlProps }] = useDefinitionProps(props, gridColPropsDefinition)
-    const Comp = asChild ? StGridCol.withComponent(Slot) : StGridCol
+    const Comp = useMemo(() => (asChild ? StGridCol.withComponent(Slot) : StGridCol), [asChild])
     const { columns } = useContext(GridContext)
     return (
         <Comp
