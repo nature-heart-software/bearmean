@@ -16,8 +16,8 @@ const GridCol = forwardRef<HTMLDivElement, GridColProps>(function GridCol(props,
             ref={forwardedRef}
             {...htmlProps}
             styled={{
-                columns,
                 ...gridColProps,
+                columns: columns || gridColProps.columns,
             }}
         >
             {children}

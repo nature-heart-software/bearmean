@@ -12,13 +12,14 @@ export const StContainer = styled(
     Object.values(breakpoints).map(({ value, margin, gutter }) => ({
         [`@media (min-width: ${rem(value + 2 * margin)})`]: {
             width: '100%',
-            maxWidth: fluid
-                ? '100%'
-                : rem(
-                      size && value > (breakpoints[size as keyof typeof breakpoints] as Screens[keyof Screens]).value
-                          ? (breakpoints[size as keyof typeof breakpoints] as Screens[keyof Screens]).value
-                          : value
-                  ),
+            maxWidth:
+                fluid || !value
+                    ? '100%'
+                    : rem(
+                          size && value > (breakpoints[size as keyof typeof breakpoints] as Screens[keyof Screens]).value
+                              ? (breakpoints[size as keyof typeof breakpoints] as Screens[keyof Screens]).value
+                              : value
+                      ),
             margin: `0 auto`,
             padding: `0 ${rem(gutter)}`,
         },
