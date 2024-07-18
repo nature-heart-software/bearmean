@@ -42,6 +42,5 @@ export const StGroup = styled(
     '& > *': {
         minWidth: 0,
         minHeight: 0,
-        flexGrow: 1,
     },
 }))
