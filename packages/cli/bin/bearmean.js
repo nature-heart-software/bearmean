@@ -12,7 +12,7 @@ const {
     _,
     p = 'react',
     package: packageName = p,
-    c = path.resolve(__dirname, '../pristine-cli.config.json'),
+    c = path.resolve(__dirname, '../bearmean-cli.config.json'),
     config: cliConfigPath = c,
 } = require('minimist')(process.argv.slice(2))
 
@@ -120,7 +120,7 @@ function getComponentPath({ componentName, packageName, sourceConfig, sourceConf
     })
 }
 
-async function pristine() {
+async function bearmean() {
     const action = _[0]
     const componentName = _[1]
     const cliConfig = require(path.resolve(process.cwd(), cliConfigPath))
@@ -234,4 +234,4 @@ async function pristine() {
         })
 }
 
-pristine()
+bearmean()

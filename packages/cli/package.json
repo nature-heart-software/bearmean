@@ -1,16 +1,16 @@
 {
-  "name": "@pristine/cli",
+  "name": "@bearmean/cli",
   "version": "0.0.0",
   "private": false,
-  "homepage": "https://github.com/nature-heart-software/pristine",
+  "homepage": "https://github.com/nature-heart-software/bearmean",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nature-heart-software/pristine.git",
+    "url": "git+https://github.com/nature-heart-software/bearmean.git",
     "directory": "packages/cli"
   },
   "main": "index.js",
   "bin": {
-    "pristine": "bin/pristine.js"
+    "bearmean": "bin/bearmean.js"
   },
   "dependencies": {
     "@root/walk": "^1.1.0",

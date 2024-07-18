@@ -1,11 +1,11 @@
 {
-  "name": "@pristine/react",
+  "name": "@bearmean/react",
   "version": "0.0.0",
   "private": false,
-  "homepage": "https://github.com/nature-heart-software/pristine",
+  "homepage": "https://github.com/nature-heart-software/bearmean",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nature-heart-software/pristine.git",
+    "url": "git+https://github.com/nature-heart-software/bearmean.git",
     "directory": "packages/react"
   },
   "type": "module",
@@ -19,7 +19,7 @@
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
-    "@pristine/cli": "*"
+    "@bearmean/cli": "*"
   },
   "dependencies": {
     "@emotion/styled": "^11.11.5",

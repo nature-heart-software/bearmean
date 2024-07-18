@@ -1,0 +1,8 @@
+{
+  "packages": {
+    "react": "@bearmean/react"
+  },
+  "sourceConfigFileName": "bearmean-source.config.json",
+  "targetConfigFileName": "bearmean.config.json",
+  "commandName": "bearmean"
+}

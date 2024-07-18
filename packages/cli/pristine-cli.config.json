@@ -1,8 +1,0 @@
-{
-  "packages": {
-    "react": "@pristine/react"
-  },
-  "sourceConfigFileName": "pristine-source.config.json",
-  "targetConfigFileName": "pristine.config.json",
-  "commandName": "pristine"
-}
