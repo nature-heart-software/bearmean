@@ -4,8 +4,8 @@ export const elevation = {
 
 export type Elevation = keyof typeof elevation
 
-declare module '@emotion/react' {
-    export interface Theme {
+declare module '@/tokens' {
+    export interface BearmeanTheme {
         elevation: typeof elevation
     }
 }

@@ -32,8 +32,8 @@ export type Screens = typeof screens
 
 export type Screen = keyof Screens
 
-declare module '@emotion/react' {
-    export interface Theme {
+declare module '@/tokens' {
+    export interface BearmeanTheme {
         screens: Screens
     }
 }

@@ -14,8 +14,8 @@ export const ratio = {
 
 export type Ratio = keyof typeof ratio
 
-declare module '@emotion/react' {
-    export interface Theme {
+declare module '@/tokens' {
+    export interface BearmeanTheme {
         ratio: typeof ratio
     }
 }

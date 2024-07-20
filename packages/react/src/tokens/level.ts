@@ -11,8 +11,8 @@ export const level = {
 
 export type Level = keyof typeof level
 
-declare module '@emotion/react' {
-    export interface Theme {
+declare module '@/tokens' {
+    export interface BearmeanTheme {
         level: typeof level
     }
 }
