@@ -33,7 +33,7 @@ export type Screens = typeof screens
 export type Screen = keyof Screens
 
 declare module '@/tokens' {
-    export interface BearmeanTheme {
+    export interface Theme {
         screens: Screens
     }
 }

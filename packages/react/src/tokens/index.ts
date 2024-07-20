@@ -6,21 +6,21 @@ export * from './ratio'
 export * from './screens'
 export * from './spacing'
 
-export interface BearmeanTheme {}
+export interface Theme {}
 
-export interface BearmeanThemeOverride {}
+export interface ThemeOverride {}
 
-type BearmeanMergedTheme = {
-    [Key in keyof BearmeanTheme]-?: Key extends keyof BearmeanThemeOverride ? BearmeanThemeOverride[Key] : BearmeanTheme[Key]
+type BearmeanTheme = {
+    [Key in keyof Theme]-?: Key extends keyof ThemeOverride ? ThemeOverride[Key] : Theme[Key]
 }
 
 declare module '@emotion/react' {
-    export interface Theme extends BearmeanMergedTheme {}
+    export interface Theme extends BearmeanTheme {}
 }
 
 /* Override default theme like this: */
 // declare module '@/tokens' {
-//     export interface BearmeanThemeOverride {
+//     export interface ThemeOverride {
 //         screens: {
 //             min: {
 //                 value: number

@@ -42,7 +42,7 @@ export type NegativeSpacing = keyof typeof negativeSpacing
 export type PositiveSpacing = keyof typeof positiveSpacing
 
 declare module '@/tokens' {
-    export interface BearmeanTheme {
+    export interface Theme {
         spacing: typeof spacing
         negativeSpacing: typeof negativeSpacing
         positiveSpacing: typeof positiveSpacing

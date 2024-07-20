@@ -21,7 +21,7 @@ export const borderWidth = {
 export type BorderWidth = keyof typeof borderWidth
 
 declare module '@/tokens' {
-    export interface BearmeanTheme {
+    export interface Theme {
         borderRadius: typeof borderRadius
         borderStyle: typeof borderStyle
         borderWidth: typeof borderWidth

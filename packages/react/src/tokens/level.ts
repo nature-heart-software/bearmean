@@ -12,7 +12,7 @@ export const level = {
 export type Level = keyof typeof level
 
 declare module '@/tokens' {
-    export interface BearmeanTheme {
+    export interface Theme {
         level: typeof level
     }
 }

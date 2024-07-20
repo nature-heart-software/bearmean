@@ -5,7 +5,7 @@ export const elevation = {
 export type Elevation = keyof typeof elevation
 
 declare module '@/tokens' {
-    export interface BearmeanTheme {
+    export interface Theme {
         elevation: typeof elevation
     }
 }

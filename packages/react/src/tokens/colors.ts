@@ -298,7 +298,7 @@ export type Colors = typeof colors
 export type Color = ObjectDotNotation<Colors>
 
 declare module '@/tokens' {
-    export interface BearmeanTheme {
+    export interface Theme {
         colors: Colors
     }
 }

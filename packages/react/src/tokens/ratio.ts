@@ -15,7 +15,7 @@ export const ratio = {
 export type Ratio = keyof typeof ratio
 
 declare module '@/tokens' {
-    export interface BearmeanTheme {
+    export interface Theme {
         ratio: typeof ratio
     }
 }
