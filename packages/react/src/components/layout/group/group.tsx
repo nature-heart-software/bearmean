@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { forwardRef, useMemo } from 'react'
 import { StGroup } from './group.styled'
 import { GroupProps, groupPropsDefinition } from './group.shared'
 import { Slot } from '@radix-ui/react-slot'
