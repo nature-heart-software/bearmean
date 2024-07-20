@@ -1,5 +1,22 @@
 {
-  "branches": ["main"],
+  "branches": [
+    "main",
+    {
+      "name": "pre/rc",
+      "channel": "pre/rc",
+      "prerelease": "rc"
+    },
+    {
+      "name": "beta",
+      "channel": "beta",
+      "prerelease": "beta"
+    },
+    {
+      "name": "alpha",
+      "channel": "alpha",
+      "prerelease": "alpha"
+    }
+  ],
   "plugins": [
     [
       "@semantic-release/npm",

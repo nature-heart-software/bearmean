@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - main
+      - pre/rc
+      - beta
+      - alpha
 
 jobs:
   tag-release:
