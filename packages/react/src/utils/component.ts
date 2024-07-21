@@ -20,7 +20,7 @@ type HasDefaultValue = { _HAS_DEFAULT_VALUE: boolean }
 
 type OfType<T = unknown> = { value: T }
 
-type Definitions = {
+export type Definitions = {
     [key: string]: OfType
 }
 
@@ -82,7 +82,7 @@ export const useDefinitionProps = <P extends object, D extends Definitions>(
                 .reduce((acc, val) => ({ ...acc, ...Object.fromEntries(val.map((key) => [key, undefined])) }), {}),
         [screens]
     )
-    
+
     const propsDefinitionWithVariants = {
         ...mapValues(propsDefinition, (definition) => definition.value),
         ...responsiveProps,

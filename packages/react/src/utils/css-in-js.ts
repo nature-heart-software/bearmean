@@ -5,7 +5,7 @@ import get from 'lodash/get'
 import isUndefined from 'lodash/isUndefined'
 import { StyledOptions } from '@emotion/styled'
 import isPropValid from '@emotion/is-prop-valid'
-import { PropsDefinitionWithDefaults } from '@/utils/component'
+import { Definitions, PropsDefinitionWithDefaults } from '@/utils/component'
 
 export function getStyledOptions(override: StyledOptions = {}): StyledOptions {
     return {
@@ -14,7 +14,7 @@ export function getStyledOptions(override: StyledOptions = {}): StyledOptions {
     }
 }
 
-export type StyledProps<P extends object> = {
+export type StyledProps<P extends Definitions> = {
     styled: PropsDefinitionWithDefaults<P>
 }
 
