@@ -4,6 +4,11 @@
       "components": "./src/components",
       "tokens": "./src/tokens",
       "utils": "./src/utils"
+    },
+    "aliases": {
+      "components": "@/components",
+      "tokens": "@/tokens",
+      "utils": "@/utils"
     }
   }
 }

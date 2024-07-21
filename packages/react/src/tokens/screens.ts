@@ -1,4 +1,5 @@
 import { spacing } from '@/tokens/spacing'
+import { MergedTheme } from '@/tokens'
 
 export const screens = {
     min: {
@@ -28,12 +29,11 @@ export const screens = {
     },
 } as const
 
-export type Screens = typeof screens
-
-export type Screen = keyof Screens
-
 declare module '@/tokens' {
     export interface Theme {
-        screens: Screens
+        screens: typeof screens
     }
 }
+
+export type Screens = MergedTheme['screens']
+export type Screen = keyof MergedTheme['screens']

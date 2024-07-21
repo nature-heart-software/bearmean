@@ -1,7 +1,7 @@
 import { HTMLAttributes } from 'react'
 import { defineProps, PropsDefinition } from '@/utils/component'
 import { boxPropsDefinition } from '@/components/layout/box'
-import { Screen, Screens } from '@/tokens/screens'
+import { Screen, Screens } from '@/tokens'
 
 export const containerPropsDefinition = defineProps(({ optional }) => ({
     ...boxPropsDefinition,

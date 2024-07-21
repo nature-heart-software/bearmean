@@ -10,12 +10,12 @@ export interface Theme {}
 
 export interface ThemeOverride {}
 
-type BearmeanTheme = {
+export type MergedTheme = {
     [Key in keyof Theme]-?: Key extends keyof ThemeOverride ? ThemeOverride[Key] : Theme[Key]
 }
 
 declare module '@emotion/react' {
-    export interface Theme extends BearmeanTheme {}
+    export interface Theme extends MergedTheme {}
 }
 
 /* Override default theme like this: */

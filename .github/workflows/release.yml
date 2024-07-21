@@ -38,6 +38,9 @@ jobs:
         run: |
           echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
+      - name: Build
+        run: npx lerna run build
+
       - name: Version
         run: npx lerna version $RELEASE_VERSION --yes --no-private --force-publish --no-git-tag-version
 

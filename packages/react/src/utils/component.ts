@@ -1,8 +1,9 @@
 import pick from 'lodash/pick'
-import { omit } from 'lodash'
-import { Screen, screens } from '@/tokens/screens'
+import omit from 'lodash/omit'
+import { Screen, screens as _screens } from '@/tokens'
 import { useMemo } from 'react'
 import mapValues from 'lodash/mapValues'
+import { useTheme } from '@emotion/react'
 
 export type UndefinedProperties<T> = {
     [P in keyof T]-?: undefined extends T[P] ? P : never
@@ -14,11 +15,12 @@ type NonUndefined<T> = T extends undefined ? never : T
 
 type IsOptional = { _IS_OPTIONAL: true }
 type IsRequired = { _IS_REQUIRED: true }
+type IsResponsive = { _IS_RESPONSIVE: true }
 type HasDefaultValue = { _HAS_DEFAULT_VALUE: boolean }
 
 type OfType<T = unknown> = { value: T }
 
-type Definitions = {
+export type Definitions = {
     [key: string]: OfType
 }
 
@@ -33,7 +35,7 @@ type DefineRequired = {
 }
 
 type DefineResponsive = {
-    <P extends Definitions>(props: P): P & { [K in keyof P as `${Screen}${Capitalize<Extract<keyof P, string>>}`]: P[K] }
+    <P extends Definitions>(props: P): { [K in keyof P]: P[K] & IsResponsive } & { [K in keyof P as `${Screen}${Capitalize<Extract<keyof P, string>>}`]: P[K] }
 }
 
 const optional: DefineOptional = (defaultValue?) => {
@@ -45,22 +47,7 @@ const required: DefineRequired = (defaultValue?) => {
 }
 
 const responsive: DefineResponsive = (props) => {
-    return {
-        ...props,
-        ...(Object.keys(screens) as Screen[])
-            .map((screen) => {
-                return Object.keys(props)
-                    .map((prop) => {
-                        const capitalizedProp = String(prop).charAt(0).toUpperCase() + String(prop).slice(1)
-
-                        return {
-                            [`${screen}${capitalizedProp}`]: optional(),
-                        } as any
-                    })
-                    .reduce((acc, curr) => ({ ...acc, ...curr }), {})
-            })
-            .reduce((acc, curr) => ({ ...acc, ...curr }), {}),
-    }
+    return mapValues(props, (definition: OfType) => ({ ...definition, _IS_RESPONSIVE: true })) as any
 }
 
 type DefinitionsUtils = {
@@ -81,9 +68,28 @@ export const useDefinitionProps = <P extends object, D extends Definitions>(
     propsDefinition: D,
     overrideProps?: { [K in keyof D]?: D[K]['value'] }
 ): [PropsDefinitionWithDefaults<D>, Omit<P, keyof D>] => {
-    const propsDefinitionWithVariants = { ...mapValues(propsDefinition, (definition) => definition.value), ...overrideProps } as PropsDefinitionWithDefaults<D>
+    const { screens = _screens } = useTheme() || {}
+    const responsiveProps = useMemo(
+        () =>
+            Object.entries(propsDefinition)
+                .filter(([_, definition]) => (definition as any)._IS_RESPONSIVE)
+                .map(([key]) => {
+                    const capitalizedProp = key.charAt(0).toUpperCase() + key.slice(1)
+                    return Object.keys(screens).map((screen) => `${screen}${capitalizedProp}`)
+                })
+                .reduce((acc, val) => ({ ...acc, ...Object.fromEntries(val.map((key) => [key, undefined])) }), {}),
+        [screens]
+    )
+
+    const propsDefinitionWithVariants = {
+        ...mapValues(propsDefinition, (definition) => definition.value),
+        ...responsiveProps,
+        ...overrideProps,
+    } as PropsDefinitionWithDefaults<D>
+
     const extractedProps = { ...propsDefinitionWithVariants, ...pick(props, Object.keys(propsDefinitionWithVariants)) } as PropsDefinitionWithDefaults<D>
     const rest = omit(props, Object.keys(propsDefinitionWithVariants)) as Omit<P, keyof D>
+
     return [extractedProps, rest]
 }
 
