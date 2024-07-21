@@ -1,13 +1,13 @@
 import { HTMLAttributes } from 'react'
 import { defineProps, PropsDefinition } from '@/utils/component'
 import { boxPropsDefinition } from '@/components/layout/box'
-import { MergedTheme } from '@/tokens'
+import { Screen, Screens } from '@/tokens'
 
 export const containerPropsDefinition = defineProps(({ optional }) => ({
     ...boxPropsDefinition,
     fluid: optional<boolean>(),
-    size: optional<keyof MergedTheme['screens']>(),
-    breakpoints: optional<(keyof MergedTheme['screens'])[]>(),
+    size: optional<Screen>(),
+    breakpoints: optional<Screens[]>(),
 }))
 
 export type ContainerPropsDefinition = typeof containerPropsDefinition

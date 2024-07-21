@@ -1,6 +1,6 @@
 import pick from 'lodash/pick'
 import omit from 'lodash/omit'
-import { MergedTheme, screens as _screens } from '@/tokens'
+import { Screen, screens as _screens } from '@/tokens'
 import { useMemo } from 'react'
 import mapValues from 'lodash/mapValues'
 import { useTheme } from '@emotion/react'
@@ -35,9 +35,7 @@ type DefineRequired = {
 }
 
 type DefineResponsive = {
-    <P extends Definitions>(
-        props: P
-    ): { [K in keyof P]: P[K] & IsResponsive } & { [K in keyof P as `${keyof MergedTheme['screens']}${Capitalize<Extract<keyof P, string>>}`]: P[K] }
+    <P extends Definitions>(props: P): { [K in keyof P]: P[K] & IsResponsive } & { [K in keyof P as `${Screen}${Capitalize<Extract<keyof P, string>>}`]: P[K] }
 }
 
 const optional: DefineOptional = (defaultValue?) => {

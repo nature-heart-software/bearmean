@@ -1,4 +1,5 @@
 import { ObjectDotNotation } from '@/utils/object'
+import { MergedTheme } from '@/tokens'
 
 export const colors = {
     inherit: 'inherit',
@@ -294,11 +295,10 @@ export const colors = {
     },
 } as const
 
-export type Colors = typeof colors
-export type Color = ObjectDotNotation<Colors>
-
 declare module '@/tokens' {
     export interface Theme {
-        colors: Colors
+        colors: typeof colors
     }
 }
+
+export type Color = ObjectDotNotation<MergedTheme['colors']>

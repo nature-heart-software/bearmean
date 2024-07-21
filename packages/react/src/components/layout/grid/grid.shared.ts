@@ -3,11 +3,11 @@ import { defineProps, PropsDefinition } from '@/utils/component'
 import { boxPropsDefinition } from '@/components/layout/box'
 import { Spacing } from '@/tokens/spacing'
 import { Properties } from 'csstype'
-import { MergedTheme } from '@/tokens'
+import { Screens } from '@/tokens'
 
 export const gridPropsDefinition = defineProps(({ optional }) => ({
     ...boxPropsDefinition,
-    breakpoints: optional<MergedTheme['screens']>(),
+    breakpoints: optional<Screens>(),
     gap: optional<Spacing | Properties['gap'] | number>('3'),
     columns: optional<number>(12),
     rows: optional<number>(),
