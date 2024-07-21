@@ -1,9 +1,9 @@
 import styled from '@emotion/styled'
 import { ContainerPropsDefinition } from './container.shared'
 import { StBox } from '@/components/layout/box'
-import { Screens, screens as _screens } from '@/tokens/screens'
 import { rem } from 'polished'
 import { getStyledOptions, StyledProps } from '@/utils'
+import { MergedTheme, screens as _screens } from '@/tokens'
 
 export const StContainer = styled(
     StBox,
@@ -16,8 +16,8 @@ export const StContainer = styled(
                 fluid || !value
                     ? '100%'
                     : rem(
-                          size && value > (breakpoints[size as keyof typeof breakpoints] as Screens[keyof Screens]).value
-                              ? (breakpoints[size as keyof typeof breakpoints] as Screens[keyof Screens]).value
+                          size && value > (breakpoints[size as keyof typeof breakpoints] as MergedTheme['screens'][keyof MergedTheme['screens']]).value
+                              ? (breakpoints[size as keyof typeof breakpoints] as MergedTheme['screens'][keyof MergedTheme['screens']]).value
                               : value
                       ),
             margin: `0 auto`,

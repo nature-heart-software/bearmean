@@ -1,23 +1,13 @@
 import { HTMLAttributes } from 'react'
 import { defineProps, PropsDefinition } from '@/utils/component'
 import { boxPropsDefinition } from '@/components/layout/box'
-import { Screen, Screens } from '@/tokens/screens'
 import { Spacing } from '@/tokens/spacing'
 import { Properties } from 'csstype'
-
-type ColPropName<T extends string> = `${T}Span` | `${T}Start` | `${T}End`
-type ColBreakpointProps = ColPropName<Screen>
-type RowPropName<T extends string> = `${T}RowSpan` | `${T}RowStart` | `${T}RowEnd`
-type RowPreakpointProps = RowPropName<Screen>
-export type GridColResponsiveProps = {
-    [key in ColBreakpointProps]?: Properties['gridColumnStart'] | number
-} & {
-    [key in RowPreakpointProps]?: Properties['gridRowStart'] | number
-}
+import { MergedTheme } from '@/tokens'
 
 export const gridPropsDefinition = defineProps(({ optional }) => ({
     ...boxPropsDefinition,
-    breakpoints: optional<Screens>(),
+    breakpoints: optional<MergedTheme['screens']>(),
     gap: optional<Spacing | Properties['gap'] | number>('3'),
     columns: optional<number>(12),
     rows: optional<number>(),
