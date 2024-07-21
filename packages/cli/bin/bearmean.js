@@ -4,7 +4,6 @@ const { program } = require('commander')
 const pkg = require('../package.json')
 const { add } = require('./_add')
 const { init } = require('./_init')
-const fs = require('node:fs')
 
 program.name('bearmean').description('Bearmean CLI').version(pkg.version)
 
