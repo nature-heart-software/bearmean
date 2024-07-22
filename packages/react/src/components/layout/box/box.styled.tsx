@@ -11,8 +11,9 @@ import {
 import get from 'lodash/get'
 import { getRawValue, getRemValue, StyledProps } from '@/utils/css-in-js'
 import isUndefined from 'lodash/isUndefined'
+import { PropsDefinitionWithDefaults } from '@/utils'
 
-export const StBox = styled('div')<StyledProps<BoxPropsDefinition>>((context) => {
+export const StBox = styled('div')<StyledProps<PropsDefinitionWithDefaults<BoxPropsDefinition>>>((context) => {
     const {
         theme: { spacing = _spacing, colors = _colors, borderRadius = _borderRadius, borderStyle = _borderStyle, borderWidth = _borderWidth },
         styled: {

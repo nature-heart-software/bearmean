@@ -3,6 +3,7 @@ import { GroupPropsDefinition } from './group.shared'
 import { getRemValue, StyledProps } from '@/utils/css-in-js'
 import { spacing as _spacing } from '@/tokens'
 import { StBox } from '@/components/layout/box'
+import { PropsDefinitionWithDefaults } from '@/utils'
 
 const POSITIONS = {
     top: 'flex-start',
@@ -16,7 +17,7 @@ const POSITIONS = {
     apart: 'space-between',
 } as const
 
-export const StGroup = styled(StBox)<StyledProps<GroupPropsDefinition>>((context) => {
+export const StGroup = styled(StBox)<StyledProps<PropsDefinitionWithDefaults<GroupPropsDefinition>>>((context) => {
     const {
         theme: { spacing = _spacing },
         styled: { direction, wrap, justify, align, gap },

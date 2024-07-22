@@ -5,8 +5,9 @@ import { Properties } from 'csstype'
 import { level as _level, spacing as _spacing } from '@/tokens'
 import isUndefined from 'lodash/isUndefined'
 import { StTransform } from '@/components/layout/transform'
+import { PropsDefinitionWithDefaults } from '@/utils'
 
-export const StPosition = styled(StTransform)<StyledProps<PositionPropsDefinition>>((context) => {
+export const StPosition = styled(StTransform)<StyledProps<PropsDefinitionWithDefaults<PositionPropsDefinition>>>((context) => {
     const {
         theme: { level = _level, spacing = _spacing },
         styled: { relative, absolute, fixed, sticky, static: staticProp, position, inset, top, left, right, bottom, z },

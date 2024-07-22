@@ -3,10 +3,9 @@ import { Screen, Screens, screens as _screens } from '@/tokens'
 import { InterpolationPrimitive } from '@emotion/serialize'
 import get from 'lodash/get'
 import isUndefined from 'lodash/isUndefined'
-import { Definitions, PropsDefinitionWithDefaults } from '@/utils/component'
 
-export type StyledProps<P extends Definitions> = {
-    styled: PropsDefinitionWithDefaults<P>
+export type StyledProps<P extends object> = {
+    styled: P
 }
 
 export const getRemValue = <V extends string | number, R extends Record<string, unknown>>(value: V, from?: R) => {

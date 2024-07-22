@@ -3,6 +3,7 @@ import { StackPropsDefinition } from './stack.shared'
 import { getRemValue, StyledProps } from '@/utils/css-in-js'
 import { spacing as _spacing } from '@/tokens'
 import { StBox } from '@/components/layout/box'
+import { PropsDefinitionWithDefaults } from '@/utils'
 
 const POSITIONS = {
     top: 'flex-start',
@@ -16,7 +17,7 @@ const POSITIONS = {
     apart: 'space-between',
 } as const
 
-export const StStack = styled(StBox)<StyledProps<StackPropsDefinition>>((context) => {
+export const StStack = styled(StBox)<StyledProps<PropsDefinitionWithDefaults<StackPropsDefinition>>>((context) => {
     const {
         theme: { spacing = _spacing },
         styled: { justify, align, gap },

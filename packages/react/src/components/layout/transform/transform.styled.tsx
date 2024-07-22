@@ -2,10 +2,10 @@ import styled from '@emotion/styled'
 import { TransformPropsDefinition } from './transform.shared'
 import { StBox } from '@/components/layout/box'
 import isUndefined from 'lodash/isUndefined'
-import { getRemValue, StyledProps } from '@/utils'
+import { getRemValue, PropsDefinitionWithDefaults, StyledProps } from '@/utils'
 import { spacing as _spacing } from '@/tokens'
 
-export const StTransform = styled(StBox)<StyledProps<TransformPropsDefinition>>((context) => {
+export const StTransform = styled(StBox)<StyledProps<PropsDefinitionWithDefaults<TransformPropsDefinition>>>((context) => {
     const {
         theme: { spacing = _spacing },
         styled: {
