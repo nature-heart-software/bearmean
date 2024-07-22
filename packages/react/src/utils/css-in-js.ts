@@ -1,5 +1,5 @@
 import { rem } from 'polished'
-import { Screen, Screens, screens as _screens } from '@/tokens/screens'
+import { Screen, Screens, screens as _screens } from '@/tokens'
 import { InterpolationPrimitive } from '@emotion/serialize'
 import get from 'lodash/get'
 import isUndefined from 'lodash/isUndefined'

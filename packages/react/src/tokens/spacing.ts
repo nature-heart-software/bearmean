@@ -1,4 +1,4 @@
-import { Theme } from '@/tokens/index'
+import { Theme } from '@/tokens'
 
 export const negativeSpacing = {
     '-13': -160,

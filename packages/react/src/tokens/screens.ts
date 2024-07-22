@@ -1,5 +1,4 @@
-import { spacing } from '@/tokens/spacing'
-import { Theme } from '@/tokens'
+import { spacing, Theme } from '@/tokens'
 
 export const screens = {
     min: {
