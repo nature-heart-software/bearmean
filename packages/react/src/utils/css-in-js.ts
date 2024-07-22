@@ -3,16 +3,7 @@ import { Screen, Screens, screens as _screens } from '@/tokens'
 import { InterpolationPrimitive } from '@emotion/serialize'
 import get from 'lodash/get'
 import isUndefined from 'lodash/isUndefined'
-import { StyledOptions } from '@emotion/styled'
-import isPropValid from '@emotion/is-prop-valid'
 import { Definitions, PropsDefinitionWithDefaults } from '@/utils/component'
-
-export function getStyledOptions(override: StyledOptions = {}): StyledOptions {
-    return {
-        ...override,
-        shouldForwardProp: (prop) => isPropValid(prop) || !!override.shouldForwardProp?.(prop),
-    }
-}
 
 export type StyledProps<P extends Definitions> = {
     styled: PropsDefinitionWithDefaults<P>

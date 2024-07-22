@@ -2,13 +2,10 @@ import styled from '@emotion/styled'
 import { ContainerPropsDefinition } from './container.shared'
 import { StBox } from '@/components/layout/box'
 import { rem } from 'polished'
-import { getStyledOptions, StyledProps } from '@/utils'
+import { StyledProps } from '@/utils'
 import { Screen, Screens, screens as _screens } from '@/tokens'
 
-export const StContainer = styled(
-    StBox,
-    getStyledOptions()
-)<StyledProps<ContainerPropsDefinition>>((context) => {
+export const StContainer = styled(StBox)<StyledProps<ContainerPropsDefinition>>((context) => {
     const {
         theme: { screens = _screens },
         styled: { fluid, size, breakpoints = screens },

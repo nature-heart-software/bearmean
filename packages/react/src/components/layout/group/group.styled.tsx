@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { GroupPropsDefinition } from './group.shared'
-import { getRemValue, getStyledOptions, StyledProps } from '@/utils/css-in-js'
+import { getRemValue, StyledProps } from '@/utils/css-in-js'
 import { spacing as _spacing } from '@/tokens'
 import { StBox } from '@/components/layout/box'
 
@@ -16,10 +16,7 @@ const POSITIONS = {
     apart: 'space-between',
 } as const
 
-export const StGroup = styled(
-    StBox,
-    getStyledOptions()
-)<StyledProps<GroupPropsDefinition>>((context) => {
+export const StGroup = styled(StBox)<StyledProps<GroupPropsDefinition>>((context) => {
     const {
         theme: { spacing = _spacing },
         styled: { direction, wrap, justify, align, gap },

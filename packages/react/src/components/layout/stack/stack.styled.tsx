@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { StackPropsDefinition } from './stack.shared'
-import { getRemValue, getStyledOptions, StyledProps } from '@/utils/css-in-js'
+import { getRemValue, StyledProps } from '@/utils/css-in-js'
 import { spacing as _spacing } from '@/tokens'
 import { StBox } from '@/components/layout/box'
 
@@ -16,10 +16,7 @@ const POSITIONS = {
     apart: 'space-between',
 } as const
 
-export const StStack = styled(
-    StBox,
-    getStyledOptions()
-)<StyledProps<StackPropsDefinition>>((context) => {
+export const StStack = styled(StBox)<StyledProps<StackPropsDefinition>>((context) => {
     const {
         theme: { spacing = _spacing },
         styled: { justify, align, gap },

@@ -4,12 +4,9 @@ import { StBox } from '@/components/layout/box'
 import { rem } from 'polished'
 import { colors as _colors } from '@/tokens'
 import get from 'lodash/get'
-import { getStyledOptions, StyledProps } from '@/utils'
+import { StyledProps } from '@/utils'
 
-export const StDivider = styled(
-    StBox,
-    getStyledOptions()
-)<StyledProps<DividerPropsDefinition>>((context) => {
+export const StDivider = styled(StBox)<StyledProps<DividerPropsDefinition>>((context) => {
     const {
         theme: { colors = _colors },
         styled: { variant = 'horizontal', size, bs = 'solid', bc = 'slate.100' },

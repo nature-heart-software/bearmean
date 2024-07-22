@@ -9,13 +9,10 @@ import {
     spacing as _spacing,
 } from '@/tokens'
 import get from 'lodash/get'
-import { getRawValue, getRemValue, getStyledOptions, StyledProps } from '@/utils/css-in-js'
+import { getRawValue, getRemValue, StyledProps } from '@/utils/css-in-js'
 import isUndefined from 'lodash/isUndefined'
 
-export const StBox = styled(
-    'div',
-    getStyledOptions()
-)<StyledProps<BoxPropsDefinition>>((context) => {
+export const StBox = styled('div')<StyledProps<BoxPropsDefinition>>((context) => {
     const {
         theme: { spacing = _spacing, colors = _colors, borderRadius = _borderRadius, borderStyle = _borderStyle, borderWidth = _borderWidth },
         styled: {
