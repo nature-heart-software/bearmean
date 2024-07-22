@@ -10,4 +10,4 @@ declare module '@/tokens' {
     }
 }
 
-export type Elevation = keyof Theme
+export type Elevation = keyof Theme['elevation']
