@@ -1,6 +1,6 @@
 import pick from 'lodash/pick'
 import omit from 'lodash/omit'
-import { screens as _screens } from '@/tokens'
+import { Screen, screens as _screens } from '@/tokens'
 import { useMemo } from 'react'
 import mapValues from 'lodash/mapValues'
 import { useTheme } from '@emotion/react'
@@ -99,16 +99,15 @@ export const useVariantProps = <V extends object, CV extends keyof V>(variants: 
     return useMemo(() => (currentVariant ? variants[currentVariant] : {}), [currentVariant, variants])
 }
 
-export type PropsDefinition<P extends Definitions> = ToOptional<
-    {
-        // [K in keyof P as P[K] extends IsResponsive ? never : `${Screen}${Capitalize<Extract<keyof P, string>>}`]?: P[K]['value']
-    } & {
-        [K in keyof P]: P[K]['value']
-    }
->
+// TODO: Types are still wrong
+export type PropsDefinition<P extends Definitions> = {
+    [K in keyof P as P[K] extends IsResponsive ? `${Screen}${Capitalize<Extract<keyof P, string>>}` : never]?: P[K]['value']
+} & ToOptional<{
+    [K in keyof P]: P[K]['value']
+}>
 
 export type PropsDefinitionWithDefaults<P extends Definitions> = {
-    // [K in keyof P as P[K] extends IsResponsive ? never : `${Screen}${Capitalize<Extract<keyof P, string>>}`]?: P[K]['value']
+    [K in keyof P as P[K] extends IsResponsive ? `${Screen}${Capitalize<Extract<keyof P, string>>}` : never]?: P[K]['value']
 } & {
     [K in keyof P]: P[K] extends HasDefaultValue ? NonUndefined<P[K]['value']> : P[K]['value']
 }
