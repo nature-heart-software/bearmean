@@ -1,9 +1,8 @@
 import { HTMLAttributes } from 'react'
 import { defineProps, PropsDefinition } from '@/utils/component'
 import { boxPropsDefinition } from '@/components/layout/box'
-import { Spacing } from '@/tokens/spacing'
+import { Screens, Spacing } from '@/tokens'
 import { Properties } from 'csstype'
-import { Screens } from '@/tokens'
 
 export const gridPropsDefinition = defineProps(({ optional }) => ({
     ...boxPropsDefinition,

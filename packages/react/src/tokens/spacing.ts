@@ -1,4 +1,4 @@
-import { MergedTheme } from '@/tokens/index'
+import { Theme } from '@/tokens/index'
 
 export const negativeSpacing = {
     '-13': -160,
@@ -39,13 +39,13 @@ export const spacing = {
 } as const
 
 declare module '@/tokens' {
-    export interface Theme {
+    export interface DefaultTheme {
         spacing: typeof spacing
         negativeSpacing: typeof negativeSpacing
         positiveSpacing: typeof positiveSpacing
     }
 }
 
-export type Spacing = keyof MergedTheme['spacing']
-export type NegativeSpacing = keyof MergedTheme['negativeSpacing']
-export type PositiveSpacing = keyof MergedTheme['positiveSpacing']
+export type Spacing = keyof Theme['spacing']
+export type NegativeSpacing = keyof Theme['negativeSpacing']
+export type PositiveSpacing = keyof Theme['positiveSpacing']

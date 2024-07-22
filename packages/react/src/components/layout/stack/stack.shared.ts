@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'react'
-import { Spacing } from '@/tokens/spacing'
+import { Spacing } from '@/tokens'
 import { defineProps, PropsDefinition } from '@/utils/component'
 import { Properties } from 'csstype'
 import { boxPropsDefinition } from '@/components/layout/box'

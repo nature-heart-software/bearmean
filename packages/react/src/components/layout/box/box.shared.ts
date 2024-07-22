@@ -1,8 +1,5 @@
 import { HTMLAttributes } from 'react'
-import { PositiveSpacing, Spacing } from '@/tokens/spacing'
-import { Elevation } from '@/tokens/elevation'
-import { BorderRadius, BorderStyle, BorderWidth } from '@/tokens/border'
-import { Color } from '@/tokens/colors'
+import { BorderRadius, BorderStyle, BorderWidth, Color, Elevation, PositiveSpacing, Spacing } from '@/tokens'
 import { Properties } from 'csstype'
 import { defineProps, PropsDefinition } from '@/utils/component'
 

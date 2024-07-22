@@ -1,4 +1,4 @@
-import { MergedTheme } from '@/tokens'
+import { Theme } from '@/tokens'
 
 export const ratio = {
     auto: 'auto',
@@ -15,9 +15,9 @@ export const ratio = {
 } as const
 
 declare module '@/tokens' {
-    export interface Theme {
+    export interface DefaultTheme {
         ratio: typeof ratio
     }
 }
 
-export type Ratio = keyof MergedTheme['ratio']
+export type Ratio = keyof Theme['ratio']

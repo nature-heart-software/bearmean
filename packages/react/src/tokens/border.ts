@@ -1,4 +1,4 @@
-import { MergedTheme } from '@/tokens'
+import { Theme } from '@/tokens'
 
 export const borderRadius = {
     none: 0,
@@ -17,13 +17,13 @@ export const borderWidth = {
 } as const
 
 declare module '@/tokens' {
-    export interface Theme {
+    export interface DefaultTheme {
         borderRadius: typeof borderRadius
         borderStyle: typeof borderStyle
         borderWidth: typeof borderWidth
     }
 }
 
-export type BorderRadius = keyof MergedTheme['borderRadius']
-export type BorderStyle = keyof MergedTheme['borderStyle']
-export type BorderWidth = keyof MergedTheme['borderWidth']
+export type BorderRadius = keyof Theme['borderRadius']
+export type BorderStyle = keyof Theme['borderStyle']
+export type BorderWidth = keyof Theme['borderWidth']

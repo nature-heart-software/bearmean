@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { AspectPropsDefinition } from './aspect.shared'
 import { StBox } from '@/components/layout/box'
-import { ratio as _ratio } from '@/tokens/ratio'
+import { ratio as _ratio } from '@/tokens'
 import { getRawValue, getStyledOptions, StyledProps } from '@/utils/css-in-js'
 import isUndefined from 'lodash/isUndefined'
 

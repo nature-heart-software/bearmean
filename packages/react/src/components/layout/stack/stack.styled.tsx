@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { StackPropsDefinition } from './stack.shared'
 import { getRemValue, getStyledOptions, StyledProps } from '@/utils/css-in-js'
-import { spacing as _spacing } from '@/tokens/spacing'
+import { spacing as _spacing } from '@/tokens'
 import { StBox } from '@/components/layout/box'
 
 const POSITIONS = {
