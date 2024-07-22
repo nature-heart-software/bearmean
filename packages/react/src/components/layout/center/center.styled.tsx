@@ -6,8 +6,13 @@ import { getStyledOptions, StyledProps } from '@/utils'
 export const StCenter = styled(
     StBox,
     getStyledOptions()
-)<StyledProps<CenterPropsDefinition>>(({ styled: { inline } }) => ({
-    display: inline ? 'inline-flex' : 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}))
+)<StyledProps<CenterPropsDefinition>>((context) => {
+    const {
+        styled: { inline },
+    } = context
+    return {
+        display: inline ? 'inline-flex' : 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
+})

@@ -15,8 +15,8 @@ import isUndefined from 'lodash/isUndefined'
 export const StBox = styled(
     'div',
     getStyledOptions()
-)<StyledProps<BoxPropsDefinition>>(
-    ({
+)<StyledProps<BoxPropsDefinition>>((context) => {
+    const {
         theme: { spacing = _spacing, colors = _colors, borderRadius = _borderRadius, borderStyle = _borderStyle, borderWidth = _borderWidth },
         styled: {
             display,
@@ -64,7 +64,8 @@ export const StBox = styled(
             pointerEvents,
             userSelect,
         },
-    }) => [
+    } = context
+    return [
         {
             minWidth: 0,
             minHeight: 0,
@@ -212,4 +213,4 @@ export const StBox = styled(
             userSelect,
         },
     ]
-)
+})

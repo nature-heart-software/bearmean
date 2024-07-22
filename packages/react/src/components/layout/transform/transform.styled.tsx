@@ -8,32 +8,33 @@ import { spacing as _spacing } from '@/tokens'
 export const StTransform = styled(
     StBox,
     getStyledOptions()
-)<StyledProps<TransformPropsDefinition>>(({
-    theme: { spacing = _spacing },
-    styled: {
-        transform: transformProp,
-        transformOrigin,
-        translate,
-        translateX,
-        translateY,
-        translateZ,
-        translate3d,
-        rotate,
-        scale,
-        scaleX,
-        scaleY,
-        scaleZ,
-        scale3d,
-        skew,
-        skewX,
-        skewY,
-        rotateX,
-        rotateY,
-        rotateZ,
-        rotate3d,
-        perspective,
-    },
-}) => {
+)<StyledProps<TransformPropsDefinition>>((context) => {
+    const {
+        theme: { spacing = _spacing },
+        styled: {
+            transform: transformProp,
+            transformOrigin,
+            translate,
+            translateX,
+            translateY,
+            translateZ,
+            translate3d,
+            rotate,
+            scale,
+            scaleX,
+            scaleY,
+            scaleZ,
+            scale3d,
+            skew,
+            skewX,
+            skewY,
+            rotateX,
+            rotateY,
+            rotateZ,
+            rotate3d,
+            perspective,
+        },
+    } = context
     const transform = [
         transformProp,
         !isUndefined(translate) &&

@@ -19,28 +19,34 @@ const POSITIONS = {
 export const StGroup = styled(
     StBox,
     getStyledOptions()
-)<StyledProps<GroupPropsDefinition>>(({ theme: { spacing = _spacing }, styled: { direction, wrap, justify, align, gap } }) => ({
-    display: 'flex',
-    justifyContent:
-        direction === 'row'
-            ? justify in POSITIONS
-                ? POSITIONS[justify as keyof typeof POSITIONS]
-                : justify
-            : align in POSITIONS
-              ? POSITIONS[align as keyof typeof POSITIONS]
-              : align,
-    alignItems:
-        direction === 'row'
-            ? align in POSITIONS
-                ? POSITIONS[align as keyof typeof POSITIONS]
-                : align
-            : justify in POSITIONS
-              ? POSITIONS[justify as keyof typeof POSITIONS]
-              : justify,
-    gap: getRemValue(gap, spacing),
-    flexFlow: `${direction} ${wrap ? 'wrap' : 'nowrap'}`,
-    '& > *': {
-        minWidth: 0,
-        minHeight: 0,
-    },
-}))
+)<StyledProps<GroupPropsDefinition>>((context) => {
+    const {
+        theme: { spacing = _spacing },
+        styled: { direction, wrap, justify, align, gap },
+    } = context
+    return {
+        display: 'flex',
+        justifyContent:
+            direction === 'row'
+                ? justify in POSITIONS
+                    ? POSITIONS[justify as keyof typeof POSITIONS]
+                    : justify
+                : align in POSITIONS
+                  ? POSITIONS[align as keyof typeof POSITIONS]
+                  : align,
+        alignItems:
+            direction === 'row'
+                ? align in POSITIONS
+                    ? POSITIONS[align as keyof typeof POSITIONS]
+                    : align
+                : justify in POSITIONS
+                  ? POSITIONS[justify as keyof typeof POSITIONS]
+                  : justify,
+        gap: getRemValue(gap, spacing),
+        flexFlow: `${direction} ${wrap ? 'wrap' : 'nowrap'}`,
+        '& > *': {
+            minWidth: 0,
+            minHeight: 0,
+        },
+    }
+})

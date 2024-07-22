@@ -19,15 +19,21 @@ const POSITIONS = {
 export const StStack = styled(
     StBox,
     getStyledOptions()
-)<StyledProps<StackPropsDefinition>>(({ theme: { spacing = _spacing }, styled: { justify, align, gap } }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: align in POSITIONS ? POSITIONS[align as keyof typeof POSITIONS] : align,
-    alignItems: justify in POSITIONS ? POSITIONS[justify as keyof typeof POSITIONS] : justify,
-    gap: getRemValue(gap, spacing),
-    '& > *': {
-        minWidth: 0,
-        minHeight: 0,
-        flexGrow: align === 'stretch' ? 1 : undefined,
-    },
-}))
+)<StyledProps<StackPropsDefinition>>((context) => {
+    const {
+        theme: { spacing = _spacing },
+        styled: { justify, align, gap },
+    } = context
+    return {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: align in POSITIONS ? POSITIONS[align as keyof typeof POSITIONS] : align,
+        alignItems: justify in POSITIONS ? POSITIONS[justify as keyof typeof POSITIONS] : justify,
+        gap: getRemValue(gap, spacing),
+        '& > *': {
+            minWidth: 0,
+            minHeight: 0,
+            flexGrow: align === 'stretch' ? 1 : undefined,
+        },
+    }
+})

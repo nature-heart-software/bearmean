@@ -8,19 +8,25 @@ import isUndefined from 'lodash/isUndefined'
 export const StGrid = styled(
     StBox,
     getStyledOptions()
-)<StyledProps<GridPropsDefinition>>(({ theme: { spacing = _spacing }, styled: { align, columns, rows, gap } }) => [
-    {
-        display: 'grid',
-        gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
-        gap: getRemValue(gap, spacing),
-    },
-    !isUndefined(rows) && {
-        gridTemplateRows: `repeat(${rows}, minmax(0, 1fr))`,
-    },
-    align && {
-        alignItems: align,
-    },
-])
+)<StyledProps<GridPropsDefinition>>((context) => {
+    const {
+        theme: { spacing = _spacing },
+        styled: { align, columns, rows, gap },
+    } = context
+    return [
+        {
+            display: 'grid',
+            gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+            gap: getRemValue(gap, spacing),
+        },
+        !isUndefined(rows) && {
+            gridTemplateRows: `repeat(${rows}, minmax(0, 1fr))`,
+        },
+        align && {
+            alignItems: align,
+        },
+    ]
+})
 
 export const StGridCol = styled(
     StBox,

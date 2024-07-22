@@ -9,11 +9,12 @@ import { StTransform } from '@/components/layout/transform'
 export const StPosition = styled(
     StTransform,
     getStyledOptions()
-)<StyledProps<PositionPropsDefinition>>(
-    ({
+)<StyledProps<PositionPropsDefinition>>((context) => {
+    const {
         theme: { level = _level, spacing = _spacing },
         styled: { relative, absolute, fixed, sticky, static: staticProp, position, inset, top, left, right, bottom, z },
-    }) => [
+    } = context
+    return [
         {
             position:
                 ([relative && 'relative', absolute && 'absolute', fixed && 'fixed', sticky && 'sticky', staticProp && 'static'].filter(
@@ -39,4 +40,4 @@ export const StPosition = styled(
             zIndex: getRawValue(z, level),
         },
     ]
-)
+})

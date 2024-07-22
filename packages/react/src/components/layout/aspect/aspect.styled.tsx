@@ -8,8 +8,14 @@ import isUndefined from 'lodash/isUndefined'
 export const StAspect = styled(
     StBox,
     getStyledOptions()
-)<StyledProps<AspectPropsDefinition>>(({ theme: { ratio = _ratio }, styled: { ratio: ratioProp } }) => [
-    !isUndefined(ratioProp) && {
-        aspectRatio: getRawValue(ratioProp, ratio),
-    },
-])
+)<StyledProps<AspectPropsDefinition>>((context) => {
+    const {
+        theme: { ratio = _ratio },
+        styled: { ratio: ratioProp },
+    } = context
+    return [
+        !isUndefined(ratioProp) && {
+            aspectRatio: getRawValue(ratioProp, ratio),
+        },
+    ]
+})
