@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+    base: '/bearmean',
     outDir: '../../docs',
     head: [['link', { rel: 'icon', href: '/logo.png' }]],
     title: "bearmean",
