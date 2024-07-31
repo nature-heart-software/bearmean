@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./chunks/framework.kGLnCBoM.js";const l=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"cli/index.md","filePath":"cli/index.md"}'),n={name:"cli/index.md"};function c(r,i,o,s,d,p){return a(),t("div")}const m=e(n,[["render",c]]);export{l as __pageData,m as default};
