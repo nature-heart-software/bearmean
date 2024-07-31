@@ -26,12 +26,12 @@ hero:
 features:
   - title: Layout components
     details: Glue your UI together with intuitive layout components. Say goodbye to redundant Grid and Flexbox classes.
-    icon: 🐻
+    icon: 🍯
   - title: Props definition utilities
     details: Define props and default values with ease. Spread only what you need to your components.
-    icon: 🐻‍❄️
+    icon: 🍃
   - title: Own the code
     details: Copy/paste to your project with the CLI tool for easy customization. Allow your users to do the same for your library.
-    icon: 🐼
+    icon: 🐟
 ---
 
