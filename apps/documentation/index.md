@@ -12,16 +12,16 @@ hero:
   actions:
     - theme: brand
       text: Get started
-      link: /
+      link: /docs
     - theme: alt
       text: Components
-      link: /
+      link: /components
     - theme: alt
       text: Patterns
-      link: /
+      link: /patterns
     - theme: alt
       text: CLI
-      link: /
+      link: /cli
 
 features:
   - title: Layout components

@@ -7,7 +7,6 @@ const { resolve } = require('path')
 const copy = require('copy')
 const crawl = require('../modules/crawl')
 const replaceInFiles = require('replace-in-files')
-const globby = require('globby')
 
 const fileExtensions = ['.ts', '.tsx', '.js', '.jsx', '/index.ts', '/index.tsx', '/index.js', '/index.jsx']
 const originalRequireResolve = require.resolve
@@ -189,7 +188,11 @@ async function add({ componentName, packageName, cliConfigPath }) {
     const utilsPath = path.resolve(sourceConfigPath, '..', sourceConfig[packageName].paths.utils)
 
     const { config: targetConfig, configPath: targetConfigPath } = await loadTargetConfig({ cliConfig })
+
+    if (targetConfig.tsconfigPath) process.env.TS_NODE_PROJECT = path.resolve(process.cwd(), targetConfig.tsconfigPath)
     const { paths: targetPaths, absoluteBaseUrl: targetAbsoluteBaseUrl } = loadConfig(process.cwd())
+    if (process.env.TS_NODE_PROJECT) delete process.env.TS_NODE_PROJECT
+
     const componentFolders = Array.from(dependencies)
         .filter((dep) => dep.startsWith(componentsPath))
         .filter((dep) => dep.includes('index'))
@@ -205,7 +208,7 @@ async function add({ componentName, packageName, cliConfigPath }) {
     await Promise.all(
         componentFolders.map((folder) => {
             const targetFolder = path.join(targetAbsoluteBaseUrl, resolvePath(targetConfig.aliases.components, targetPaths), folder)
-            console.log('--', folder, '>', targetFolder)
+            console.log('--', folder || path.sep, '>', targetFolder)
             return new Promise((resolve) => copy(path.join(componentsPath, folder, '/*'), targetFolder, { overwrite: false }, resolve))
         })
     )

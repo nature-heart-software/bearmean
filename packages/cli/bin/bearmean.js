@@ -11,19 +11,23 @@ program
     .command('add')
     .description('Add a component to your project')
     .argument('<component>', 'Component or component category name')
-    .option('-c, --config', 'CLI config path', path.resolve(__dirname, '../bearmean-cli.config.json'))
-    .option('-p, --package', 'Package to pick from', 'react')
+    .option('-c, --config <path>', 'CLI config path', path.resolve(__dirname, '../bearmean-cli.config.json'))
+    .option('-p, --package <name>', 'Package to pick from', 'react')
     .action((componentName, options) => {
-        add({ componentName, packageName: options.package, cliConfigPath: options.config })
+        return add({
+            componentName,
+            packageName: options.package,
+            cliConfigPath: options.config,
+        })
     })
 
 program
     .command('init')
     .description('Create project configuration')
-    .option('-c, --config', 'CLI config path', path.resolve(__dirname, '../bearmean-cli.config.json'))
-    .option('-p, --package', 'Package to pick from', 'react')
+    .option('-c, --config <path>', 'CLI config path', path.resolve(__dirname, '../bearmean-cli.config.json'))
+    .option('-p, --package <name>', 'Package to pick from', 'react')
     .action(async (options) => {
-        init({ cliConfigPath: options.config })
+        return init({ cliConfigPath: options.config, tsConfig: options.tsConfig })
     })
 
 program.parse()
