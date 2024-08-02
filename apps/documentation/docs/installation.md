@@ -1,6 +1,6 @@
 # Installation
 
-1. Create a TypeScript project
+1. Create a React + TypeScript project
 
 ```bash
 npm create vite@latest
@@ -21,13 +21,19 @@ npm create vite@latest
 }
 ```
 
-3. Init Bearmean with the aliases above
+3. Install Bearmean
+
+```bash
+npm install @bearmean/react
+```
+
+4. Init Bearmean
 
 ```bash
 npx bearmean init
 ```
 
-4. Import Bearmean components
+5. Import Bearmean components
 
 ```bash
 npx bearmean add all # import all components
