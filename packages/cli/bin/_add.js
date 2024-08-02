@@ -98,7 +98,9 @@ function loadTargetConfig({ cliConfig }) {
 function getComponentPath({ componentName, packageName, sourceConfig, sourceConfigPath }) {
     return new Promise((resolve) => {
         const exclude = ['node_modules', '.git', '.idea', '.vscode', 'dist', 'build', 'coverage', 'public', 'static', 'tmp', 'temp', 'logs', 'logs', 'log']
-        return walk(path.resolve(sourceConfigPath, '..', sourceConfig[packageName].paths.components), (err, pathname, dirent) => {
+        const rootPath = path.resolve(sourceConfigPath, '..', sourceConfig[packageName].paths.components)
+        if (componentName === 'all') return resolve(path.resolve(rootPath, 'index.ts'))
+        return walk(rootPath, (err, pathname, dirent) => {
             if (err) {
                 console.warn('fs stat error for %s: %s', pathname, err.message)
                 return Promise.resolve()
