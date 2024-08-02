@@ -1,8 +1,5 @@
 import { HTMLAttributes } from 'react'
-import { PositiveSpacing, Spacing } from '@/tokens/spacing'
-import { Elevation } from '@/tokens/elevation'
-import { BorderRadius, BorderStyle, BorderWidth } from '@/tokens/border'
-import { Color } from '@/tokens/colors'
+import { BorderRadius, BorderStyle, BorderWidth, Color, Elevation, PositiveSpacing, Spacing } from '@/tokens'
 import { Properties } from 'csstype'
 import { defineProps, PropsDefinition } from '@/utils/component'
 
@@ -41,8 +38,8 @@ export const boxPropsDefinition = defineProps(({ optional }) => ({
     btrr: optional<BorderRadius | Properties['borderTopRightRadius'] | number>(),
     bblr: optional<BorderRadius | Properties['borderBottomLeftRadius'] | number>(),
     bbrr: optional<BorderRadius | Properties['borderBottomRightRadius'] | number>(),
-    bs: optional<BorderStyle | Properties['borderStyle']>('solid'),
-    bw: optional<BorderWidth | Properties['borderWidth'] | number>(0),
+    bs: optional<BorderStyle | Properties['borderStyle']>(),
+    bw: optional<BorderWidth | Properties['borderWidth'] | number>(),
     btw: optional<BorderWidth | Properties['borderTopWidth'] | number>(),
     brw: optional<BorderWidth | Properties['borderRightWidth'] | number>(),
     blw: optional<BorderWidth | Properties['borderLeftWidth'] | number>(),

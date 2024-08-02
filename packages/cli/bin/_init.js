@@ -4,7 +4,13 @@ const fs = require('node:fs')
 
 async function init({ cliConfigPath }) {
     const cliConfig = require(path.resolve(process.cwd(), cliConfigPath))
-    const { components, utils, tokens } = await prompts([
+    const { tsconfigPath, components, utils, tokens } = await prompts([
+        {
+            type: 'text',
+            name: 'tsconfigPath',
+            message: 'tsconfig path',
+            initial: './tsconfig.json',
+        },
         {
             type: 'text',
             name: 'components',
@@ -28,6 +34,7 @@ async function init({ cliConfigPath }) {
         path.resolve(process.cwd(), cliConfig.targetConfigFileName),
         JSON.stringify(
             {
+                tsconfigPath,
                 aliases: {
                     components,
                     utils,

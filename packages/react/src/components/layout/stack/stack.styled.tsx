@@ -1,8 +1,9 @@
 import styled from '@emotion/styled'
 import { StackPropsDefinition } from './stack.shared'
-import { getRemValue, getStyledOptions, StyledProps } from '@/utils/css-in-js'
-import { spacing as _spacing } from '@/tokens/spacing'
+import { getRemValue, StyledProps } from '@/utils/css-in-js'
+import { spacing as _spacing } from '@/tokens'
 import { StBox } from '@/components/layout/box'
+import { PropsDefinitionWithDefaults } from '@/utils'
 
 const POSITIONS = {
     top: 'flex-start',
@@ -16,18 +17,21 @@ const POSITIONS = {
     apart: 'space-between',
 } as const
 
-export const StStack = styled(
-    StBox,
-    getStyledOptions()
-)<StyledProps<StackPropsDefinition>>(({ theme: { spacing = _spacing }, styled: { justify, align, gap } }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: align in POSITIONS ? POSITIONS[align as keyof typeof POSITIONS] : align,
-    alignItems: justify in POSITIONS ? POSITIONS[justify as keyof typeof POSITIONS] : justify,
-    gap: getRemValue(gap, spacing),
-    '& > *': {
-        minWidth: 0,
-        minHeight: 0,
-        flexGrow: align === 'stretch' ? 1 : undefined,
-    },
-}))
+export const StStack = styled(StBox)<StyledProps<PropsDefinitionWithDefaults<StackPropsDefinition>>>((context) => {
+    const {
+        theme: { spacing = _spacing },
+        styled: { justify, align, gap },
+    } = context
+    return {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: align in POSITIONS ? POSITIONS[align as keyof typeof POSITIONS] : align,
+        alignItems: justify in POSITIONS ? POSITIONS[justify as keyof typeof POSITIONS] : justify,
+        gap: getRemValue(gap, spacing),
+        '& > *': {
+            minWidth: 0,
+            minHeight: 0,
+            flexGrow: align === 'stretch' ? 1 : undefined,
+        },
+    }
+})

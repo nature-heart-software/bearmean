@@ -6,16 +6,18 @@ export * from './ratio'
 export * from './screens'
 export * from './spacing'
 
-export interface Theme {}
+export interface DefaultTheme {}
 
 export interface ThemeOverride {}
 
-export type MergedTheme = {
-    [Key in keyof Theme]-?: Key extends keyof ThemeOverride ? ThemeOverride[Key] : Theme[Key]
+export type Theme = {
+    [Key in keyof DefaultTheme]-?: Key extends keyof ThemeOverride ? ThemeOverride[Key] : DefaultTheme[Key]
 }
 
+type EmotionTheme = Theme
+
 declare module '@emotion/react' {
-    export interface Theme extends MergedTheme {}
+    export interface Theme extends EmotionTheme {}
 }
 
 /* Override default theme like this: */

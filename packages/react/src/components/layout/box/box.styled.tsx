@@ -1,18 +1,20 @@
 import styled from '@emotion/styled'
 import { BoxPropsDefinition } from './box.shared'
-import { spacing as _spacing } from '@/tokens/spacing'
-import { elevation } from '@/tokens/elevation'
-import { borderRadius as _borderRadius, borderStyle as _borderStyle, borderWidth as _borderWidth } from '@/tokens/border'
-import { colors as _colors } from '@/tokens/colors'
+import {
+    borderRadius as _borderRadius,
+    borderStyle as _borderStyle,
+    borderWidth as _borderWidth,
+    colors as _colors,
+    elevation,
+    spacing as _spacing,
+} from '@/tokens'
 import get from 'lodash/get'
-import { getRawValue, getRemValue, getStyledOptions, StyledProps } from '@/utils/css-in-js'
+import { getRawValue, getRemValue, StyledProps } from '@/utils/css-in-js'
 import isUndefined from 'lodash/isUndefined'
+import { PropsDefinitionWithDefaults } from '@/utils'
 
-export const StBox = styled(
-    'div',
-    getStyledOptions()
-)<StyledProps<BoxPropsDefinition>>(
-    ({
+export const StBox = styled('div')<StyledProps<PropsDefinitionWithDefaults<BoxPropsDefinition>>>((context) => {
+    const {
         theme: { spacing = _spacing, colors = _colors, borderRadius = _borderRadius, borderStyle = _borderStyle, borderWidth = _borderWidth },
         styled: {
             display,
@@ -60,7 +62,8 @@ export const StBox = styled(
             pointerEvents,
             userSelect,
         },
-    }) => [
+    } = context
+    return [
         {
             minWidth: 0,
             minHeight: 0,
@@ -208,4 +211,4 @@ export const StBox = styled(
             userSelect,
         },
     ]
-)
+})

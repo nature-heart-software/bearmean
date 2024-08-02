@@ -1,8 +1,7 @@
 import { HTMLAttributes } from 'react'
 import { Properties } from 'csstype'
 import { defineProps, PropsDefinition } from '@/utils/component'
-import { Level } from '@/tokens/level'
-import { Spacing } from '@/tokens/spacing'
+import { Level, Spacing } from '@/tokens'
 import { transformPropsDefinition } from '@/components/layout/transform'
 
 export const positionPropsDefinition = defineProps(({ optional }) => ({

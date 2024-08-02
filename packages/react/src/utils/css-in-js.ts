@@ -1,21 +1,11 @@
 import { rem } from 'polished'
-import { Screen, Screens, screens as _screens } from '@/tokens/screens'
+import { Screen, Screens, screens as _screens } from '@/tokens'
 import { InterpolationPrimitive } from '@emotion/serialize'
 import get from 'lodash/get'
 import isUndefined from 'lodash/isUndefined'
-import { StyledOptions } from '@emotion/styled'
-import isPropValid from '@emotion/is-prop-valid'
-import { Definitions, PropsDefinitionWithDefaults } from '@/utils/component'
 
-export function getStyledOptions(override: StyledOptions = {}): StyledOptions {
-    return {
-        ...override,
-        shouldForwardProp: (prop) => isPropValid(prop) || !!override.shouldForwardProp?.(prop),
-    }
-}
-
-export type StyledProps<P extends Definitions> = {
-    styled: PropsDefinitionWithDefaults<P>
+export type StyledProps<P extends object> = {
+    styled: P
 }
 
 export const getRemValue = <V extends string | number, R extends Record<string, unknown>>(value: V, from?: R) => {

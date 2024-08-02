@@ -1,4 +1,4 @@
-import { MergedTheme } from '@/tokens'
+import { Theme } from '@/tokens'
 
 export const level = {
     none: 'none',
@@ -12,9 +12,9 @@ export const level = {
 } as const
 
 declare module '@/tokens' {
-    export interface Theme {
+    export interface DefaultTheme {
         level: typeof level
     }
 }
 
-export type Level = keyof MergedTheme['level']
+export type Level = keyof Theme['level']

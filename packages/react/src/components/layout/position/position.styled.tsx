@@ -1,20 +1,18 @@
 import styled from '@emotion/styled'
 import { PositionPropsDefinition } from './position.shared'
-import { getRawValue, getRemValue, getStyledOptions, StyledProps } from '@/utils/css-in-js'
+import { getRawValue, getRemValue, StyledProps } from '@/utils/css-in-js'
 import { Properties } from 'csstype'
-import { level as _level } from '@/tokens/level'
-import { spacing as _spacing } from '@/tokens/spacing'
+import { level as _level, spacing as _spacing } from '@/tokens'
 import isUndefined from 'lodash/isUndefined'
 import { StTransform } from '@/components/layout/transform'
+import { PropsDefinitionWithDefaults } from '@/utils'
 
-export const StPosition = styled(
-    StTransform,
-    getStyledOptions()
-)<StyledProps<PositionPropsDefinition>>(
-    ({
+export const StPosition = styled(StTransform)<StyledProps<PropsDefinitionWithDefaults<PositionPropsDefinition>>>((context) => {
+    const {
         theme: { level = _level, spacing = _spacing },
         styled: { relative, absolute, fixed, sticky, static: staticProp, position, inset, top, left, right, bottom, z },
-    }) => [
+    } = context
+    return [
         {
             position:
                 ([relative && 'relative', absolute && 'absolute', fixed && 'fixed', sticky && 'sticky', staticProp && 'static'].filter(
@@ -40,4 +38,4 @@ export const StPosition = styled(
             zIndex: getRawValue(z, level),
         },
     ]
-)
+})

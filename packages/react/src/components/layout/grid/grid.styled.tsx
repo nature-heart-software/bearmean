@@ -1,31 +1,32 @@
 import styled from '@emotion/styled'
 import { GridColPropsDefinition, GridPropsDefinition } from './grid.shared'
 import { StBox } from '@/components/layout/box'
-import { spacing as _spacing } from '@/tokens/spacing'
-import { defineMixins, getRemValue, getStyledOptions, StyledProps } from '@/utils/css-in-js'
+import { spacing as _spacing } from '@/tokens'
+import { defineMixins, getRemValue, StyledProps } from '@/utils/css-in-js'
 import isUndefined from 'lodash/isUndefined'
+import { PropsDefinitionWithDefaults } from '@/utils'
 
-export const StGrid = styled(
-    StBox,
-    getStyledOptions()
-)<StyledProps<GridPropsDefinition>>(({ theme: { spacing = _spacing }, styled: { align, columns, rows, gap } }) => [
-    {
-        display: 'grid',
-        gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
-        gap: getRemValue(gap, spacing),
-    },
-    !isUndefined(rows) && {
-        gridTemplateRows: `repeat(${rows}, minmax(0, 1fr))`,
-    },
-    align && {
-        alignItems: align,
-    },
-])
+export const StGrid = styled(StBox)<StyledProps<PropsDefinitionWithDefaults<GridPropsDefinition>>>((context) => {
+    const {
+        theme: { spacing = _spacing },
+        styled: { align, columns, rows, gap },
+    } = context
+    return [
+        {
+            display: 'grid',
+            gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+            gap: getRemValue(gap, spacing),
+        },
+        !isUndefined(rows) && {
+            gridTemplateRows: `repeat(${rows}, minmax(0, 1fr))`,
+        },
+        align && {
+            alignItems: align,
+        },
+    ]
+})
 
-export const StGridCol = styled(
-    StBox,
-    getStyledOptions()
-)<StyledProps<GridColPropsDefinition>>((context) => {
+export const StGridCol = styled(StBox)<StyledProps<PropsDefinitionWithDefaults<GridColPropsDefinition>>>((context) => {
     const { getResponsive } = defineMixins({
         ...context,
         styled: {
