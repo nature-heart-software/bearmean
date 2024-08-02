@@ -1,1 +1,0 @@
-import{_ as e,c as t,o,j as s}from"./chunks/framework.kGLnCBoM.js";const h=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"docs/index.md","filePath":"docs/index.md"}'),a={name:"docs/index.md"},n=s("p",null,"hello",-1),c=[n];function d(r,i,_,l,p,m){return o(),t("div",null,c)}const x=e(a,[["render",d]]);export{h as __pageData,x as default};
