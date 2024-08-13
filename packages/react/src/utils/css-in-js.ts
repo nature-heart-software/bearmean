@@ -28,7 +28,7 @@ export const getRawValue = <V extends string | number, R extends Record<string, 
 export const defineMixins = <
     Context extends {
         theme?: { screens: Screens }
-        styled: Record<string, unknown>
+        styled?: Record<string, unknown>
     },
 >(
     context: Context
@@ -41,7 +41,7 @@ export const defineMixins = <
         callback: Callback
     ) => {
         const screens = context.theme?.screens || _screens
-        const props = context.styled
+        const props = context.styled || {}
         return [
             callback(props[prop as keyof typeof props] as Context['styled'][Prop], '', prop),
             ...(Object.entries(screens) as [Screen, Screens[keyof Screens]][]).map(([screen, { value }]) => {
