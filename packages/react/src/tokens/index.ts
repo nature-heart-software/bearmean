@@ -3,8 +3,8 @@ export * from './colors'
 export * from './elevation'
 export * from './level'
 export * from './ratio'
-export * from './screens'
 export * from './spacing'
+export * from './screens'
 
 export interface DefaultTheme {}
 
