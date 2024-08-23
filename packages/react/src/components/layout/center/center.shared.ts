@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react'
+import { ElementType, HTMLAttributes } from 'react'
 import { defineProps, PropsDefinition } from '@/utils/component'
 import { boxPropsDefinition } from '@/components/layout/box'
 
@@ -12,4 +12,5 @@ export type CenterPropsDefinition = typeof centerPropsDefinition
 export type CenterProps = HTMLAttributes<HTMLDivElement> &
     PropsDefinition<CenterPropsDefinition> & {
         asChild?: boolean
+        as?: ElementType
     }

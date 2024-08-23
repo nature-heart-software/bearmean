@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react'
+import { ElementType, HTMLAttributes } from 'react'
 import { Spacing } from '@/tokens'
 import { defineProps, PropsDefinition } from '@/utils/component'
 import { Properties } from 'csstype'
@@ -25,4 +25,5 @@ export type GroupPropsDefinition = typeof groupPropsDefinition
 export type GroupProps = HTMLAttributes<HTMLDivElement> &
     PropsDefinition<GroupPropsDefinition> & {
         asChild?: boolean
+        as?: ElementType
     }

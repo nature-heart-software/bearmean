@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react'
+import { ElementType, HTMLAttributes } from 'react'
 import { boxPropsDefinition } from '@/components/layout/box'
 import { createPartial } from '@/utils/object'
 import { defineProps, PropsDefinition } from '@/utils/component'
@@ -28,4 +28,7 @@ export const dividerPropsDefinition = defineProps(({ optional }) => ({
 
 export type DividerPropsDefinition = typeof dividerPropsDefinition
 
-export type DividerProps = HTMLAttributes<HTMLDivElement> & PropsDefinition<DividerPropsDefinition>
+export type DividerProps = HTMLAttributes<HTMLDivElement> &
+    PropsDefinition<DividerPropsDefinition> & {
+        as?: ElementType
+    }

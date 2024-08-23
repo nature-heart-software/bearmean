@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react'
+import { ElementType, HTMLAttributes } from 'react'
 import { defineProps, PropsDefinition } from '@/utils/component'
 import { boxPropsDefinition } from '@/components/layout/box'
 import { Screen, Screens } from '@/tokens'
@@ -15,4 +15,5 @@ export type ContainerPropsDefinition = typeof containerPropsDefinition
 export type ContainerProps = HTMLAttributes<HTMLDivElement> &
     PropsDefinition<ContainerPropsDefinition> & {
         asChild?: boolean
+        as?: ElementType
     }

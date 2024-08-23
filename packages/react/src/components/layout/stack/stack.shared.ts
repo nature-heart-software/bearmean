@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react'
+import { ElementType, HTMLAttributes } from 'react'
 import { Spacing } from '@/tokens'
 import { defineProps, PropsDefinition } from '@/utils/component'
 import { Properties } from 'csstype'
@@ -21,4 +21,5 @@ export type StackPropsDefinition = typeof stackPropsDefinition
 export type StackProps = HTMLAttributes<HTMLDivElement> &
     PropsDefinition<StackPropsDefinition> & {
         asChild?: boolean
+        as?: ElementType
     }
