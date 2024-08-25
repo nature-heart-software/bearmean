@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react'
+import { ElementType, HTMLAttributes } from 'react'
 import { BorderRadius, BorderStyle, BorderWidth, Color, Elevation, PositiveSpacing, Spacing } from '@/tokens'
 import { Properties } from 'csstype'
 import { defineProps, PropsDefinition } from '@/utils/component'
@@ -58,4 +58,5 @@ export type BoxPropsDefinition = typeof boxPropsDefinition
 export type BoxProps = HTMLAttributes<HTMLDivElement> &
     PropsDefinition<BoxPropsDefinition> & {
         asChild?: boolean
+        as?: ElementType
     }

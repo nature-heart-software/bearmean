@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react'
+import { ElementType, HTMLAttributes } from 'react'
 import { defineProps, PropsDefinition } from '@/utils/component'
 import { boxPropsDefinition } from '@/components/layout/box'
 import { Screens, Spacing } from '@/tokens'
@@ -31,9 +31,13 @@ export type GridPropsDefinition = typeof gridPropsDefinition
 
 export type GridColPropsDefinition = typeof gridColPropsDefinition
 
-export type GridProps = HTMLAttributes<HTMLDivElement> & PropsDefinition<GridPropsDefinition>
+export type GridProps = HTMLAttributes<HTMLDivElement> &
+    PropsDefinition<GridPropsDefinition> & {
+        as?: ElementType
+    }
 
 export type GridColProps = HTMLAttributes<HTMLDivElement> &
     PropsDefinition<GridColPropsDefinition> & {
         asChild?: boolean
+        as?: ElementType
     }

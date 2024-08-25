@@ -12,7 +12,6 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(props, forw
             data-box
             ref={forwardedRef}
             {...htmlProps}
-            {...boxProps}
             styled={{
                 ...boxProps,
             }}
