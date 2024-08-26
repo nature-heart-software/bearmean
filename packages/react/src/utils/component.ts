@@ -101,6 +101,6 @@ export type PropsDefinition<P extends Definitions> = ToOptional<{
     [K in keyof P]: P[K]['value']
 }>
 
-export type PropsDefinitionWithDefaults<P extends Definitions> = {
+export type PropsDefinitionWithDefaults<P extends Definitions> = ToOptional<{
     [K in keyof P]: P[K] extends HasDefaultValue ? NonUndefined<P[K]['value']> : P[K]['value']
-}
+}>
