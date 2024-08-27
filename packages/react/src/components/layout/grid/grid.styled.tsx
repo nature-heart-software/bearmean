@@ -31,7 +31,7 @@ export const StGridCol = styled(StBox)<StyledProps<PropsDefinitionWithDefaults<G
         ...context,
         styled: {
             ...context.styled,
-            span: context.styled.span || 12,
+            span: context.styled.span || context.styled.columns,
             rowSpan: context.styled.rowSpan || null,
         },
     })
