@@ -18,6 +18,7 @@ export const StBox = styled('div')<StyledProps<PropsDefinitionWithDefaults<BoxPr
         theme: { spacing = _spacing, colors = _colors, borderRadius = _borderRadius, borderStyle = _borderStyle, borderWidth = _borderWidth },
         styled: {
             display,
+            basis,
             grow,
             shrink,
             opacity,
@@ -70,6 +71,9 @@ export const StBox = styled('div')<StyledProps<PropsDefinitionWithDefaults<BoxPr
         },
         !isUndefined(display) && {
             display,
+        },
+        !isUndefined(basis) && {
+            flexBasis: basis === 'full' ? '100%' : getRemValue(basis),
         },
         !isUndefined(grow) && {
             flexGrow: Number(grow),

@@ -31,6 +31,7 @@ export const boxPropsDefinition = defineProps(({ optional }) => ({
     mr: optional<MarginSpacing>(),
     mt: optional<MarginSpacing>(),
     mb: optional<MarginSpacing>(),
+    basis: optional<'full' | Properties['flexBasis'] | number>(),
     grow: optional<Properties['flexGrow'] | boolean>(),
     shrink: optional<Properties['flexShrink'] | boolean>(),
     br: optional<BorderRadius | Properties['borderRadius'] | number>(),
