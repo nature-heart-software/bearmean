@@ -35,7 +35,7 @@ export const defineMixins = <
 ) => {
     const getResponsive = <
         Prop extends keyof Context['styled'],
-        Callback extends (value: Context['styled'][Prop], screen: Screen | '', prop: Prop) => InterpolationPrimitive,
+        Callback extends (value: Context['styled'][Prop], screen: Screen | null, prop: Prop) => InterpolationPrimitive,
     >(
         prop: Prop,
         callback: Callback
@@ -43,7 +43,7 @@ export const defineMixins = <
         const screens = context.theme?.screens || _screens
         const props = context.styled || {}
         return [
-            callback(props[prop as keyof typeof props] as Context['styled'][Prop], '', prop),
+            callback(props[prop as keyof typeof props] as Context['styled'][Prop], null, prop),
             ...(Object.entries(screens) as [Screen, Screens[keyof Screens]][]).map(([screen, { value, margin }]) => {
                 const responsiveProp = `${screen}${String(prop).charAt(0).toUpperCase() + String(prop).slice(1)}` as Prop
                 const responsiveValue = props[responsiveProp as keyof typeof props] as Context['styled'][Prop]

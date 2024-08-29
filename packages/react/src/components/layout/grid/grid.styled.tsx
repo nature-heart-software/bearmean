@@ -9,44 +9,57 @@ import { PropsDefinitionWithDefaults } from '@/utils'
 export const StGrid = styled(StBox)<StyledProps<PropsDefinitionWithDefaults<GridPropsDefinition>>>((context) => {
     const {
         theme: { spacing = _spacing },
-        styled: { align, columns, rows, gap },
     } = context
+    const { getResponsive } = defineMixins(context)
     return [
         {
             display: 'grid',
-            gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
-            gap: getRemValue(gap, spacing),
         },
-        !isUndefined(rows) && {
-            gridTemplateRows: `repeat(${rows}, minmax(0, 1fr))`,
-        },
-        align && {
-            alignItems: align,
-        },
+        getResponsive(
+            'rows',
+            (rows) =>
+                !isUndefined(rows) && {
+                    gridTemplateRows: `repeat(${rows}, minmax(0, 1fr))`,
+                }
+        ),
+        getResponsive(
+            'columns',
+            (columns) =>
+                !isUndefined(columns) && {
+                    gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+                }
+        ),
+        getResponsive(
+            'gap',
+            (gap) =>
+                !isUndefined(gap) && {
+                    gap: getRemValue(gap, spacing),
+                }
+        ),
+        getResponsive(
+            'align',
+            (align) =>
+                !isUndefined(align) && {
+                    alignItems: align,
+                }
+        ),
     ]
 })
 
 export const StGridCol = styled(StBox)<StyledProps<PropsDefinitionWithDefaults<GridColPropsDefinition>>>((context) => {
-    const { getResponsive } = defineMixins({
-        ...context,
-        styled: {
-            ...context.styled,
-            span: context.styled.span || context.styled.columns,
-            rowSpan: context.styled.rowSpan || null,
-        },
-    })
+    const { getResponsive } = defineMixins(context)
     return [
         {
             minWidth: 0,
             flexShrink: 0,
         },
-        getResponsive(
-            'span',
-            (value) =>
+        getResponsive('span', (value) => {
+            return (
                 !isUndefined(value) && {
                     gridColumn: `span ${value} / span ${value}`,
                 }
-        ),
+            )
+        }),
         getResponsive(
             'start',
             (value) =>

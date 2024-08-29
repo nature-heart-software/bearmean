@@ -1,21 +1,21 @@
 import { ElementType, HTMLAttributes } from 'react'
 import { defineProps, PropsDefinition } from '@/utils/component'
 import { boxPropsDefinition } from '@/components/layout/box'
-import { Screens, Spacing } from '@/tokens'
+import { Spacing } from '@/tokens'
 import { Properties } from 'csstype'
 
-export const gridPropsDefinition = defineProps(({ optional }) => ({
+export const gridPropsDefinition = defineProps(({ optional, responsive }) => ({
     ...boxPropsDefinition,
-    breakpoints: optional<Screens>(),
-    gap: optional<Spacing | Properties['gap'] | number>('3'),
-    columns: optional<number>(12),
-    rows: optional<number>(),
-    align: optional<Properties['alignItems']>(),
+    ...responsive({
+        gap: optional<Spacing | Properties['gap'] | number>('3'),
+        columns: optional<number>(12),
+        rows: optional<number>(),
+        align: optional<Properties['alignItems']>(),
+    }),
 }))
 
 export const gridColPropsDefinition = defineProps(({ optional, responsive }) => ({
     ...boxPropsDefinition,
-    columns: gridPropsDefinition.columns,
     ...responsive({
         span: optional<number>(),
         start: optional<Properties['gridColumnStart'] | number>(),

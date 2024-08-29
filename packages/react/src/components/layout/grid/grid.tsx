@@ -1,15 +1,12 @@
-import { Context, createContext, forwardRef, ForwardRefExoticComponent, PropsWithoutRef, RefAttributes, useContext, useMemo } from 'react'
+import { forwardRef, ForwardRefExoticComponent, PropsWithoutRef, RefAttributes, useMemo } from 'react'
 import { StGrid, StGridCol } from './grid.styled'
 import { GridColProps, gridColPropsDefinition, GridProps, gridPropsDefinition } from './grid.shared'
 import { Slot } from '@radix-ui/react-slot'
 import { useDefinitionProps } from '@/utils/component'
 
-const GridContext = createContext({}) as Context<Pick<GridProps, 'columns'>>
-
 const GridCol = forwardRef<HTMLDivElement, GridColProps>(function GridCol(props, forwardedRef) {
     const [gridColProps, { children, asChild, ...htmlProps }] = useDefinitionProps(props, gridColPropsDefinition)
     const Comp = useMemo(() => (asChild ? StGridCol.withComponent(Slot) : StGridCol), [asChild])
-    const { columns } = useContext(GridContext)
     return (
         <Comp
             data-grid-col
@@ -17,7 +14,6 @@ const GridCol = forwardRef<HTMLDivElement, GridColProps>(function GridCol(props,
             {...htmlProps}
             styled={{
                 ...gridColProps,
-                columns: columns || gridColProps.columns,
             }}
         >
             {children}
@@ -29,24 +25,17 @@ type GridType = ForwardRefExoticComponent<PropsWithoutRef<GridProps> & RefAttrib
 
 export const Grid = forwardRef(function Grid({ children, ...props }, forwardedRef) {
     const [gridProps, htmlProps] = useDefinitionProps(props, gridPropsDefinition)
-    const { columns } = gridProps
     return (
-        <GridContext.Provider
-            value={{
-                columns,
+        <StGrid
+            data-grid
+            ref={forwardedRef}
+            {...htmlProps}
+            styled={{
+                ...gridProps,
             }}
         >
-            <StGrid
-                data-grid
-                ref={forwardedRef}
-                {...htmlProps}
-                styled={{
-                    ...gridProps,
-                }}
-            >
-                {children}
-            </StGrid>
-        </GridContext.Provider>
+            {children}
+        </StGrid>
     )
 }) as GridType & { Col: typeof GridCol }
 
