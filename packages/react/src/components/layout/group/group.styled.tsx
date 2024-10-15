@@ -24,22 +24,20 @@ export const StGroup = styled(StBox)<StyledProps<PropsDefinitionWithDefaults<Gro
     } = context
     return {
         display: 'flex',
-        justifyContent:
-            direction === 'row'
-                ? justify in POSITIONS
-                    ? POSITIONS[justify as keyof typeof POSITIONS]
-                    : justify
-                : align in POSITIONS
-                  ? POSITIONS[align as keyof typeof POSITIONS]
-                  : align,
-        alignItems:
-            direction === 'row'
-                ? align in POSITIONS
-                    ? POSITIONS[align as keyof typeof POSITIONS]
-                    : align
-                : justify in POSITIONS
-                  ? POSITIONS[justify as keyof typeof POSITIONS]
-                  : justify,
+        justifyContent: direction.includes('row')
+            ? justify in POSITIONS
+                ? POSITIONS[justify as keyof typeof POSITIONS]
+                : justify
+            : align in POSITIONS
+              ? POSITIONS[align as keyof typeof POSITIONS]
+              : align,
+        alignItems: direction.includes('row')
+            ? align in POSITIONS
+                ? POSITIONS[align as keyof typeof POSITIONS]
+                : align
+            : justify in POSITIONS
+              ? POSITIONS[justify as keyof typeof POSITIONS]
+              : justify,
         gap: getRemValue(gap, spacing),
         flexFlow: `${direction} ${wrap ? 'wrap' : 'nowrap'}`,
         '& > *': {
