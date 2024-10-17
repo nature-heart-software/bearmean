@@ -54,6 +54,7 @@ export const boxPropsDefinition = defineProps(({ optional }) => ({
     userSelect: optional<Properties['userSelect']>(),
 }))
 
+// must investigate type inlining: https://github.com/microsoft/TypeScript/issues/37151#issuecomment-681920067
 export type BoxPropsDefinition = typeof boxPropsDefinition
 
 export type BoxProps = HTMLAttributes<HTMLDivElement> &
