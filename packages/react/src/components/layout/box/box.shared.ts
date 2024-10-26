@@ -1,7 +1,7 @@
 import { ElementType, HTMLAttributes } from 'react'
 import { BorderRadius, BorderStyle, BorderWidth, Color, Elevation, PositiveSpacing, Spacing } from '@/tokens'
 import { Properties } from 'csstype'
-import { defineProps, PropsDefinition } from '@/utils/component'
+import { defineProps, PropsDefinition, PropsDefinitionWithDefaults } from '@/utils/component'
 
 export type MarginSpacing = Spacing | Properties['margin'] | number
 export type PaddingSpacing = PositiveSpacing | Properties['padding'] | number
@@ -54,7 +54,6 @@ export const boxPropsDefinition = defineProps(({ optional }) => ({
     userSelect: optional<Properties['userSelect']>(),
 }))
 
-// must investigate type inlining: https://github.com/microsoft/TypeScript/issues/37151#issuecomment-681920067
 export type BoxPropsDefinition = typeof boxPropsDefinition
 
 export type BoxProps = HTMLAttributes<HTMLDivElement> &
@@ -62,3 +61,5 @@ export type BoxProps = HTMLAttributes<HTMLDivElement> &
         asChild?: boolean
         as?: ElementType
     }
+
+export type BoxPropsWithDefaults = PropsDefinitionWithDefaults<BoxPropsDefinition>

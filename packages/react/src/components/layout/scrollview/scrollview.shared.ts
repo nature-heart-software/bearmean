@@ -1,5 +1,5 @@
 import { ElementType, HTMLAttributes } from 'react'
-import { defineProps, PropsDefinition } from '@/utils/component'
+import { defineProps, PropsDefinition, PropsDefinitionWithDefaults } from '@/utils/component'
 import { boxPropsDefinition } from '@/components/layout/box'
 import { Properties } from 'csstype'
 
@@ -16,3 +16,5 @@ export type ScrollviewProps = HTMLAttributes<HTMLDivElement> &
         asChild?: boolean
         as?: ElementType
     }
+
+export type ScrollviewPropsWithDefaults = PropsDefinitionWithDefaults<ScrollviewPropsDefinition>

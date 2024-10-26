@@ -1,6 +1,6 @@
 import { ElementType, HTMLAttributes } from 'react'
 import { Properties } from 'csstype'
-import { defineProps, PropsDefinition } from '@/utils/component'
+import { defineProps, PropsDefinition, PropsDefinitionWithDefaults } from '@/utils/component'
 import { Level, Spacing } from '@/tokens'
 import { transformPropsDefinition } from '@/components/layout/transform'
 
@@ -27,3 +27,5 @@ export type PositionProps = Omit<HTMLAttributes<HTMLDivElement>, 'translate'> &
         asChild?: boolean
         as?: ElementType
     }
+
+export type PositionPropsWithDefaults = PropsDefinitionWithDefaults<PositionPropsDefinition>

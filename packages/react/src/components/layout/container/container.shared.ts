@@ -1,5 +1,5 @@
 import { ElementType, HTMLAttributes } from 'react'
-import { defineProps, PropsDefinition } from '@/utils/component'
+import { defineProps, PropsDefinition, PropsDefinitionWithDefaults } from '@/utils/component'
 import { boxPropsDefinition } from '@/components/layout/box'
 import { Screen, Screens } from '@/tokens'
 
@@ -17,3 +17,5 @@ export type ContainerProps = HTMLAttributes<HTMLDivElement> &
         asChild?: boolean
         as?: ElementType
     }
+
+export type ContainerPropsWithDefaults = PropsDefinitionWithDefaults<ContainerPropsDefinition>

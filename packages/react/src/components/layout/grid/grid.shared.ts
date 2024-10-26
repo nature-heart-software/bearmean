@@ -1,5 +1,5 @@
 import { ElementType, HTMLAttributes } from 'react'
-import { defineProps, PropsDefinition } from '@/utils/component'
+import { defineProps, PropsDefinition, PropsDefinitionWithDefaults } from '@/utils/component'
 import { boxPropsDefinition } from '@/components/layout/box'
 import { Spacing } from '@/tokens'
 import { Properties } from 'csstype'
@@ -36,8 +36,12 @@ export type GridProps = HTMLAttributes<HTMLDivElement> &
         as?: ElementType
     }
 
+export type GridPropsWithDefaults = PropsDefinitionWithDefaults<GridPropsDefinition>
+
 export type GridColProps = HTMLAttributes<HTMLDivElement> &
     PropsDefinition<GridColPropsDefinition> & {
         asChild?: boolean
         as?: ElementType
     }
+
+export type GridColPropsWithDefaults = PropsDefinitionWithDefaults<GridColPropsDefinition>

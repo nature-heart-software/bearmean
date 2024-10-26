@@ -1,6 +1,6 @@
 import { ElementType, HTMLAttributes } from 'react'
 import { Spacing } from '@/tokens'
-import { defineProps, PropsDefinition } from '@/utils/component'
+import { defineProps, PropsDefinition, PropsDefinitionWithDefaults } from '@/utils/component'
 import { Properties } from 'csstype'
 import { boxPropsDefinition } from '@/components/layout/box'
 
@@ -23,3 +23,5 @@ export type StackProps = HTMLAttributes<HTMLDivElement> &
         asChild?: boolean
         as?: ElementType
     }
+
+export type StackPropsWithDefaults = PropsDefinitionWithDefaults<StackPropsDefinition>

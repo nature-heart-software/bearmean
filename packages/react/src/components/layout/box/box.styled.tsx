@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { BoxPropsDefinition } from './box.shared'
+import { BoxPropsWithDefaults } from './box.shared'
 import {
     borderRadius as _borderRadius,
     borderStyle as _borderStyle,
@@ -11,9 +11,8 @@ import {
 import get from 'lodash/get'
 import { getRawValue, getRemValue, StyledProps } from '@/utils/css-in-js'
 import isUndefined from 'lodash/isUndefined'
-import { PropsDefinitionWithDefaults } from '@/utils'
 
-export const StBox = styled('div')<StyledProps<PropsDefinitionWithDefaults<BoxPropsDefinition>>>((context) => {
+export const StBox = styled('div')<StyledProps<BoxPropsWithDefaults>>((context) => {
     const {
         theme: { spacing = _spacing, colors = _colors, borderRadius = _borderRadius, borderStyle = _borderStyle, borderWidth = _borderWidth },
         styled: {

@@ -1,6 +1,6 @@
 import { ElementType, HTMLAttributes } from 'react'
 import { Spacing } from '@/tokens'
-import { defineProps, PropsDefinition } from '@/utils/component'
+import { defineProps, PropsDefinition, PropsDefinitionWithDefaults } from '@/utils/component'
 import { Properties } from 'csstype'
 import { boxPropsDefinition } from '@/components/layout/box'
 
@@ -27,3 +27,5 @@ export type GroupProps = HTMLAttributes<HTMLDivElement> &
         asChild?: boolean
         as?: ElementType
     }
+
+export type GroupPropsWithDefaults = PropsDefinitionWithDefaults<GroupPropsDefinition>
