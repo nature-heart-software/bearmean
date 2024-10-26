@@ -1,7 +1,7 @@
 import pick from 'lodash/pick'
 import omit from 'lodash/omit'
 import { Screen, screens as _screens } from '@/tokens'
-import { useMemo } from 'react'
+import { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes, useMemo } from 'react'
 import mapValues from 'lodash/mapValues'
 import { useTheme } from '@emotion/react'
 
@@ -104,3 +104,5 @@ export type PropsDefinition<P extends Definitions> = ToOptional<{
 export type PropsDefinitionWithDefaults<P extends Definitions> = ToOptional<{
     [K in keyof P]: P[K] extends HasDefaultValue ? NonUndefined<P[K]['value']> : P[K]['value']
 }>
+
+export type FRC<T, P = {}> = ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<T>>

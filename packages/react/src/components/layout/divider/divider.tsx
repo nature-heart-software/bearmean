@@ -1,9 +1,9 @@
 import { forwardRef } from 'react'
 import { StDivider } from './divider.styled'
 import { DividerProps, dividerPropsDefinition, dividerVariants } from './divider.shared'
-import { useDefinitionProps, useVariantProps } from '@/utils/component'
+import { FRC, useDefinitionProps, useVariantProps } from '@/utils/component'
 
-export const Divider = forwardRef<HTMLDivElement, DividerProps>(function Divider({ variant = 'horizontal', ...props }, forwardedRef) {
+export const Divider: FRC<HTMLDivElement, DividerProps> = forwardRef(function Divider({ variant = 'horizontal', ...props }, forwardedRef) {
     const variantProps = useVariantProps(dividerVariants, variant)
     const [dividerProps, { children, ...htmlProps }] = useDefinitionProps(props, dividerPropsDefinition, variantProps)
     return (

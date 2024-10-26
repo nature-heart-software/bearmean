@@ -1,12 +1,11 @@
 import styled from '@emotion/styled'
-import { GridColPropsDefinition, GridPropsDefinition } from './grid.shared'
+import { GridColPropsWithDefaults, GridPropsWithDefaults } from './grid.shared'
 import { StBox } from '@/components/layout/box'
 import { spacing as _spacing } from '@/tokens'
 import { defineMixins, getRemValue, StyledProps } from '@/utils/css-in-js'
 import isUndefined from 'lodash/isUndefined'
-import { PropsDefinitionWithDefaults } from '@/utils'
 
-export const StGrid = styled(StBox)<StyledProps<PropsDefinitionWithDefaults<GridPropsDefinition>>>((context) => {
+export const StGrid = styled(StBox)<StyledProps<GridPropsWithDefaults>>((context) => {
     const {
         theme: { spacing = _spacing },
     } = context
@@ -46,7 +45,7 @@ export const StGrid = styled(StBox)<StyledProps<PropsDefinitionWithDefaults<Grid
     ]
 })
 
-export const StGridCol = styled(StBox)<StyledProps<PropsDefinitionWithDefaults<GridColPropsDefinition>>>((context) => {
+export const StGridCol = styled(StBox)<StyledProps<GridColPropsWithDefaults>>((context) => {
     const { getResponsive } = defineMixins(context)
     return [
         {
