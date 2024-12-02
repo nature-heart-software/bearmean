@@ -56,10 +56,9 @@ export const boxPropsDefinition = defineProps(({ optional }) => ({
 
 export type BoxPropsDefinition = typeof boxPropsDefinition
 
-export type BoxProps = HTMLAttributes<HTMLDivElement> &
-    PropsDefinition<BoxPropsDefinition> & {
-        asChild?: boolean
-        as?: ElementType
-    }
+export interface BoxProps extends HTMLAttributes<HTMLDivElement>, PropsDefinition<BoxPropsDefinition> {
+    asChild?: boolean
+    as?: ElementType
+}
 
 export type BoxPropsWithDefaults = PropsDefinitionWithDefaults<BoxPropsDefinition>

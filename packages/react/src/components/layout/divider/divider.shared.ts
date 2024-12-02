@@ -32,9 +32,8 @@ export const dividerPropsDefinition = defineProps(({ optional }) => ({
 
 export type DividerPropsDefinition = typeof dividerPropsDefinition
 
-export type DividerProps = HTMLAttributes<HTMLDivElement> &
-    PropsDefinition<DividerPropsDefinition> & {
-        as?: ElementType
-    }
+export interface DividerProps extends HTMLAttributes<HTMLDivElement>, PropsDefinition<DividerPropsDefinition> {
+    as?: ElementType
+}
 
 export type DividerPropsWithDefaults = PropsDefinitionWithDefaults<DividerPropsDefinition>

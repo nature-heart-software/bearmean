@@ -22,10 +22,9 @@ export const groupPropsDefinition = defineProps(({ optional }) => ({
 
 export type GroupPropsDefinition = typeof groupPropsDefinition
 
-export type GroupProps = HTMLAttributes<HTMLDivElement> &
-    PropsDefinition<GroupPropsDefinition> & {
-        asChild?: boolean
-        as?: ElementType
-    }
+export interface GroupProps extends HTMLAttributes<HTMLDivElement>, PropsDefinition<GroupPropsDefinition> {
+    asChild?: boolean
+    as?: ElementType
+}
 
 export type GroupPropsWithDefaults = PropsDefinitionWithDefaults<GroupPropsDefinition>

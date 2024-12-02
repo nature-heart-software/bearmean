@@ -9,8 +9,7 @@ export const centerPropsDefinition = defineProps(({ optional }) => ({
 
 export type CenterPropsDefinition = typeof centerPropsDefinition
 
-export type CenterProps = HTMLAttributes<HTMLDivElement> &
-    PropsDefinition<CenterPropsDefinition> & {
+export interface CenterProps extends HTMLAttributes<HTMLDivElement>, PropsDefinition<CenterPropsDefinition> {
     asChild?: boolean
     as?: ElementType
 }

@@ -11,10 +11,9 @@ export const scrollviewPropsDefinition = defineProps(({ optional }) => ({
 
 export type ScrollviewPropsDefinition = typeof scrollviewPropsDefinition
 
-export type ScrollviewProps = HTMLAttributes<HTMLDivElement> &
-    PropsDefinition<ScrollviewPropsDefinition> & {
-        asChild?: boolean
-        as?: ElementType
-    }
+export interface ScrollviewProps extends HTMLAttributes<HTMLDivElement>, PropsDefinition<ScrollviewPropsDefinition> {
+    asChild?: boolean
+    as?: ElementType
+}
 
 export type ScrollviewPropsWithDefaults = PropsDefinitionWithDefaults<ScrollviewPropsDefinition>

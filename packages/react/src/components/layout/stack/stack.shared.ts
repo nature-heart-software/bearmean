@@ -18,10 +18,9 @@ export const stackPropsDefinition = defineProps(({ optional }) => ({
 
 export type StackPropsDefinition = typeof stackPropsDefinition
 
-export type StackProps = HTMLAttributes<HTMLDivElement> &
-    PropsDefinition<StackPropsDefinition> & {
-        asChild?: boolean
-        as?: ElementType
-    }
+export interface StackProps extends HTMLAttributes<HTMLDivElement>, PropsDefinition<StackPropsDefinition> {
+    asChild?: boolean
+    as?: ElementType
+}
 
 export type StackPropsWithDefaults = PropsDefinitionWithDefaults<StackPropsDefinition>

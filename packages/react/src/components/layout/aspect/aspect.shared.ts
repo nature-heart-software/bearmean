@@ -11,10 +11,9 @@ export const aspectPropsDefinition = defineProps(({ optional }) => ({
 
 export type AspectPropsDefinition = typeof aspectPropsDefinition
 
-export type AspectProps = HTMLAttributes<HTMLDivElement> &
-    PropsDefinition<AspectPropsDefinition> & {
-        asChild?: boolean
-        as?: ElementType
-    }
+export interface AspectProps extends HTMLAttributes<HTMLDivElement>, PropsDefinition<AspectPropsDefinition> {
+    asChild?: boolean
+    as?: ElementType
+}
 
 export type AspectPropsWithDefaults = PropsDefinitionWithDefaults<AspectPropsDefinition>

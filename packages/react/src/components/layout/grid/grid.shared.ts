@@ -31,17 +31,15 @@ export type GridPropsDefinition = typeof gridPropsDefinition
 
 export type GridColPropsDefinition = typeof gridColPropsDefinition
 
-export type GridProps = HTMLAttributes<HTMLDivElement> &
-    PropsDefinition<GridPropsDefinition> & {
-        as?: ElementType
-    }
+export interface GridProps extends HTMLAttributes<HTMLDivElement>, PropsDefinition<GridPropsDefinition> {
+    as?: ElementType
+}
 
 export type GridPropsWithDefaults = PropsDefinitionWithDefaults<GridPropsDefinition>
 
-export type GridColProps = HTMLAttributes<HTMLDivElement> &
-    PropsDefinition<GridColPropsDefinition> & {
-        asChild?: boolean
-        as?: ElementType
-    }
+export interface GridColProps extends HTMLAttributes<HTMLDivElement>, PropsDefinition<GridColPropsDefinition> {
+    asChild?: boolean
+    as?: ElementType
+}
 
 export type GridColPropsWithDefaults = PropsDefinitionWithDefaults<GridColPropsDefinition>

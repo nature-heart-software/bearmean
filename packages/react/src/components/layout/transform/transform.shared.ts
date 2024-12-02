@@ -31,10 +31,9 @@ export const transformPropsDefinition = defineProps(({ optional }) => ({
 
 export type TransformPropsDefinition = typeof transformPropsDefinition
 
-export type TransformProps = Omit<HTMLAttributes<HTMLDivElement>, 'translate'> &
-    PropsDefinition<TransformPropsDefinition> & {
-        asChild?: boolean
-        as?: ElementType
-    }
+export interface TransformProps extends Omit<HTMLAttributes<HTMLDivElement>, 'translate'>, PropsDefinition<TransformPropsDefinition> {
+    asChild?: boolean
+    as?: ElementType
+}
 
 export type TransformPropsWithDefaults = PropsDefinitionWithDefaults<TransformPropsDefinition>

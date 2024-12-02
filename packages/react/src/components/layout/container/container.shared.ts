@@ -12,10 +12,9 @@ export const containerPropsDefinition = defineProps(({ optional }) => ({
 
 export type ContainerPropsDefinition = typeof containerPropsDefinition
 
-export type ContainerProps = HTMLAttributes<HTMLDivElement> &
-    PropsDefinition<ContainerPropsDefinition> & {
-        asChild?: boolean
-        as?: ElementType
-    }
+export interface ContainerProps extends HTMLAttributes<HTMLDivElement>, PropsDefinition<ContainerPropsDefinition> {
+    asChild?: boolean
+    as?: ElementType
+}
 
 export type ContainerPropsWithDefaults = PropsDefinitionWithDefaults<ContainerPropsDefinition>
