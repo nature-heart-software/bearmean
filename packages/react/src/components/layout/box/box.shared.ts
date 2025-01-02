@@ -52,6 +52,7 @@ export const boxPropsDefinition = defineProps(({ optional }) => ({
     cursor: optional<Properties['cursor']>(),
     pointerEvents: optional<Properties['pointerEvents']>(),
     userSelect: optional<Properties['userSelect']>(),
+    placeItems: optional<Properties['placeItems']>(),
 }))
 
 export type BoxPropsDefinition = typeof boxPropsDefinition

@@ -61,6 +61,7 @@ export const StBox = styled('div')<StyledProps<BoxPropsWithDefaults>>((context) 
             cursor,
             pointerEvents,
             userSelect,
+            placeItems,
         },
     } = context
     return [
@@ -70,6 +71,9 @@ export const StBox = styled('div')<StyledProps<BoxPropsWithDefaults>>((context) 
         },
         !isUndefined(display) && {
             display,
+        },
+        !isUndefined(placeItems) && {
+            placeItems,
         },
         !isUndefined(basis) && {
             flexBasis: basis === 'full' ? '100%' : getRemValue(basis),
