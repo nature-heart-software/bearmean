@@ -8,6 +8,8 @@ export const gridPropsDefinition = defineProps(({ optional, responsive }) => ({
     ...boxPropsDefinition,
     ...responsive({
         gap: optional<Spacing | Properties['gap'] | number>('3'),
+        columnGap: optional<Spacing | Properties['columnGap'] | number>(),
+        rowGap: optional<Spacing | Properties['rowGap'] | number>(),
         columns: optional<number>(12),
         rows: optional<number>(),
         align: optional<Properties['alignItems']>(),

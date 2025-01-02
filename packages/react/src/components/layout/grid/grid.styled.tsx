@@ -36,6 +36,20 @@ export const StGrid = styled(StBox)<StyledProps<GridPropsWithDefaults>>((context
                 }
         ),
         getResponsive(
+            'columnGap',
+            (columnGap) =>
+                !isUndefined(columnGap) && {
+                    rowGap: getRemValue(columnGap, spacing),
+                }
+        ),
+        getResponsive(
+            'rowGap',
+            (rowGap) =>
+                !isUndefined(rowGap) && {
+                    rowGap: getRemValue(rowGap, spacing),
+                }
+        ),
+        getResponsive(
             'align',
             (align) =>
                 !isUndefined(align) && {
