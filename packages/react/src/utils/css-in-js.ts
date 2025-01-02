@@ -45,7 +45,8 @@ export const defineMixins = <
         return [
             callback(props[prop as keyof typeof props] as Context['styled'][Prop], null, prop),
             ...(Object.entries(screens) as [Screen, Screens[keyof Screens]][]).map(([screen, { value, margin }]) => {
-                const responsiveProp = `${screen}${String(prop).charAt(0).toUpperCase() + String(prop).slice(1)}` as Prop
+                const responsiveProp = `${screen}${(prop as string)[0].toUpperCase()}${(prop as string).slice(1)}` as Prop
+                if (isUndefined(props[responsiveProp as keyof typeof props])) return null
                 const responsiveValue = props[responsiveProp as keyof typeof props] as Context['styled'][Prop]
                 const result = callback(responsiveValue, screen, responsiveProp)
                 return (

@@ -72,10 +72,9 @@ export const useDefinitionProps = <P extends object, D extends Definitions>(
     const responsiveProps = useMemo(
         () =>
             Object.entries(propsDefinition)
-                .filter(([_, definition]) => (definition as any)._IS_RESPONSIVE)
+                .filter(([, definition]) => (definition as any)._IS_RESPONSIVE)
                 .map(([key]) => {
-                    const capitalizedProp = key.charAt(0).toUpperCase() + key.slice(1)
-                    return Object.keys(screens).map((screen) => `${screen}${capitalizedProp}`)
+                    return Object.keys(screens).map((screen) => `${screen}${(key as string)[0].toUpperCase()}${(key as string).slice(1)}`)
                 })
                 .reduce((acc, val) => ({ ...acc, ...Object.fromEntries(val.map((key) => [key, undefined])) }), {}),
         [propsDefinition, screens]
