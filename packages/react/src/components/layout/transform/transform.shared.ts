@@ -1,6 +1,6 @@
 import { ElementType, HTMLAttributes } from 'react'
 import { Properties } from 'csstype'
-import { defineProps, PropsDefinition } from '@/utils/component'
+import { defineProps, PropsDefinition, PropsDefinitionWithDefaults } from '@/utils/component'
 import { boxPropsDefinition } from '@/components/layout/box'
 import { Spacing } from '@/tokens'
 
@@ -31,8 +31,9 @@ export const transformPropsDefinition = defineProps(({ optional }) => ({
 
 export type TransformPropsDefinition = typeof transformPropsDefinition
 
-export type TransformProps = Omit<HTMLAttributes<HTMLDivElement>, 'translate'> &
-    PropsDefinition<TransformPropsDefinition> & {
-        asChild?: boolean
-        as?: ElementType
-    }
+export interface TransformProps extends Omit<HTMLAttributes<HTMLDivElement>, 'translate'>, PropsDefinition<TransformPropsDefinition> {
+    asChild?: boolean
+    as?: ElementType
+}
+
+export type TransformPropsWithDefaults = PropsDefinitionWithDefaults<TransformPropsDefinition>

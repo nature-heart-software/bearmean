@@ -1,9 +1,8 @@
 import styled from '@emotion/styled'
-import { GroupPropsDefinition } from './group.shared'
+import { GroupPropsWithDefaults } from './group.shared'
 import { getRemValue, StyledProps } from '@/utils/css-in-js'
 import { spacing as _spacing } from '@/tokens'
 import { StBox } from '@/components/layout/box'
-import { PropsDefinitionWithDefaults } from '@/utils'
 
 const POSITIONS = {
     top: 'flex-start',
@@ -17,29 +16,27 @@ const POSITIONS = {
     apart: 'space-between',
 } as const
 
-export const StGroup = styled(StBox)<StyledProps<PropsDefinitionWithDefaults<GroupPropsDefinition>>>((context) => {
+export const StGroup = styled(StBox)<StyledProps<GroupPropsWithDefaults>>((context) => {
     const {
         theme: { spacing = _spacing },
         styled: { direction, wrap, justify, align, gap },
     } = context
     return {
         display: 'flex',
-        justifyContent:
-            direction === 'row'
-                ? justify in POSITIONS
-                    ? POSITIONS[justify as keyof typeof POSITIONS]
-                    : justify
-                : align in POSITIONS
-                  ? POSITIONS[align as keyof typeof POSITIONS]
-                  : align,
-        alignItems:
-            direction === 'row'
-                ? align in POSITIONS
-                    ? POSITIONS[align as keyof typeof POSITIONS]
-                    : align
-                : justify in POSITIONS
-                  ? POSITIONS[justify as keyof typeof POSITIONS]
-                  : justify,
+        justifyContent: direction.includes('row')
+            ? justify in POSITIONS
+                ? POSITIONS[justify as keyof typeof POSITIONS]
+                : justify
+            : align in POSITIONS
+              ? POSITIONS[align as keyof typeof POSITIONS]
+              : align,
+        alignItems: direction.includes('row')
+            ? align in POSITIONS
+                ? POSITIONS[align as keyof typeof POSITIONS]
+                : align
+            : justify in POSITIONS
+              ? POSITIONS[justify as keyof typeof POSITIONS]
+              : justify,
         gap: getRemValue(gap, spacing),
         flexFlow: `${direction} ${wrap ? 'wrap' : 'nowrap'}`,
         '& > *': {

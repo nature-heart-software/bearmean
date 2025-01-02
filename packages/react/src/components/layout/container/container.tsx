@@ -2,9 +2,9 @@ import { forwardRef, useMemo } from 'react'
 import { StContainer } from './container.styled'
 import { ContainerProps, containerPropsDefinition } from './container.shared'
 import { Slot } from '@radix-ui/react-slot'
-import { useDefinitionProps } from '@/utils/component'
+import { FRC, useDefinitionProps } from '@/utils/component'
 
-export const Container = forwardRef<HTMLDivElement, ContainerProps>(function Container(props, forwardedRef) {
+export const Container: FRC<HTMLDivElement, ContainerProps> = forwardRef(function Container(props, forwardedRef) {
     const [containerProps, { children, asChild, ...htmlProps }] = useDefinitionProps(props, containerPropsDefinition)
     const Comp = useMemo(() => (asChild ? StContainer.withComponent(Slot) : StContainer), [asChild])
     return (

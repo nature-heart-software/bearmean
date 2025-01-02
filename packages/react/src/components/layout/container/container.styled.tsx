@@ -1,11 +1,11 @@
 import styled from '@emotion/styled'
-import { ContainerPropsDefinition } from './container.shared'
+import { ContainerPropsWithDefaults } from './container.shared'
 import { StBox } from '@/components/layout/box'
 import { rem } from 'polished'
-import { PropsDefinitionWithDefaults, StyledProps } from '@/utils'
+import { StyledProps } from '@/utils'
 import { Screen, Screens, screens as _screens } from '@/tokens'
 
-export const StContainer = styled(StBox)<StyledProps<PropsDefinitionWithDefaults<ContainerPropsDefinition>>>((context) => {
+export const StContainer = styled(StBox)<StyledProps<ContainerPropsWithDefaults>>((context) => {
     const {
         theme: { screens = _screens },
         styled: { fluid, size, breakpoints = screens },

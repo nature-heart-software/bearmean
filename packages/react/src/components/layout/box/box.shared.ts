@@ -1,7 +1,7 @@
 import { ElementType, HTMLAttributes } from 'react'
 import { BorderRadius, BorderStyle, BorderWidth, Color, Elevation, PositiveSpacing, Spacing } from '@/tokens'
 import { Properties } from 'csstype'
-import { defineProps, PropsDefinition } from '@/utils/component'
+import { defineProps, PropsDefinition, PropsDefinitionWithDefaults } from '@/utils/component'
 
 export type MarginSpacing = Spacing | Properties['margin'] | number
 export type PaddingSpacing = PositiveSpacing | Properties['padding'] | number
@@ -31,6 +31,7 @@ export const boxPropsDefinition = defineProps(({ optional }) => ({
     mr: optional<MarginSpacing>(),
     mt: optional<MarginSpacing>(),
     mb: optional<MarginSpacing>(),
+    basis: optional<'full' | Properties['flexBasis'] | number>(),
     grow: optional<Properties['flexGrow'] | boolean>(),
     shrink: optional<Properties['flexShrink'] | boolean>(),
     br: optional<BorderRadius | Properties['borderRadius'] | number>(),
@@ -55,8 +56,9 @@ export const boxPropsDefinition = defineProps(({ optional }) => ({
 
 export type BoxPropsDefinition = typeof boxPropsDefinition
 
-export type BoxProps = HTMLAttributes<HTMLDivElement> &
-    PropsDefinition<BoxPropsDefinition> & {
-        asChild?: boolean
-        as?: ElementType
-    }
+export interface BoxProps extends HTMLAttributes<HTMLDivElement>, PropsDefinition<BoxPropsDefinition> {
+    asChild?: boolean
+    as?: ElementType
+}
+
+export type BoxPropsWithDefaults = PropsDefinitionWithDefaults<BoxPropsDefinition>

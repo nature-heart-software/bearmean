@@ -1,7 +1,7 @@
 import pick from 'lodash/pick'
 import omit from 'lodash/omit'
 import { Screen, screens as _screens } from '@/tokens'
-import { useMemo } from 'react'
+import { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes, useMemo } from 'react'
 import mapValues from 'lodash/mapValues'
 import { useTheme } from '@emotion/react'
 
@@ -78,17 +78,27 @@ export const useDefinitionProps = <P extends object, D extends Definitions>(
                     return Object.keys(screens).map((screen) => `${screen}${capitalizedProp}`)
                 })
                 .reduce((acc, val) => ({ ...acc, ...Object.fromEntries(val.map((key) => [key, undefined])) }), {}),
-        [screens]
+        [propsDefinition, screens]
     )
 
-    const propsDefinitionWithVariants = {
-        ...mapValues(propsDefinition, (definition) => definition.value),
-        ...responsiveProps,
-        ...overrideProps,
-    } as PropsDefinitionWithDefaults<D>
+    const propsDefinitionWithVariants = useMemo(
+        () =>
+            ({
+                ...mapValues(propsDefinition, (definition) => definition.value),
+                ...responsiveProps,
+                ...overrideProps,
+            }) as PropsDefinitionWithDefaults<D>,
+        [propsDefinition, responsiveProps, overrideProps]
+    )
 
-    const extractedProps = { ...propsDefinitionWithVariants, ...pick(props, Object.keys(propsDefinitionWithVariants)) } as PropsDefinitionWithDefaults<D>
-    const rest = omit(props, Object.keys(propsDefinitionWithVariants)) as Omit<P, keyof D>
+    const extractedProps = useMemo(
+        () => ({ ...propsDefinitionWithVariants, ...pick(props, Object.keys(propsDefinitionWithVariants)) }) as PropsDefinitionWithDefaults<D>,
+        [propsDefinitionWithVariants, ...Object.values(props)]
+    )
+    const rest = useMemo(
+        () => omit(props, Object.keys(propsDefinitionWithVariants)) as Omit<P, keyof D>,
+        [propsDefinitionWithVariants, ...Object.values(props)]
+    )
 
     return [extractedProps, rest]
 }
@@ -101,6 +111,8 @@ export type PropsDefinition<P extends Definitions> = ToOptional<{
     [K in keyof P]: P[K]['value']
 }>
 
-export type PropsDefinitionWithDefaults<P extends Definitions> = {
+export type PropsDefinitionWithDefaults<P extends Definitions> = ToOptional<{
     [K in keyof P]: P[K] extends HasDefaultValue ? NonUndefined<P[K]['value']> : P[K]['value']
-}
+}>
+
+export type FRC<T, P = {}> = ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<T>>

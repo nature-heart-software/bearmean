@@ -1,6 +1,8 @@
 import type { StorybookConfig } from '@storybook/react-vite'
 
 import { dirname, join } from 'path'
+import { mergeConfig } from 'vite'
+import * as path from 'node:path'
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -25,6 +27,13 @@ const config: StorybookConfig = {
     },
     docs: {
         autodocs: 'tag',
+    },
+    viteFinal(config) {
+        return mergeConfig(config, {
+            alias: {
+                '@': path.resolve('../src'),
+            },
+        })
     },
 }
 export default config

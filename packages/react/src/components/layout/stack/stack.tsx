@@ -2,9 +2,9 @@ import { forwardRef, useMemo } from 'react'
 import { StStack } from './stack.styled'
 import { StackProps, stackPropsDefinition } from './stack.shared'
 import { Slot } from '@radix-ui/react-slot'
-import { useDefinitionProps } from '@/utils/component'
+import { FRC, useDefinitionProps } from '@/utils/component'
 
-export const Stack = forwardRef<HTMLDivElement, StackProps>(function Stack(props, forwardedRef) {
+export const Stack: FRC<HTMLDivElement, StackProps> = forwardRef(function Stack(props, forwardedRef) {
     const [stackProps, { children, asChild, ...htmlProps }] = useDefinitionProps(props, stackPropsDefinition)
     const Comp = useMemo(() => (asChild ? StStack.withComponent(Slot) : StStack), [asChild])
     return (

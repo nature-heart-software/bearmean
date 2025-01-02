@@ -1,14 +1,18 @@
 import { ElementType, HTMLAttributes } from 'react'
 import { boxPropsDefinition } from '@/components/layout/box'
 import { createPartial } from '@/utils/object'
-import { defineProps, PropsDefinition } from '@/utils/component'
+import { defineProps, PropsDefinition, PropsDefinitionWithDefaults } from '@/utils/component'
 
-export const dividerPropsDefinitionWithoutVariants = defineProps(({ optional }) => ({
+export const dividerWithoutVariantsPropsDefinition = defineProps(({ optional }) => ({
     ...boxPropsDefinition,
     size: optional<number>(1),
 }))
 
-const definePartialProps = createPartial<PropsDefinition<typeof dividerPropsDefinitionWithoutVariants>>()
+export type DividerWithoutVariantsPropsDefinition = typeof dividerWithoutVariantsPropsDefinition
+
+export type DividerWithoutVariantsProps = PropsDefinition<DividerWithoutVariantsPropsDefinition>
+
+const definePartialProps = createPartial<DividerWithoutVariantsProps>()
 
 export const dividerVariants = {
     horizontal: definePartialProps({
@@ -22,13 +26,14 @@ export const dividerVariants = {
 } as const
 
 export const dividerPropsDefinition = defineProps(({ optional }) => ({
-    ...dividerPropsDefinitionWithoutVariants,
+    ...dividerWithoutVariantsPropsDefinition,
     variant: optional<keyof typeof dividerVariants>(),
 }))
 
 export type DividerPropsDefinition = typeof dividerPropsDefinition
 
-export type DividerProps = HTMLAttributes<HTMLDivElement> &
-    PropsDefinition<DividerPropsDefinition> & {
-        as?: ElementType
-    }
+export interface DividerProps extends HTMLAttributes<HTMLDivElement>, PropsDefinition<DividerPropsDefinition> {
+    as?: ElementType
+}
+
+export type DividerPropsWithDefaults = PropsDefinitionWithDefaults<DividerPropsDefinition>
