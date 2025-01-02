@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react'
 import { StGrid, StGridCol } from './grid.styled'
-import { GridColProps, gridColPropsDefinition, gridPropsDefinition } from './grid.shared'
+import { GridColProps, gridColPropsDefinition, GridProps, gridPropsDefinition } from './grid.shared'
 import { Slot } from '@radix-ui/react-slot'
 import { FRC, useDefinitionProps } from '@/utils/component'
 
@@ -35,7 +35,7 @@ export const Grid = forwardRef(function Grid({ children, ...props }, forwardedRe
             {children}
         </StGrid>
     )
-}) as FRC<HTMLDivElement, GridColProps> & { Col: typeof GridCol }
+}) as FRC<HTMLDivElement, GridProps> & { Col: typeof GridCol }
 
 Grid.Col = GridCol
 
