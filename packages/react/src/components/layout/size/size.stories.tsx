@@ -11,10 +11,10 @@ export default meta
 
 const Template: StoryFn<typeof Size> = (args) => (
     <Size {...args}>
-        {({ width, height, map }) => (
+        {({ width, height, select }) => (
             <Box
                 p={'5'}
-                bg={map([
+                bg={select([
                     [width > 1000, 'green.200'],
                     [width < 1000, 'red.200'],
                 ])}

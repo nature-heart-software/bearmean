@@ -15,7 +15,7 @@ export interface SizeProps extends Omit<HTMLAttributes<HTMLDivElement>, 'childre
     as?: ElementType
     children: (
         context: SizeElementSize & {
-            map<V>(values: [boolean, V][]): V
+            select<V>(values: [boolean, V][]): V
         }
     ) => ReactNode
 }

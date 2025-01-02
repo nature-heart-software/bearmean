@@ -6,7 +6,7 @@ import { mergeRefs } from 'react-merge-refs'
 import debounce from 'lodash/debounce'
 
 interface UseElementSizeOptions {
-    debounce?: number // Debounce time in milliseconds (optional)
+    debounce?: number
 }
 
 const useElementSize = (options: UseElementSizeOptions = { debounce: 100 }): [(node: HTMLElement | null) => void, SizeElementSize] => {
@@ -45,12 +45,12 @@ const useElementSize = (options: UseElementSizeOptions = { debounce: 100 }): [(n
 }
 
 const useSizeUtils = () => {
-    function map<V>(values: [boolean, V][]): V {
+    function select<V>(values: [boolean, V][]): V {
         return values.filter(([condition]) => Boolean(condition))?.[0]?.[1]
     }
 
     return {
-        map,
+        select,
     }
 }
 
@@ -59,7 +59,7 @@ export const Size: FRC<HTMLDivElement, SizeProps> = forwardRef(function Size(pro
     const [elementSizeRef, size] = useElementSize({
         debounce,
     })
-    const { map } = useSizeUtils()
+    const { select } = useSizeUtils()
     return (
         <StSize
             data-size
@@ -70,7 +70,7 @@ export const Size: FRC<HTMLDivElement, SizeProps> = forwardRef(function Size(pro
                 ...sizeProps,
             }}
         >
-            {children({ ...size, map })}
+            {children({ ...size, select })}
         </StSize>
     )
 })
