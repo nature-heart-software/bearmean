@@ -3,9 +3,8 @@ import { boxPropsDefinition } from '@/components/layout/box'
 import { createPartial } from '@/utils/object'
 import { defineProps, PropsDefinition, PropsDefinitionWithDefaults } from '@/utils/component'
 
-export const dividerWithoutVariantsPropsDefinition = defineProps(({ optional }) => ({
+export const dividerWithoutVariantsPropsDefinition = defineProps(() => ({
     ...boxPropsDefinition,
-    size: optional<number>(1),
 }))
 
 export type DividerWithoutVariantsPropsDefinition = typeof dividerWithoutVariantsPropsDefinition

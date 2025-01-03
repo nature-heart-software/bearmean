@@ -15,12 +15,64 @@ import isUndefined from 'lodash/isUndefined'
 export const StBox = styled('div')<StyledProps<BoxPropsWithDefaults>>((context) => {
     const {
         theme: { spacing = _spacing, colors = _colors, borderRadius = _borderRadius, borderStyle = _borderStyle, borderWidth = _borderWidth },
+        styled: { opacity, bg, br, btlr, btrr, bblr, bbrr, bs, bw, btw, brw, blw, bbw, bc, cursor, pointerEvents, userSelect },
     } = context
     const { getResponsive } = defineMixins(context)
     return [
         {
             minWidth: 0,
             minHeight: 0,
+        },
+        !isUndefined(opacity) && {
+            opacity,
+        },
+        !isUndefined(bg) && {
+            background: get(colors, bg) || bg,
+        },
+        !isUndefined(br) && {
+            borderRadius: getRemValue(br, borderRadius),
+        },
+        !isUndefined(btlr) && {
+            borderTopLeftRadius: getRemValue(btlr, borderRadius),
+        },
+        !isUndefined(btrr) && {
+            borderTopRightRadius: getRemValue(btrr, borderRadius),
+        },
+        !isUndefined(bblr) && {
+            borderBottomLeftRadius: getRemValue(bblr, borderRadius),
+        },
+        !isUndefined(bbrr) && {
+            borderBottomRightRadius: getRemValue(bbrr, borderRadius),
+        },
+        !isUndefined(bs) && {
+            borderStyle: getRawValue(bs, borderStyle),
+        },
+        !isUndefined(bw) && {
+            borderWidth: getRemValue(bw, borderWidth),
+        },
+        !isUndefined(btw) && {
+            borderBottomWidth: getRemValue(btw, borderWidth),
+        },
+        !isUndefined(brw) && {
+            borderRightWidth: getRemValue(brw, borderWidth),
+        },
+        !isUndefined(blw) && {
+            borderLeftWidth: getRemValue(blw, borderWidth),
+        },
+        !isUndefined(bbw) && {
+            borderBottomWidth: getRemValue(bbw, borderWidth),
+        },
+        !isUndefined(bc) && {
+            borderColor: get(colors, bc) || bc,
+        },
+        !isUndefined(cursor) && {
+            cursor,
+        },
+        !isUndefined(pointerEvents) && {
+            pointerEvents,
+        },
+        !isUndefined(userSelect) && {
+            userSelect,
         },
         getResponsive(
             'display',
@@ -58,24 +110,10 @@ export const StBox = styled('div')<StyledProps<BoxPropsWithDefaults>>((context) 
                 }
         ),
         getResponsive(
-            'opacity',
-            (opacity) =>
-                !isUndefined(opacity) && {
-                    opacity,
-                }
-        ),
-        getResponsive(
             'elevation',
             (elevationProp) =>
                 elevationProp && {
                     boxShadow: getRawValue(elevationProp, elevation),
-                }
-        ),
-        getResponsive(
-            'bg',
-            (bg) =>
-                !isUndefined(bg) && {
-                    background: get(colors, bg) || bg,
                 }
         ),
         getResponsive(
@@ -229,90 +267,6 @@ export const StBox = styled('div')<StyledProps<BoxPropsWithDefaults>>((context) 
                 }
         ),
         getResponsive(
-            'br',
-            (br) =>
-                !isUndefined(br) && {
-                    borderRadius: getRemValue(br, borderRadius),
-                }
-        ),
-        getResponsive(
-            'btlr',
-            (btlr) =>
-                !isUndefined(btlr) && {
-                    borderTopLeftRadius: getRemValue(btlr, borderRadius),
-                }
-        ),
-        getResponsive(
-            'btrr',
-            (btrr) =>
-                !isUndefined(btrr) && {
-                    borderTopRightRadius: getRemValue(btrr, borderRadius),
-                }
-        ),
-        getResponsive(
-            'bblr',
-            (bblr) =>
-                !isUndefined(bblr) && {
-                    borderBottomLeftRadius: getRemValue(bblr, borderRadius),
-                }
-        ),
-        getResponsive(
-            'bbrr',
-            (bbrr) =>
-                !isUndefined(bbrr) && {
-                    borderBottomRightRadius: getRemValue(bbrr, borderRadius),
-                }
-        ),
-        getResponsive(
-            'bs',
-            (bs) =>
-                !isUndefined(bs) && {
-                    borderStyle: getRawValue(bs, borderStyle),
-                }
-        ),
-        getResponsive(
-            'bw',
-            (bw) =>
-                !isUndefined(bw) && {
-                    borderWidth: getRemValue(bw, borderWidth),
-                }
-        ),
-        getResponsive(
-            'btw',
-            (btw) =>
-                !isUndefined(btw) && {
-                    borderBottomWidth: getRemValue(btw, borderWidth),
-                }
-        ),
-        getResponsive(
-            'brw',
-            (brw) =>
-                !isUndefined(brw) && {
-                    borderRightWidth: getRemValue(brw, borderWidth),
-                }
-        ),
-        getResponsive(
-            'blw',
-            (blw) =>
-                !isUndefined(blw) && {
-                    borderLeftWidth: getRemValue(blw, borderWidth),
-                }
-        ),
-        getResponsive(
-            'bbw',
-            (bbw) =>
-                !isUndefined(bbw) && {
-                    borderBottomWidth: getRemValue(bbw, borderWidth),
-                }
-        ),
-        getResponsive(
-            'bc',
-            (bc) =>
-                !isUndefined(bc) && {
-                    borderColor: get(colors, bc) || bc,
-                }
-        ),
-        getResponsive(
             'overflow',
             (overflow) =>
                 !isUndefined(overflow) && {
@@ -331,27 +285,6 @@ export const StBox = styled('div')<StyledProps<BoxPropsWithDefaults>>((context) 
             (overflowY) =>
                 !isUndefined(overflowY) && {
                     overflowY,
-                }
-        ),
-        getResponsive(
-            'cursor',
-            (cursor) =>
-                !isUndefined(cursor) && {
-                    cursor,
-                }
-        ),
-        getResponsive(
-            'pointerEvents',
-            (pointerEvents) =>
-                !isUndefined(pointerEvents) && {
-                    pointerEvents,
-                }
-        ),
-        getResponsive(
-            'userSelect',
-            (userSelect) =>
-                !isUndefined(userSelect) && {
-                    userSelect,
                 }
         ),
     ]
