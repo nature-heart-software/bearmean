@@ -4,9 +4,11 @@ import { defineProps, PropsDefinition, PropsDefinitionWithDefaults } from '@/uti
 import { boxPropsDefinition } from '@/components/layout/box'
 import { Ratio } from '@/tokens'
 
-export const aspectPropsDefinition = defineProps(({ optional }) => ({
+export const aspectPropsDefinition = defineProps(({ responsive, optional }) => ({
     ...boxPropsDefinition,
-    ratio: optional<Ratio | Properties['aspectRatio'] | number>(),
+    ...responsive({
+        ratio: optional<Ratio | Properties['aspectRatio'] | number>(),
+    }),
 }))
 
 export type AspectPropsDefinition = typeof aspectPropsDefinition

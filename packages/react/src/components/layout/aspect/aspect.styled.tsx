@@ -2,17 +2,21 @@ import styled from '@emotion/styled'
 import { AspectPropsWithDefaults } from './aspect.shared'
 import { StBox } from '@/components/layout/box'
 import { ratio as _ratio } from '@/tokens'
-import { getRawValue, StyledProps } from '@/utils/css-in-js'
+import { defineMixins, getRawValue, StyledProps } from '@/utils/css-in-js'
 import isUndefined from 'lodash/isUndefined'
 
 export const StAspect = styled(StBox)<StyledProps<AspectPropsWithDefaults>>((context) => {
     const {
         theme: { ratio = _ratio },
-        styled: { ratio: ratioProp },
     } = context
+    const { getResponsive } = defineMixins(context)
     return [
-        !isUndefined(ratioProp) && {
-            aspectRatio: getRawValue(ratioProp, ratio),
-        },
+        getResponsive(
+            'ratio',
+            (ratioProp) =>
+                !isUndefined(ratioProp) && {
+                    aspectRatio: getRawValue(ratioProp, ratio),
+                }
+        ),
     ]
 })

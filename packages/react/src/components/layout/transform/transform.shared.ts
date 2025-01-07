@@ -4,29 +4,23 @@ import { defineProps, PropsDefinition, PropsDefinitionWithDefaults } from '@/uti
 import { boxPropsDefinition } from '@/components/layout/box'
 import { Spacing } from '@/tokens'
 
-export const transformPropsDefinition = defineProps(({ optional }) => ({
+export const transformPropsDefinition = defineProps(({ responsive, optional }) => ({
     ...boxPropsDefinition,
-    transform: optional<Properties['transform']>(),
-    transformOrigin: optional<Properties['transformOrigin'] | number | (Properties['transformOrigin'] | number)[]>(),
-    translate: optional<string | number | (Spacing | string | number)[]>(),
-    translateX: optional<Spacing | string | number>(),
-    translateY: optional<Spacing | string | number>(),
-    translateZ: optional<Spacing | string | number>(),
-    translate3d: optional<(Spacing | string | number)[]>(),
-    scale: optional<string | number | (string | number)[]>(),
-    scaleX: optional<string | number>(),
-    scaleY: optional<string | number>(),
-    scaleZ: optional<string | number>(),
-    scale3d: optional<string | number | (string | number)[]>(),
-    skew: optional<string | number | (string | number)[]>(),
-    skewX: optional<string | number>(),
-    skewY: optional<string | number>(),
-    rotate: optional<string | string[]>(),
-    rotateX: optional<string>(),
-    rotateY: optional<string>(),
-    rotateZ: optional<string>(),
-    rotate3d: optional<string[]>(),
-    perspective: optional<Properties['perspective'] | number>(),
+    ...responsive({
+        transform: optional<Properties['transform']>(),
+        transformOrigin: optional<(Properties['transformOrigin'] | number)[]>(),
+        translate: optional<Spacing | string | number | (Spacing | string | number)[]>(),
+        translateX: optional<Spacing | string | number>(),
+        translateY: optional<Spacing | string | number>(),
+        scale: optional<string | number | (string | number)[]>(),
+        scaleX: optional<string | number>(),
+        scaleY: optional<string | number>(),
+        skew: optional<string | number | (string | number)[]>(),
+        skewX: optional<string | number>(),
+        skewY: optional<string | number>(),
+        rotate: optional<string>(),
+        perspective: optional<Properties['perspective'] | number>(),
+    }),
 }))
 
 export type TransformPropsDefinition = typeof transformPropsDefinition

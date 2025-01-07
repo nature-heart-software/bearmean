@@ -1,8 +1,9 @@
 import styled from '@emotion/styled'
 import { GroupPropsWithDefaults } from './group.shared'
-import { getRemValue, StyledProps } from '@/utils/css-in-js'
+import { defineMixins, getRemValue, StyledProps } from '@/utils/css-in-js'
 import { spacing as _spacing } from '@/tokens'
 import { StBox } from '@/components/layout/box'
+import isUndefined from 'lodash/isUndefined'
 
 const POSITIONS = {
     top: 'flex-start',
@@ -19,29 +20,52 @@ const POSITIONS = {
 export const StGroup = styled(StBox)<StyledProps<GroupPropsWithDefaults>>((context) => {
     const {
         theme: { spacing = _spacing },
-        styled: { direction, wrap, justify, align, gap },
     } = context
-    return {
-        display: 'flex',
-        justifyContent: direction.includes('row')
-            ? justify in POSITIONS
-                ? POSITIONS[justify as keyof typeof POSITIONS]
-                : justify
-            : align in POSITIONS
-              ? POSITIONS[align as keyof typeof POSITIONS]
-              : align,
-        alignItems: direction.includes('row')
-            ? align in POSITIONS
-                ? POSITIONS[align as keyof typeof POSITIONS]
-                : align
-            : justify in POSITIONS
-              ? POSITIONS[justify as keyof typeof POSITIONS]
-              : justify,
-        gap: getRemValue(gap, spacing),
-        flexFlow: `${direction} ${wrap ? 'wrap' : 'nowrap'}`,
-        '& > *': {
-            minWidth: 0,
-            minHeight: 0,
+    const { getResponsive } = defineMixins(context)
+    return [
+        {
+            display: 'flex',
         },
-    }
+        getResponsive(
+            'justify',
+            (justify) =>
+                !isUndefined(justify) && {
+                    justifyContent: justify in POSITIONS ? POSITIONS[justify as keyof typeof POSITIONS] : justify,
+                }
+        ),
+        getResponsive(
+            'align',
+            (align) =>
+                !isUndefined(align) && {
+                    alignItems: align in POSITIONS ? POSITIONS[align as keyof typeof POSITIONS] : align,
+                }
+        ),
+        getResponsive(
+            'gap',
+            (gap) =>
+                !isUndefined(gap) && {
+                    gap: getRemValue(gap, spacing),
+                }
+        ),
+        getResponsive(
+            'direction',
+            (direction) =>
+                !isUndefined(direction) && {
+                    flexDirection: direction,
+                }
+        ),
+        getResponsive(
+            'wrap',
+            (wrap) =>
+                !isUndefined(wrap) && {
+                    flexWrap: wrap ? 'wrap' : 'nowrap',
+                }
+        ),
+        {
+            '& > *': {
+                minWidth: 0,
+                minHeight: 0,
+            },
+        },
+    ]
 })

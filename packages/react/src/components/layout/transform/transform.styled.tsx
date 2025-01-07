@@ -2,76 +2,119 @@ import styled from '@emotion/styled'
 import { TransformPropsWithDefaults } from './transform.shared'
 import { StBox } from '@/components/layout/box'
 import isUndefined from 'lodash/isUndefined'
-import { getRemValue, StyledProps } from '@/utils'
+import { defineMixins, getRemValue, StyledProps } from '@/utils'
 import { spacing as _spacing } from '@/tokens'
 
 export const StTransform = styled(StBox)<StyledProps<TransformPropsWithDefaults>>((context) => {
     const {
         theme: { spacing = _spacing },
-        styled: {
-            transform: transformProp,
-            transformOrigin,
-            translate,
-            translateX,
-            translateY,
-            translateZ,
-            translate3d,
-            rotate,
-            scale,
-            scaleX,
-            scaleY,
-            scaleZ,
-            scale3d,
-            skew,
-            skewX,
-            skewY,
-            rotateX,
-            rotateY,
-            rotateZ,
-            rotate3d,
-            perspective,
-        },
     } = context
-    const transform = [
-        transformProp,
-        !isUndefined(translate) &&
-            `translate(${
-                typeof translate === 'object'
-                    ? translate
-                          .map((value) => getRemValue(value, spacing))
-                          .filter(Boolean)
-                          .join(', ')
-                    : translate
-            })`,
-        !isUndefined(translateX) && `translateX(${getRemValue(translateX, spacing)})`,
-        !isUndefined(translateY) && `translateY(${getRemValue(translateY, spacing)})`,
-        !isUndefined(translateZ) && `translateZ(${getRemValue(translateZ, spacing)})`,
-        !isUndefined(translate3d) && `translate3d(${translate3d.map((value) => getRemValue(value, spacing)).join(', ')})`,
-        !isUndefined(scale) && `scale(${typeof scale === 'object' ? scale.join(', ') : scale})`,
-        !isUndefined(scaleX) && `scaleX(${scaleX})`,
-        !isUndefined(scaleY) && `scaleY(${scaleY})`,
-        !isUndefined(scaleZ) && `scaleZ(${scaleZ})`,
-        !isUndefined(scale3d) && `scale3d(${typeof scale3d === 'object' ? scale3d.join(', ') : scale3d})`,
-        !isUndefined(skew) && `skew(${typeof skew === 'object' ? skew.join(', ') : skew})`,
-        !isUndefined(skewX) && `skewX(${skewX})`,
-        !isUndefined(skewY) && `skewY(${skewY})`,
-        !isUndefined(rotate) && `rotate(${typeof rotate === 'object' ? rotate.join(', ') : rotate})`,
-        !isUndefined(rotateX) && `rotateX(${rotateX})`,
-        !isUndefined(rotateY) && `rotateY(${rotateY})`,
-        !isUndefined(rotateZ) && `rotateZ(${rotateZ})`,
-        !isUndefined(rotate3d) && `rotate3d(${typeof rotate3d === 'object' ? rotate3d.join(', ') : rotate3d})`,
-    ]
-        .filter(Boolean)
-        .join(' ')
+    const { getResponsive } = defineMixins(context)
     return [
-        transform && {
-            transform,
+        {
+            '--bm-translate-x': 0,
+            '--bm-translate-y': 0,
+            '--bm-scale-x': 1,
+            '--bm-scale-y': 1,
+            '--bm-skew-x': 0,
+            '--bm-skew-y': 0,
+            '--bm-rotate': 0,
         },
-        transformOrigin && {
-            transformOrigin: typeof transformOrigin === 'object' ? transformOrigin.join(' ') : transformOrigin,
+        getResponsive(
+            'translate',
+            (translate) =>
+                translate && {
+                    '--bm-translate-x': getRemValue(typeof translate === 'object' ? translate[0] : translate, spacing),
+                    '--bm-translate-y': getRemValue(typeof translate === 'object' ? translate[1] : translate, spacing),
+                }
+        ),
+        getResponsive(
+            'translateX',
+            (translateX) =>
+                !isUndefined(translateX) && {
+                    '--bm-translate-x': getRemValue(translateX, spacing),
+                }
+        ),
+        getResponsive(
+            'translateY',
+            (translateY) =>
+                !isUndefined(translateY) && {
+                    '--bm-translate-y': getRemValue(translateY, spacing),
+                }
+        ),
+        getResponsive(
+            'scale',
+            (scale) =>
+                !isUndefined(scale) && {
+                    '--bm-scale-x': typeof scale === 'object' ? scale[0] : scale,
+                    '--bm-scale-y': typeof scale === 'object' ? scale[1] : scale,
+                }
+        ),
+        getResponsive(
+            'scaleX',
+            (scaleX) =>
+                !isUndefined(scaleX) && {
+                    '--bm-scale-x': getRemValue(scaleX, spacing),
+                }
+        ),
+        getResponsive(
+            'scaleY',
+            (scaleY) =>
+                !isUndefined(scaleY) && {
+                    '--bm-scale-y': getRemValue(scaleY, spacing),
+                }
+        ),
+        getResponsive(
+            'skewX',
+            (skewX) =>
+                !isUndefined(skewX) && {
+                    '--bm-skew-x': getRemValue(skewX, spacing),
+                }
+        ),
+        getResponsive(
+            'skewY',
+            (skewY) =>
+                !isUndefined(skewY) && {
+                    '--bm-skew-y': getRemValue(skewY, spacing),
+                }
+        ),
+        getResponsive(
+            'rotate',
+            (rotate) =>
+                !isUndefined(rotate) && {
+                    '--bm-rotate': getRemValue(rotate, spacing),
+                }
+        ),
+        {
+            transform: [
+                'translate(var(--bm-translate-x), var(--bm-translate-y))',
+                'scaleX(var(--bm-scale-x))',
+                'scaleY(var(--bm-scale-y))',
+                'rotate(var(--bm-rotate))',
+                'skewX(var(--bm-skew-x))',
+                'skewY(var(--bm-skew-y))',
+            ].join(' '),
         },
-        !isUndefined(perspective) && {
-            perspective: getRemValue(perspective, spacing),
-        },
+        getResponsive(
+            'transform',
+            (transform) =>
+                !isUndefined(transform) && {
+                    transform,
+                }
+        ),
+        getResponsive(
+            'transformOrigin',
+            (transformOrigin) =>
+                !isUndefined(transformOrigin) && {
+                    perspective: transformOrigin.join(' '),
+                }
+        ),
+        getResponsive(
+            'perspective',
+            (perspective) =>
+                !isUndefined(perspective) && {
+                    perspective: getRemValue(perspective, spacing),
+                }
+        ),
     ]
 })

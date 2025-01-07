@@ -11,13 +11,15 @@ export type GroupAlign = (typeof groupAlignValues)[number]
 export const groupDirectionValues = ['row', 'column'] as const
 export type GroupDirection = (typeof groupDirectionValues)[number]
 
-export const groupPropsDefinition = defineProps(({ optional }) => ({
+export const groupPropsDefinition = defineProps(({ responsive, optional }) => ({
     ...boxPropsDefinition,
-    direction: optional<GroupDirection | Properties['flexDirection']>('row'),
-    justify: optional<GroupJustify | Properties['justifyContent']>('left'),
-    align: optional<GroupAlign | Properties['alignItems']>('center'),
-    gap: optional<Spacing | Properties['gap'] | number>('3'),
-    wrap: optional<boolean>(false),
+    ...responsive({
+        direction: optional<GroupDirection | Properties['flexDirection']>('row'),
+        justify: optional<GroupJustify | Properties['justifyContent']>('left'),
+        align: optional<GroupAlign | Properties['alignItems']>('center'),
+        gap: optional<Spacing | Properties['gap'] | number>('3'),
+        wrap: optional<boolean>(false),
+    }),
 }))
 
 export type GroupPropsDefinition = typeof groupPropsDefinition
