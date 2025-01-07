@@ -15,11 +15,6 @@ const Template: StoryFn<typeof Transform> = () => (
         <Transform rotate={'180deg'}>🐻</Transform>
         <Transform translate={['-50%', '-50%']}>🐻‍❄️</Transform>
         <Transform scale={1.3}>🐼</Transform>
-        <Transform perspective={30}>
-            <Transform rotateY={'45deg'} translateZ={15}>
-                🦝
-            </Transform>
-        </Transform>
     </div>
 )
 
