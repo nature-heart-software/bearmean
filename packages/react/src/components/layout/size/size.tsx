@@ -5,11 +5,11 @@ import { FRC, useDefinitionProps } from '@/utils/component'
 import { mergeRefs } from 'react-merge-refs'
 import debounce from 'lodash/debounce'
 
-interface UseElementSizeOptions {
+type UseElementSizeOptions = {
     debounce?: number
 }
 
-const useElementSize = (options: UseElementSizeOptions = { debounce: 100 }): [(node: HTMLElement | null) => void, SizeElementSize] => {
+const useElementSize = (options: UseElementSizeOptions = {}): [(node: HTMLElement | null) => void, SizeElementSize] => {
     const [element, setElement] = useState<HTMLElement | null>(null)
     const [size, setSize] = useState<SizeElementSize>({ width: 0, height: 0 })
 
