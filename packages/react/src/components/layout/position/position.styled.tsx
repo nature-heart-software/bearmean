@@ -57,35 +57,35 @@ export const StPosition = styled(StTransform)<StyledProps<PositionPropsWithDefau
             'inset',
             (inset) =>
                 !isUndefined(inset) && {
-                    inset: typeof inset === 'boolean' ? 0 : getRemValue(inset, spacing),
+                    inset: typeof inset === 'boolean' && inset ? 0 : inset ? getRemValue(inset, spacing) : undefined,
                 }
         ),
         getResponsive(
             'top',
             (top) =>
                 !isUndefined(top) && {
-                    top: typeof top === 'boolean' ? 0 : getRemValue(top, spacing),
+                    top: typeof top === 'boolean' && top ? 0 : top ? getRemValue(top, spacing) : undefined,
                 }
         ),
         getResponsive(
             'left',
             (left) =>
                 !isUndefined(left) && {
-                    left: typeof left === 'boolean' ? 0 : getRemValue(left, spacing),
+                    left: typeof left === 'boolean' && left ? 0 : left ? getRemValue(left, spacing) : undefined,
                 }
         ),
         getResponsive(
             'right',
             (right) =>
                 !isUndefined(right) && {
-                    right: typeof right === 'boolean' ? 0 : getRemValue(right, spacing),
+                    right: typeof right === 'boolean' && right ? 0 : right ? getRemValue(right, spacing) : undefined,
                 }
         ),
         getResponsive(
             'bottom',
             (bottom) =>
                 !isUndefined(bottom) && {
-                    bottom: typeof bottom === 'boolean' ? 0 : getRemValue(bottom, spacing),
+                    bottom: typeof bottom === 'boolean' && bottom ? 0 : bottom ? getRemValue(bottom, spacing) : undefined,
                 }
         ),
         getResponsive(
