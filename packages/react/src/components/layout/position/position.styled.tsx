@@ -57,35 +57,35 @@ export const StPosition = styled(StTransform)<StyledProps<PositionPropsWithDefau
             'inset',
             (inset) =>
                 !isUndefined(inset) && {
-                    inset: typeof inset === 'boolean' && inset ? 0 : inset ? getRemValue(inset, spacing) : undefined,
+                    inset: typeof inset === 'boolean' ? (inset ? 0 : undefined) : getRemValue(inset, spacing),
                 }
         ),
         getResponsive(
             'top',
             (top) =>
                 !isUndefined(top) && {
-                    top: typeof top === 'boolean' && top ? 0 : top ? getRemValue(top, spacing) : undefined,
+                    top: typeof top === 'boolean' ? (top ? 0 : undefined) : getRemValue(top, spacing),
                 }
         ),
         getResponsive(
             'left',
             (left) =>
                 !isUndefined(left) && {
-                    left: typeof left === 'boolean' && left ? 0 : left ? getRemValue(left, spacing) : undefined,
+                    left: typeof left === 'boolean' ? (left ? 0 : undefined) : getRemValue(left, spacing),
                 }
         ),
         getResponsive(
             'right',
             (right) =>
                 !isUndefined(right) && {
-                    right: typeof right === 'boolean' && right ? 0 : right ? getRemValue(right, spacing) : undefined,
+                    right: typeof right === 'boolean' ? (right ? 0 : undefined) : getRemValue(right, spacing),
                 }
         ),
         getResponsive(
             'bottom',
             (bottom) =>
                 !isUndefined(bottom) && {
-                    bottom: typeof bottom === 'boolean' && bottom ? 0 : bottom ? getRemValue(bottom, spacing) : undefined,
+                    bottom: typeof bottom === 'boolean' ? (bottom ? 0 : undefined) : getRemValue(bottom, spacing),
                 }
         ),
         getResponsive(
